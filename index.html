@@ -39,6 +39,15 @@ tailwind.config = {
   ::selection { background:#1e4d2b; color:#fff; }
   .grad-text { background:linear-gradient(92deg,#2E7D44,#1e4d2b 55%,#0E2A16); -webkit-background-clip:text; background-clip:text; color:transparent; }
   .font-display { font-family:Archivo,'Plus Jakarta Sans',sans-serif; letter-spacing:-0.02em; }
+  /* ---- Animasi scroll ala Base: reveal + parallax ---- */
+  [data-reveal]{opacity:0;transform:translateY(30px);filter:blur(5px);transition:opacity .85s cubic-bezier(.22,.61,.36,1),transform .85s cubic-bezier(.22,.61,.36,1),filter .85s ease;}
+  [data-reveal="left"]{transform:translateX(-40px);}
+  [data-reveal="right"]{transform:translateX(40px);}
+  [data-reveal="zoom"]{transform:scale(.93);}
+  [data-reveal].revealed{opacity:1;transform:none;filter:blur(0);}
+  [data-reveal].revealed.done{opacity:1;transform:none;filter:none;transition:none;}
+  @media (prefers-reduced-motion:reduce){[data-reveal]{opacity:1;transform:none;filter:none;transition:none;}}
+  #scrollProgress{transform:scaleX(0);transform-origin:left;}
   .hero-blob { filter: blur(70px); opacity:.5; }
   .btn-primary { transition: transform .2s ease, box-shadow .2s ease, filter .2s ease; }
   .btn-primary:hover { transform: translateY(-2px); filter: brightness(1.05); box-shadow: 0 18px 40px -12px rgba(30,77,43,.55); }
@@ -109,6 +118,7 @@ tailwind.config = {
 </style>
 </head>
 <body class="bg-[#F1EEE8] text-[#292826] antialiased dark:bg-[#0C0F0C] dark:text-slate-200">
+<div id="scrollProgress" class="fixed top-0 left-0 right-0 h-[3px] z-[60]" style="background:linear-gradient(90deg,#2E7D44,#1e4d2b)"></div>
 
 <!-- ============ NAVBAR ============ -->
 <header class="sticky top-0 z-40 bg-white/80 backdrop-blur-xl border-b border-slate-200/70 dark:bg-[#0C0F0C]/80 dark:border-[#252A21]">
@@ -140,9 +150,9 @@ tailwind.config = {
 
 <!-- ============ HERO ============ -->
 <section id="top" class="relative overflow-hidden">
-  <div class="absolute -top-24 -left-24 w-96 h-96 bg-[#BFD6BC] rounded-full hero-blob"></div>
-  <div class="absolute top-10 -right-24 w-[28rem] h-[28rem] bg-[#E3DCC4] rounded-full hero-blob"></div>
-  <div class="absolute bottom-0 left-1/3 w-72 h-72 bg-[#CBD8C2] rounded-full hero-blob"></div>
+  <div class="absolute -top-24 -left-24 w-96 h-96 bg-[#BFD6BC] rounded-full hero-blob" data-parallax="0.12"></div>
+  <div class="absolute top-10 -right-24 w-[28rem] h-[28rem] bg-[#E3DCC4] rounded-full hero-blob" data-parallax="0.2"></div>
+  <div class="absolute bottom-0 left-1/3 w-72 h-72 bg-[#CBD8C2] rounded-full hero-blob" data-parallax="0.07"></div>
 
   <div class="relative max-w-4xl mx-auto px-4 sm:px-6 pt-14 pb-10 lg:pt-20 lg:pb-14 text-center">
     <div class="fade-up">
@@ -1353,6 +1363,7 @@ function tplCard(t,i){
   const f=FONTS[t.font]||FONTS.modern;
   const b=document.createElement('div');
   b.className='break-inside-avoid mb-5 group cursor-pointer';
+  b.dataset.reveal=''; b.dataset.delay=(i%4*70);
   b.innerHTML=
     '<div class="relative rounded-2xl overflow-hidden shadow-card group-hover:shadow-2xl group-hover:-translate-y-1 transition-all" style="aspect-ratio:'+TPL_RATIO[t.size]+';background:linear-gradient(150deg,'+t.c1+','+t.c2+')">'
     +'<div class="absolute inset-0 flex flex-col items-center justify-center text-center p-4 gap-1.5">'
@@ -1362,8 +1373,8 @@ function tplCard(t,i){
     +'<span style="color:rgba(255,255,255,.85);font-size:9px">'+t.subtitle+'</span>'
     +(t.footer?'<span class="mt-1 bg-white text-slate-900 rounded-md px-2 py-1" style="font-size:8px;font-weight:800;letter-spacing:.08em">'+t.footer+'</span>':'')
     +'</div>'
-    +'<div class="absolute inset-0 opacity-0 group-hover:opacity-100 transition grid place-items-center" style="background:rgba(15,23,42,.45)">'
-    +'<span class="text-white text-xs font-extrabold px-4 py-2.5 rounded-xl" style="background:#1e4d2b">✨ Gunakan template</span></div>'
+    +'<div class="absolute inset-0 opacity-0 group-hover:opacity-100 transition grid place-items-center" style="background:rgba(15,23,42,.45);z-index:2">'
+    +'<button type="button" data-tpluse="'+i+'" class="text-white text-xs font-extrabold px-4 py-2.5 rounded-xl cursor-pointer hover:brightness-110 active:scale-95 transition" style="background:#1e4d2b;pointer-events:auto">✨ Gunakan template</button></div>'
     +'</div>'
     +'<p class="mt-2 text-sm font-extrabold dark:text-white truncate">'+t.name+'</p>'
     +'<p class="text-[11px] text-slate-500 dark:text-slate-400">'+TPL_SIZELBL[t.size]+' • Poster</p>';
@@ -1383,7 +1394,15 @@ function renderLandingGallery(){
   const n=g.children.length;
   $('galEmpty').style.display=n?'none':'block';
   $('galCount').textContent=n+' template';
+  observeReveals(g);
 }
+$('landingGallery').addEventListener('click',e=>{
+  const btn=e.target.closest?e.target.closest('[data-tpluse]'):null;
+  if(!btn) return;
+  e.stopPropagation();
+  applyTemplate(+btn.dataset.tpluse);
+  document.getElementById('studio').scrollIntoView({ behavior:'smooth' });
+});
 $('tplSearch').addEventListener('input',e=>{ galQ=e.target.value.toLowerCase().trim(); renderLandingGallery(); });
 $('tplSearch').addEventListener('keydown',e=>{ if(e.key==='Enter') document.getElementById('galeri').scrollIntoView({ behavior:'smooth' }); });
 $('tplSearchBtn').onclick=()=>document.getElementById('galeri').scrollIntoView({ behavior:'smooth' });
@@ -2520,6 +2539,67 @@ $('btnNewTab').onclick=async()=>{
   }catch(err){ try{win.close();}catch(e){} toast('❌ Gagal membuka tab baru.'); }
 };
 
+/* ============ ANIMASI SCROLL: reveal + parallax + progres ============ */
+const revealObs=new IntersectionObserver(es=>{
+  es.forEach(en=>{
+    const el=en.target;
+    if(en.isIntersecting){
+      el.classList.add('revealed');
+      el._revealedOnce=true;
+      clearTimeout(el._rh);
+      el._rh=setTimeout(()=>{ el.style.transitionDelay=''; el.classList.add('done'); },900);
+    } else if(el._revealedOnce){
+      clearTimeout(el._rh);
+      el.classList.remove('done');
+      void el.offsetWidth;
+      el.classList.remove('revealed');
+    }
+  });
+},{threshold:.12,rootMargin:'0px 0px -8% 0px'});
+function observeReveals(root){
+  (root||document).querySelectorAll('[data-reveal]:not(.revealed)').forEach(el=>{
+    if(el.dataset.delay) el.style.transitionDelay=el.dataset.delay+'ms';
+    revealObs.observe(el);
+  });
+}
+function tagReveal(sel,dir,step){
+  document.querySelectorAll(sel).forEach((el,i)=>{
+    if(el.hasAttribute('data-reveal')) return;
+    el.setAttribute('data-reveal',dir||'');
+    if(step) el.style.transitionDelay=Math.min(i*step,480)+'ms';
+  });
+}
+tagReveal('#galeri > div:first-child');
+tagReveal('#catPills');
+tagReveal('#fitur .card-hover','',90);
+tagReveal('#fitur > div:first-child');
+tagReveal('#cara > div','',110);
+tagReveal('#studio > div:first-child');
+tagReveal('#studio > div:nth-child(3) > aside','left');
+tagReveal('#studio > div:nth-child(3) > section','right');
+tagReveal('#sketsa > div:first-child');
+tagReveal('#sketsa aside','left');
+tagReveal('#sketsa > div:nth-child(2) > div:nth-child(2)','right');
+tagReveal('footer > div','zoom');
+observeReveals();
+const reduceMotion=window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+const plxEls=[...document.querySelectorAll('[data-parallax]')];
+let scrollTick=false;
+function onScrollPage(){
+  if(scrollTick||reduceMotion) return;
+  scrollTick=true;
+  requestAnimationFrame(()=>{
+    const y=window.scrollY||0;
+    plxEls.forEach(el=>{ el.style.transform='translate3d(0,'+(y*parseFloat(el.dataset.parallax||.1)).toFixed(1)+'px,0)'; });
+    const h=document.documentElement;
+    const max=h.scrollHeight-h.clientHeight;
+    const bar=$('scrollProgress');
+    if(bar) bar.style.transform='scaleX('+(max>0?(h.scrollTop/max).toFixed(3):0)+')';
+    scrollTick=false;
+  });
+}
+window.addEventListener('scroll',onScrollPage,{passive:true});
+onScrollPage();
 poster.classList.add('ready-move');
 render();
 pages=[snapshot()];
