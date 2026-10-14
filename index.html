@@ -1,10 +1,11 @@
 <!DOCTYPE html>
-<html lang="id" class="scroll-smooth">
+<html lang="id" class="scroll-smooth dark">
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Posteria • Studio Poster oleh Rasen</title>
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0' stop-color='%233E9B52'/%3E%3Cstop offset='1' stop-color='%231e4d2b'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='64' height='64' rx='15' fill='url(%23g)'/%3E%3Cpath d='M20 45 L28 25 L39 29 L31 49 Z' fill='white'/%3E%3Ccircle cx='42' cy='22' r='4.5' fill='white'/%3E%3C/svg%3E" />
+<meta name="theme-color" content="#141A33" />
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0' stop-color='%23E9B44C'/%3E%3Cstop offset='1' stop-color='%23141A33'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='64' height='64' rx='15' fill='url(%23g)'/%3E%3Cpath d='M20 45 L28 25 L39 29 L31 49 Z' fill='white'/%3E%3Ccircle cx='42' cy='22' r='4.5' fill='white'/%3E%3C/svg%3E" />
 <script src="https://cdn.tailwindcss.com"></script>
 <script>
 tailwind.config = {
@@ -21,7 +22,7 @@ tailwind.config = {
         elegant: ['"Cormorant Garamond"', 'serif'],
       },
       boxShadow: {
-        soft: '0 20px 60px -15px rgba(30,77,43,.35)',
+        soft: '0 20px 60px -15px rgba(20,26,51,.45)',
         card: '0 8px 30px -8px rgba(0,0,0,.12)',
       }
     }
@@ -30,15 +31,16 @@ tailwind.config = {
 </script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Playfair+Display:wght@600;700;800&family=Fredoka:wght@400;500;600;700&family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500;1,600&family=Poppins:wght@500;600;700;800&family=Montserrat:wght@600;700;800&family=Oswald:wght@500;600;700&family=Dancing+Script:wght@600;700&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Zilla+Slab:wght@500;600;700&family=Nunito:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Playfair+Display:wght@600;700;800&family=Fredoka:wght@400;500;600;700&family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500;1,600&family=Poppins:wght@500;600;700;800&family=Montserrat:wght@600;700;800&family=Oswald:wght@500;600;700&family=Dancing+Script:wght@600;700&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <meta name="theme-color" content="#1e4d2b" />
 <!-- html2canvas dimuat sesuai brief (ekspor utama memakai Canvas API murni agar resolusi tinggi & stabil) -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
 <style>
-  body { font-family: 'Plus Jakarta Sans', Inter, system-ui, sans-serif; }
-  ::selection { background:#1e4d2b; color:#fff; }
-  .grad-text { background:linear-gradient(92deg,#2E7D44,#1e4d2b 55%,#0E2A16); -webkit-background-clip:text; background-clip:text; color:transparent; }
-  .font-display { font-family:Archivo,'Plus Jakarta Sans',sans-serif; letter-spacing:-0.02em; }
+  body { font-family: 'Nunito','Plus Jakarta Sans',system-ui,sans-serif; }
+  ::selection { background:#E9B44C; color:#141A33; }
+  .grad-text { background:linear-gradient(92deg,#1E2547,#8A5A12); -webkit-background-clip:text; background-clip:text; color:transparent; }
+  html.dark .grad-text { background:linear-gradient(92deg,#E9B44C,#F3EDDC 60%,#E9B44C); -webkit-background-clip:text; background-clip:text; color:transparent; }
+  .font-display { font-family:'Zilla Slab',Archivo,serif; letter-spacing:0; }
   /* ---- Animasi scroll ala Base: reveal + parallax ---- */
   [data-reveal]{opacity:0;transform:translateY(30px);filter:blur(5px);transition:opacity .85s cubic-bezier(.22,.61,.36,1),transform .85s cubic-bezier(.22,.61,.36,1),filter .85s ease;}
   [data-reveal="left"]{transform:translateX(-40px);}
@@ -50,13 +52,13 @@ tailwind.config = {
   #scrollProgress{transform:scaleX(0);transform-origin:left;}
   .hero-blob { filter: blur(70px); opacity:.5; }
   .btn-primary { transition: transform .2s ease, box-shadow .2s ease, filter .2s ease; }
-  .btn-primary:hover { transform: translateY(-2px); filter: brightness(1.05); box-shadow: 0 18px 40px -12px rgba(30,77,43,.55); }
+  .btn-primary:hover { transform: translateY(-2px); filter: brightness(1.05); box-shadow: 0 18px 40px -12px rgba(233,180,76,.55); }
   .btn-primary:active { transform: translateY(0) scale(.98); }
   .card-hover { transition: transform .25s ease, box-shadow .25s ease, border-color .25s ease; }
   .card-hover:hover { transform: translateY(-6px); box-shadow: 0 20px 45px -15px rgba(0,0,0,.18); }
   .opt-btn { transition: all .18s ease; }
   .opt-btn.active { ring: 2px; }
-  input[type="range"] { accent-color: #1e4d2b; }
+  input[type="range"] { accent-color: #E9B44C; }
   input[type="color"] { -webkit-appearance:none; appearance:none; border:none; width:44px; height:36px; border-radius:10px; overflow:hidden; padding:0; background:none; cursor:pointer; }
   input[type="color"]::-webkit-color-swatch-wrapper { padding:0; }
   input[type="color"]::-webkit-color-swatch { border:2px solid #e5e7eb; border-radius:10px; }
@@ -90,7 +92,7 @@ tailwind.config = {
   #drawLayer { touch-action:pan-y; }
   .dswatch { transition:transform .15s ease, box-shadow .15s ease; }
   .dswatch:hover { transform:scale(1.15); }
-  .dswatch.active { box-shadow:0 0 0 2px #fff, 0 0 0 4px #1e4d2b; }
+  .dswatch.active { box-shadow:0 0 0 2px #fff, 0 0 0 4px #E9B44C; }
   /* ---- Elemen seret ala Canva ---- */
   #poster [data-drag] { cursor:grab; touch-action:none; position:relative; }
   #poster.ready-move [data-drag]:hover { outline:2px dashed rgba(255,255,255,.85); outline-offset:5px; border-radius:10px; }
@@ -117,74 +119,74 @@ tailwind.config = {
   aside div[data-panel] > section > h3, #sketsa aside > section > h3 { border-left:3px solid #1e4d2b; padding-left:10px; }
 </style>
 </head>
-<body class="bg-[#F1EEE8] text-[#292826] antialiased dark:bg-[#0C0F0C] dark:text-slate-200">
+<body class="bg-[#F1EEE8] text-[#292826] antialiased dark:bg-[#141A33] dark:text-[#F3EDDC]">
 <div id="scrollProgress" class="fixed top-0 left-0 right-0 h-[3px] z-[60]" style="background:linear-gradient(90deg,#2E7D44,#1e4d2b)"></div>
 
 <!-- ============ NAVBAR ============ -->
-<header class="sticky top-0 z-40 bg-white/80 backdrop-blur-xl border-b border-slate-200/70 dark:bg-[#0C0F0C]/80 dark:border-[#252A21]">
+<header class="sticky top-0 z-40 bg-white/80 backdrop-blur-xl border-b border-slate-200/70 dark:bg-[#141A33]/80 dark:border-[#3A4468]">
   <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
     <a href="#top" class="flex items-center gap-2.5 group">
-      <span class="w-9 h-9 rounded-xl grid place-items-center shadow-soft group-hover:rotate-6 transition-transform" style="background:linear-gradient(135deg,#3E9B52,#1e4d2b)">
+      <span class="w-9 h-9 rounded-xl grid place-items-center shadow-soft group-hover:rotate-6 transition-transform" style="background:linear-gradient(135deg,#E9B44C,#8A5A12)">
         <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none"><path d="M7.5 17.5 L11.5 7 L14.5 8.3 L10.5 18.8 Z" fill="#fff"/><circle cx="16.5" cy="6.5" r="2.3" fill="#fff" opacity=".92"/><path d="M5 20h9.5" stroke="#fff" stroke-width="1.7" stroke-linecap="round" opacity=".75"/></svg>
       </span>
       <span class="leading-none"><span class="font-extrabold text-lg tracking-tight">Posteria</span><span class="block text-[10px] font-bold text-slate-400 tracking-[0.18em] uppercase">by Rasen</span></span>
     </a>
-    <div class="hidden md:flex items-center gap-8 text-sm font-medium text-slate-600 dark:text-slate-300">
-      <a href="#galeri" class="hover:text-[#1e4d2b] dark:hover:text-[#8FCE9A] transition-colors">Template</a>
-      <a href="#sketsa" class="hover:text-[#1e4d2b] dark:hover:text-[#8FCE9A] transition-colors">Sketsa</a>
-      <a href="#fitur" class="hover:text-[#1e4d2b] dark:hover:text-[#8FCE9A] transition-colors">Fitur</a>
-      <a href="#studio" class="hover:text-[#1e4d2b] dark:hover:text-[#8FCE9A] transition-colors">Studio</a>
-      <a href="#cara" class="hover:text-[#1e4d2b] dark:hover:text-[#8FCE9A] transition-colors">Cara Pakai</a>
+    <div class="hidden md:flex items-center gap-8 text-sm font-medium text-slate-600 dark:text-[#D9D2BC]">
+      <a href="#galeri" class="hover:text-[#8A5A12] dark:hover:text-[#E9B44C] transition-colors">Template</a>
+      <a href="#sketsa" class="hover:text-[#8A5A12] dark:hover:text-[#E9B44C] transition-colors">Sketsa</a>
+      <a href="#fitur" class="hover:text-[#8A5A12] dark:hover:text-[#E9B44C] transition-colors">Fitur</a>
+      <a href="#studio" class="hover:text-[#8A5A12] dark:hover:text-[#E9B44C] transition-colors">Studio</a>
+      <a href="#cara" class="hover:text-[#8A5A12] dark:hover:text-[#E9B44C] transition-colors">Cara Pakai</a>
     </div>
     <div class="flex items-center gap-2 sm:gap-3">
-      <button id="btnTheme" class="inline-flex items-center gap-2 text-sm font-bold bg-white border border-slate-200 px-3.5 py-2.5 rounded-xl hover:shadow-card hover:border-[#8FCE9A] transition-all dark:bg-[#1D211B] dark:border-slate-700 dark:text-slate-200" title="Ganti mode gelap / terang">
+      <button id="btnTheme" class="inline-flex items-center gap-2 text-sm font-bold bg-white border border-slate-200 px-3.5 py-2.5 rounded-xl hover:shadow-card hover:border-[#E9B44C] transition-all dark:bg-[#232B4D] dark:border-slate-700 dark:text-[#F3EDDC]" title="Ganti mode gelap / terang">
         <span id="themeIcon">🌙</span><span id="themeLabel" class="hidden sm:inline">Gelap</span>
       </button>
-      <a href="#studio" class="btn-primary hidden sm:inline-flex items-center gap-2 bg-[#1e4d2b] text-white text-sm font-semibold px-4 py-2.5 rounded-xl hover:bg-[#14301C] dark:bg-white dark:text-slate-900 dark:hover:bg-[#E9E5DA]">
+      <a href="#studio" class="btn-primary hidden sm:inline-flex items-center gap-2 bg-[#E9B44C] text-[#141A33] text-sm font-semibold px-4 py-2.5 rounded-xl hover:bg-[#D9A63A] dark:bg-[#E9B44C] dark:text-[#141A33] dark:hover:bg-[#D9A63A]">
         🎨 Mulai Buat Poster
       </a>
-      <a href="#studio" class="btn-primary sm:hidden bg-[#1e4d2b] text-white text-sm font-semibold px-3.5 py-2 rounded-xl dark:bg-white dark:text-slate-900">Mulai</a>
+      <a href="#studio" class="btn-primary sm:hidden bg-[#E9B44C] text-[#141A33] text-sm font-semibold px-3.5 py-2 rounded-xl dark:bg-[#E9B44C] dark:text-[#141A33]">Mulai</a>
     </div>
   </nav>
 </header>
 
 <!-- ============ HERO ============ -->
 <section id="top" class="relative overflow-hidden">
-  <div class="absolute -top-24 -left-24 w-96 h-96 bg-[#BFD6BC] rounded-full hero-blob" data-parallax="0.12"></div>
+  <div class="absolute -top-24 -left-24 w-96 h-96 bg-[#E7D9B0] rounded-full hero-blob" data-parallax="0.12"></div>
   <div class="absolute top-10 -right-24 w-[28rem] h-[28rem] bg-[#E3DCC4] rounded-full hero-blob" data-parallax="0.2"></div>
-  <div class="absolute bottom-0 left-1/3 w-72 h-72 bg-[#CBD8C2] rounded-full hero-blob" data-parallax="0.07"></div>
+  <div class="absolute bottom-0 left-1/3 w-72 h-72 bg-[#D9CE9F] rounded-full hero-blob" data-parallax="0.07"></div>
 
   <div class="relative max-w-4xl mx-auto px-4 sm:px-6 pt-14 pb-10 lg:pt-20 lg:pb-14 text-center">
     <div class="fade-up">
-      <p class="text-xs font-bold text-slate-400 tracking-wide">Koleksi template / <span class="text-slate-600 dark:text-slate-300">dipilih satu per satu</span></p>
+      <p class="text-xs font-bold text-slate-400 tracking-wide">Koleksi template / <span class="text-slate-600 dark:text-[#D9D2BC]">dipilih satu per satu</span></p>
       <h1 class="mt-3 text-4xl sm:text-5xl lg:text-6xl font-extrabold leading-[1.05] tracking-tight text-slate-900 dark:text-white font-display">
         Bikin poster bagus, <span class="grad-text">tanpa ribet.</span>
       </h1>
-      <p class="mt-4 text-base sm:text-lg text-slate-600 dark:text-slate-300 leading-relaxed max-w-2xl mx-auto">
+      <p class="mt-4 text-base sm:text-lg text-slate-600 dark:text-[#D9D2BC] leading-relaxed max-w-2xl mx-auto">
         Aku bikin Posteria buat bantuin jualan, tugas, dan konten harian — tinggal pilih template di bawah, klik buat mengedit, seret-seret dikit, terus unduh. Gratis, nggak perlu install apa pun.
       </p>
       <div class="mt-7 max-w-2xl mx-auto">
-        <div class="flex items-center gap-2 bg-white dark:bg-[#141713] border border-slate-200 dark:border-slate-700 rounded-2xl shadow-soft p-2 pl-5 focus-within:ring-2 focus-within:ring-[#1e4d2b] transition">
+        <div class="flex items-center gap-2 bg-white dark:bg-[#1C2342] border border-slate-200 dark:border-slate-700 rounded-2xl shadow-soft p-2 pl-5 focus-within:ring-2 focus-within:ring-[#E9B44C] transition">
           <span class="text-lg">🔍</span>
           <input id="tplSearch" type="text" maxlength="40" placeholder="Coba 'promo', 'kopi', 'undangan'…" class="flex-1 min-w-0 bg-transparent text-sm sm:text-base font-semibold focus:outline-none placeholder:text-slate-400" />
-          <button id="tplSearchBtn" class="btn-primary text-white text-sm font-bold px-6 py-3 rounded-xl hover:brightness-110 transition" style="background:#1e4d2b">Cari</button>
+          <button id="tplSearchBtn" class="btn-primary text-[#141A33] text-sm font-bold px-6 py-3 rounded-xl hover:brightness-110 transition" style="background:#E9B44C">Cari</button>
         </div>
         <div class="mt-3 flex flex-wrap items-center justify-center gap-2 text-xs">
           <span class="font-bold text-slate-400">Populer:</span>
-          <button data-tag="promo" class="font-bold bg-white dark:bg-[#1D211B] border border-slate-200 dark:border-slate-700 px-3.5 py-1.5 rounded-full hover:border-[#1e4d2b] hover:text-[#1e4d2b] dark:hover:text-[#8FCE9A] transition">Promo</button>
-          <button data-tag="kopi" class="font-bold bg-white dark:bg-[#1D211B] border border-slate-200 dark:border-slate-700 px-3.5 py-1.5 rounded-full hover:border-[#1e4d2b] hover:text-[#1e4d2b] dark:hover:text-[#8FCE9A] transition">Kopi</button>
-          <button data-tag="undangan" class="font-bold bg-white dark:bg-[#1D211B] border border-slate-200 dark:border-slate-700 px-3.5 py-1.5 rounded-full hover:border-[#1e4d2b] hover:text-[#1e4d2b] dark:hover:text-[#8FCE9A] transition">Undangan</button>
-          <button data-tag="kutipan" class="font-bold bg-white dark:bg-[#1D211B] border border-slate-200 dark:border-slate-700 px-3.5 py-1.5 rounded-full hover:border-[#1e4d2b] hover:text-[#1e4d2b] dark:hover:text-[#8FCE9A] transition">Kutipan</button>
-          <button data-tag="sale" class="font-bold bg-white dark:bg-[#1D211B] border border-slate-200 dark:border-slate-700 px-3.5 py-1.5 rounded-full hover:border-[#1e4d2b] hover:text-[#1e4d2b] dark:hover:text-[#8FCE9A] transition">Sale</button>
-          <button data-tag="webinar" class="font-bold bg-white dark:bg-[#1D211B] border border-slate-200 dark:border-slate-700 px-3.5 py-1.5 rounded-full hover:border-[#1e4d2b] hover:text-[#1e4d2b] dark:hover:text-[#8FCE9A] transition">Webinar</button>
+          <button data-tag="promo" class="font-bold bg-white dark:bg-[#232B4D] border border-slate-200 dark:border-slate-700 px-3.5 py-1.5 rounded-full hover:border-[#1e4d2b] hover:text-[#8A5A12] dark:hover:text-[#E9B44C] transition">Promo</button>
+          <button data-tag="kopi" class="font-bold bg-white dark:bg-[#232B4D] border border-slate-200 dark:border-slate-700 px-3.5 py-1.5 rounded-full hover:border-[#1e4d2b] hover:text-[#8A5A12] dark:hover:text-[#E9B44C] transition">Kopi</button>
+          <button data-tag="undangan" class="font-bold bg-white dark:bg-[#232B4D] border border-slate-200 dark:border-slate-700 px-3.5 py-1.5 rounded-full hover:border-[#1e4d2b] hover:text-[#8A5A12] dark:hover:text-[#E9B44C] transition">Undangan</button>
+          <button data-tag="kutipan" class="font-bold bg-white dark:bg-[#232B4D] border border-slate-200 dark:border-slate-700 px-3.5 py-1.5 rounded-full hover:border-[#1e4d2b] hover:text-[#8A5A12] dark:hover:text-[#E9B44C] transition">Kutipan</button>
+          <button data-tag="sale" class="font-bold bg-white dark:bg-[#232B4D] border border-slate-200 dark:border-slate-700 px-3.5 py-1.5 rounded-full hover:border-[#1e4d2b] hover:text-[#8A5A12] dark:hover:text-[#E9B44C] transition">Sale</button>
+          <button data-tag="webinar" class="font-bold bg-white dark:bg-[#232B4D] border border-slate-200 dark:border-slate-700 px-3.5 py-1.5 rounded-full hover:border-[#1e4d2b] hover:text-[#8A5A12] dark:hover:text-[#E9B44C] transition">Webinar</button>
         </div>
       </div>
       <div class="mt-7 flex items-center justify-center gap-6 text-sm">
-        <div><p class="font-extrabold text-xl text-slate-900 dark:text-white">12</p><p class="text-slate-500 dark:text-slate-400">Template siap pakai</p></div>
+        <div><p class="font-extrabold text-xl text-slate-900 dark:text-white">12</p><p class="text-slate-500 dark:text-[#A39D86]">Template siap pakai</p></div>
         <div class="w-px h-9 bg-slate-200 dark:bg-slate-700"></div>
-        <div><p class="font-extrabold text-xl text-slate-900 dark:text-white">1080px+</p><p class="text-slate-500 dark:text-slate-400">Resolusi HD</p></div>
+        <div><p class="font-extrabold text-xl text-slate-900 dark:text-white">1080px+</p><p class="text-slate-500 dark:text-[#A39D86]">Resolusi HD</p></div>
         <div class="w-px h-9 bg-slate-200 dark:bg-slate-700"></div>
-        <div><p class="font-extrabold text-xl text-slate-900 dark:text-white">100%</p><p class="text-slate-500 dark:text-slate-400">Gratis dipakai</p></div>
+        <div><p class="font-extrabold text-xl text-slate-900 dark:text-white">100%</p><p class="text-slate-500 dark:text-[#A39D86]">Gratis dipakai</p></div>
       </div>
     </div>
   </div>
@@ -195,23 +197,23 @@ tailwind.config = {
   <div class="flex flex-wrap items-end justify-between gap-3">
     <div>
       <h2 class="text-2xl sm:text-3xl font-extrabold tracking-tight dark:text-white font-display">Pilih desain <span class="grad-text">yang kamu suka</span></h2>
-      <p class="mt-1.5 text-sm text-slate-500 dark:text-slate-400"><span id="galCount">12 template</span> • klik kartunya, langsung kebuka di studio buat diedit</p>
+      <p class="mt-1.5 text-sm text-slate-500 dark:text-[#A39D86]"><span id="galCount">12 template</span> • klik kartunya, langsung kebuka di studio buat diedit</p>
     </div>
   </div>
   <div class="mt-5 flex gap-2 overflow-x-auto pb-2" id="catPills">
-    <button data-cat="semua" class="shrink-0 text-xs font-bold px-4 py-2 rounded-full border border-slate-200 dark:border-slate-700 bg-slate-900 text-white dark:bg-white dark:text-slate-900 transition hover:border-[#1e4d2b]">Semua</button>
-    <button data-cat="bisnis" class="shrink-0 text-xs font-bold px-4 py-2 rounded-full border border-slate-200 dark:border-slate-700 bg-white dark:bg-[#1D211B] transition hover:border-[#1e4d2b]">💼 Bisnis</button>
-    <button data-cat="makanan" class="shrink-0 text-xs font-bold px-4 py-2 rounded-full border border-slate-200 dark:border-slate-700 bg-white dark:bg-[#1D211B] transition hover:border-[#1e4d2b]">🍜 Makanan</button>
-    <button data-cat="event" class="shrink-0 text-xs font-bold px-4 py-2 rounded-full border border-slate-200 dark:border-slate-700 bg-white dark:bg-[#1D211B] transition hover:border-[#1e4d2b]">🎉 Event</button>
-    <button data-cat="undangan" class="shrink-0 text-xs font-bold px-4 py-2 rounded-full border border-slate-200 dark:border-slate-700 bg-white dark:bg-[#1D211B] transition hover:border-[#1e4d2b]">💌 Undangan</button>
-    <button data-cat="edukasi" class="shrink-0 text-xs font-bold px-4 py-2 rounded-full border border-slate-200 dark:border-slate-700 bg-white dark:bg-[#1D211B] transition hover:border-[#1e4d2b]">🎓 Edukasi</button>
-    <button data-cat="kutipan" class="shrink-0 text-xs font-bold px-4 py-2 rounded-full border border-slate-200 dark:border-slate-700 bg-white dark:bg-[#1D211B] transition hover:border-[#1e4d2b]">💬 Kutipan</button>
+    <button data-cat="semua" class="shrink-0 text-xs font-bold px-4 py-2 rounded-full border border-slate-200 dark:border-slate-700 bg-slate-900 text-white dark:bg-[#F3EDDC] dark:text-slate-900 transition hover:border-[#1e4d2b]">Semua</button>
+    <button data-cat="bisnis" class="shrink-0 text-xs font-bold px-4 py-2 rounded-full border border-slate-200 dark:border-slate-700 bg-white dark:bg-[#232B4D] transition hover:border-[#1e4d2b]">💼 Bisnis</button>
+    <button data-cat="makanan" class="shrink-0 text-xs font-bold px-4 py-2 rounded-full border border-slate-200 dark:border-slate-700 bg-white dark:bg-[#232B4D] transition hover:border-[#1e4d2b]">🍜 Makanan</button>
+    <button data-cat="event" class="shrink-0 text-xs font-bold px-4 py-2 rounded-full border border-slate-200 dark:border-slate-700 bg-white dark:bg-[#232B4D] transition hover:border-[#1e4d2b]">🎉 Event</button>
+    <button data-cat="undangan" class="shrink-0 text-xs font-bold px-4 py-2 rounded-full border border-slate-200 dark:border-slate-700 bg-white dark:bg-[#232B4D] transition hover:border-[#1e4d2b]">💌 Undangan</button>
+    <button data-cat="edukasi" class="shrink-0 text-xs font-bold px-4 py-2 rounded-full border border-slate-200 dark:border-slate-700 bg-white dark:bg-[#232B4D] transition hover:border-[#1e4d2b]">🎓 Edukasi</button>
+    <button data-cat="kutipan" class="shrink-0 text-xs font-bold px-4 py-2 rounded-full border border-slate-200 dark:border-slate-700 bg-white dark:bg-[#232B4D] transition hover:border-[#1e4d2b]">💬 Kutipan</button>
   </div>
   <div id="landingGallery" class="mt-6 columns-2 sm:columns-3 lg:columns-4 gap-5"></div>
   <div id="galEmpty" class="hidden text-center py-14">
     <p class="text-4xl">🔍</p>
     <p class="mt-3 font-extrabold dark:text-white">Tidak ketemu template-nya</p>
-    <p class="text-sm text-slate-500 dark:text-slate-400 mt-1">Coba kata kunci lain atau <a href="#studio" class="text-[#1e4d2b] dark:text-[#9FD3A8] font-bold">mulai dari kanvas kosong →</a></p>
+    <p class="text-sm text-slate-500 dark:text-[#A39D86] mt-1">Coba kata kunci lain atau <a href="#studio" class="text-[#1e4d2b] dark:text-[#E9B44C] font-bold">mulai dari kanvas kosong →</a></p>
   </div>
 </section>
 
@@ -219,33 +221,33 @@ tailwind.config = {
 <section id="fitur" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 lg:py-16">
   <div class="text-center max-w-2xl mx-auto">
     <h2 class="text-3xl sm:text-4xl font-extrabold tracking-tight dark:text-white font-display">Kenapa <span class="grad-text">Posteria?</span></h2>
-    <p class="mt-3 text-slate-500 dark:text-slate-400">Nggak perlu jago desain. Semua yang kamu butuhkan ada di satu halaman ini.</p>
+    <p class="mt-3 text-slate-500 dark:text-[#A39D86]">Nggak perlu jago desain. Semua yang kamu butuhkan ada di satu halaman ini.</p>
   </div>
   <div class="mt-10 grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
-    <div class="card-hover bg-white dark:bg-[#141713] rounded-3xl border border-slate-200/80 dark:border-[#252A21] p-7">
+    <div class="card-hover bg-white dark:bg-[#1C2342] rounded-3xl border border-slate-200/80 dark:border-[#3A4468] p-7">
       <div class="w-12 h-12 rounded-2xl bg-[#DCE7DA] text-2xl grid place-items-center">🎨</div>
       <h3 class="mt-4 font-bold text-lg dark:text-white">Template Siap Pakai</h3>
-      <p class="mt-2 text-sm text-slate-500 dark:text-slate-400 leading-relaxed">Belasan template yang aku susun sendiri, tiga ukuran populer (Portrait, Square, Story), plus dekorasi yang otomatis rapi.</p>
+      <p class="mt-2 text-sm text-slate-500 dark:text-[#A39D86] leading-relaxed">Belasan template yang aku susun sendiri, tiga ukuran populer (Portrait, Square, Story), plus dekorasi yang otomatis rapi.</p>
     </div>
-    <div class="card-hover bg-white dark:bg-[#141713] rounded-3xl border border-slate-200/80 dark:border-[#252A21] p-7">
+    <div class="card-hover bg-white dark:bg-[#1C2342] rounded-3xl border border-slate-200/80 dark:border-[#3A4468] p-7">
       <div class="w-12 h-12 rounded-2xl bg-[#E2E7D8] text-2xl grid place-items-center">✏️</div>
       <h3 class="mt-4 font-bold text-lg dark:text-white">Kustomisasi Mudah</h3>
-      <p class="mt-2 text-sm text-slate-500 dark:text-slate-400 leading-relaxed">Ganti tulisan, font, warna, sampai posisi — semuanya langsung kelihatan di kanvas sebelah kanan.</p>
+      <p class="mt-2 text-sm text-slate-500 dark:text-[#A39D86] leading-relaxed">Ganti tulisan, font, warna, sampai posisi — semuanya langsung kelihatan di kanvas sebelah kanan.</p>
     </div>
-    <div class="card-hover bg-white dark:bg-[#141713] rounded-3xl border border-slate-200/80 dark:border-[#252A21] p-7">
+    <div class="card-hover bg-white dark:bg-[#1C2342] rounded-3xl border border-slate-200/80 dark:border-[#3A4468] p-7">
       <div class="w-12 h-12 rounded-2xl bg-[#E7E3D2] text-2xl grid place-items-center">💾</div>
       <h3 class="mt-4 font-bold text-lg dark:text-white">Download Resolusi Tinggi</h3>
-      <p class="mt-2 text-sm text-slate-500 dark:text-slate-400 leading-relaxed">Simpan sebagai PNG atau JPEG sampai 1080×1920 px. Cukup tajam buat feed, story, atau dicetak.</p>
+      <p class="mt-2 text-sm text-slate-500 dark:text-[#A39D86] leading-relaxed">Simpan sebagai PNG atau JPEG sampai 1080×1920 px. Cukup tajam buat feed, story, atau dicetak.</p>
     </div>
-    <div class="card-hover bg-white dark:bg-[#141713] rounded-3xl border border-slate-200/80 dark:border-[#252A21] p-7">
+    <div class="card-hover bg-white dark:bg-[#1C2342] rounded-3xl border border-slate-200/80 dark:border-[#3A4468] p-7">
       <div class="w-12 h-12 rounded-2xl bg-amber-100 text-2xl grid place-items-center">📷</div>
       <h3 class="mt-4 font-bold text-lg dark:text-white">Foto jadi Sketsa</h3>
-      <p class="mt-2 text-sm text-slate-500 dark:text-slate-400 leading-relaxed">Foto tulisan di kertas bisa diubah jadi 13 gaya seni — unduh HD atau langsung tempel ke poster.</p>
+      <p class="mt-2 text-sm text-slate-500 dark:text-[#A39D86] leading-relaxed">Foto tulisan di kertas bisa diubah jadi 13 gaya seni — unduh HD atau langsung tempel ke poster.</p>
     </div>
   </div>
 
   <!-- Cara pakai -->
-  <div id="cara" class="mt-10 text-white rounded-3xl p-8 lg:p-10 grid sm:grid-cols-3 gap-6" style="background:linear-gradient(120deg,#0E2A16,#1e4d2b 55%,#2E7D44)">
+  <div id="cara" class="mt-10 text-white rounded-3xl p-8 lg:p-10 grid sm:grid-cols-3 gap-6" style="background:linear-gradient(120deg,#0B1026,#1E2547 55%,#3A4A7A)">
     <div class="flex gap-4"><span class="shrink-0 w-9 h-9 rounded-xl bg-white/10 grid place-items-center font-extrabold text-[#9FD3A8]">1</span><div><p class="font-bold">Tulis idemu</p><p class="text-sm text-slate-400 mt-1">Ketik judul, keterangan, dan kalimat ajakan.</p></div></div>
     <div class="flex gap-4"><span class="shrink-0 w-9 h-9 rounded-xl bg-white/10 grid place-items-center font-extrabold text-[#9FD3A8]">2</span><div><p class="font-bold">Percantik</p><p class="text-sm text-slate-400 mt-1">Atur font, warna, foto, coretan, dan ukuran.</p></div></div>
     <div class="flex gap-4"><span class="shrink-0 w-9 h-9 rounded-xl bg-white/10 grid place-items-center font-extrabold text-[#9FD3A8]">3</span><div><p class="font-bold">Unduh</p><p class="text-sm text-slate-400 mt-1">Simpan sebagai PNG/JPEG HD, siap dibagikan.</p></div></div>
@@ -257,42 +259,42 @@ tailwind.config = {
   <div class="flex flex-wrap items-end justify-between gap-3">
     <div>
       <h2 class="text-3xl sm:text-4xl font-extrabold tracking-tight dark:text-white font-display">Poster Editor <span class="grad-text">Studio</span></h2>
-      <p class="mt-2 text-slate-500 dark:text-slate-400">Klik salah satu template di atas, atau racik manual dari panel kiri. Semua langsung terlihat.</p>
+      <p class="mt-2 text-slate-500 dark:text-[#A39D86]">Klik salah satu template di atas, atau racik manual dari panel kiri. Semua langsung terlihat.</p>
     </div>
     <div class="flex flex-wrap gap-2">
-      <button id="btnNew" class="inline-flex items-center gap-2 text-sm font-bold bg-gradient-to-r from-[#1e4d2b] to-[#163A21] text-white px-4 py-2.5 rounded-xl hover:shadow-soft hover:brightness-110 transition-all">📄 Poster Baru</button>
-      <button id="btnRandom" class="inline-flex items-center gap-2 text-sm font-bold bg-white border border-slate-200 px-4 py-2.5 rounded-xl hover:border-[#8FCE9A] hover:text-[#1e4d2b] dark:hover:text-[#8FCE9A] hover:shadow-card transition-all dark:bg-[#141713] dark:text-slate-200">🎲 Acak Desain</button>
-      <button id="btnReset" class="inline-flex items-center gap-2 text-sm font-bold bg-white border border-slate-200 px-4 py-2.5 rounded-xl hover:border-red-300 hover:text-red-500 hover:shadow-card transition-all dark:bg-[#141713] dark:text-slate-200">↺ Reset</button>
+      <button id="btnNew" class="inline-flex items-center gap-2 text-sm font-bold bg-[#E9B44C] text-[#141A33] px-4 py-2.5 rounded-xl hover:shadow-soft hover:bg-[#D9A63A] transition-all">📄 Poster Baru</button>
+      <button id="btnRandom" class="inline-flex items-center gap-2 text-sm font-bold bg-white border border-slate-200 px-4 py-2.5 rounded-xl hover:border-[#E9B44C] hover:text-[#8A5A12] dark:hover:text-[#E9B44C] hover:shadow-card transition-all dark:bg-[#1C2342] dark:text-[#F3EDDC]">🎲 Acak Desain</button>
+      <button id="btnReset" class="inline-flex items-center gap-2 text-sm font-bold bg-white border border-slate-200 px-4 py-2.5 rounded-xl hover:border-red-300 hover:text-red-500 hover:shadow-card transition-all dark:bg-[#1C2342] dark:text-[#F3EDDC]">↺ Reset</button>
     </div>
   </div>
 
   <!-- Toolbar editor ala Canva -->
-  <div class="mt-6 bg-white dark:bg-[#141713] border border-slate-200/80 dark:border-[#252A21] rounded-2xl shadow-card px-3 sm:px-4 py-2.5 flex flex-wrap items-center gap-2">
-    <span class="hidden sm:flex items-center gap-2 text-xs font-bold text-slate-400 shrink-0"><span class="w-7 h-7 rounded-lg grid place-items-center" style="background:linear-gradient(135deg,#3E9B52,#1e4d2b)"><svg class="w-4 h-4" viewBox="0 0 24 24" fill="none"><path d="M7.5 17.5 L11.5 7 L14.5 8.3 L10.5 18.8 Z" fill="#fff"/><circle cx="16.5" cy="6.5" r="2.3" fill="#fff" opacity=".92"/></svg></span><span class="hidden lg:inline">Beranda /</span></span>
-    <input id="docTitle" type="text" maxlength="50" value="Desain Tanpa Judul" title="Nama desain (dipakai sebagai nama file download)" class="flex-1 min-w-[140px] bg-transparent font-extrabold text-sm sm:text-base text-slate-800 dark:text-white focus:outline-none focus:ring-2 focus:ring-[#1e4d2b] rounded-lg px-2 py-1.5 hover:bg-[#E9E5DA] dark:hover:bg-slate-800 transition" />
+  <div class="mt-6 bg-white dark:bg-[#1C2342] border border-slate-200/80 dark:border-[#3A4468] rounded-2xl shadow-card px-3 sm:px-4 py-2.5 flex flex-wrap items-center gap-2">
+    <span class="hidden sm:flex items-center gap-2 text-xs font-bold text-slate-400 shrink-0"><span class="w-7 h-7 rounded-lg grid place-items-center" style="background:linear-gradient(135deg,#E9B44C,#8A5A12)"><svg class="w-4 h-4" viewBox="0 0 24 24" fill="none"><path d="M7.5 17.5 L11.5 7 L14.5 8.3 L10.5 18.8 Z" fill="#fff"/><circle cx="16.5" cy="6.5" r="2.3" fill="#fff" opacity=".92"/></svg></span><span class="hidden lg:inline">Beranda /</span></span>
+    <input id="docTitle" type="text" maxlength="50" value="Desain Tanpa Judul" title="Nama desain (dipakai sebagai nama file download)" class="flex-1 min-w-[140px] bg-transparent font-extrabold text-sm sm:text-base text-slate-800 dark:text-white focus:outline-none focus:ring-2 focus:ring-[#E9B44C] rounded-lg px-2 py-1.5 hover:bg-[#E9E5DA] dark:hover:bg-slate-800 transition" />
     <button id="btnUndoAll" class="w-9 h-9 grid place-items-center rounded-xl text-base font-extrabold hover:bg-[#E9E5DA] dark:hover:bg-slate-800 transition" title="Urungkan (Ctrl+Z)">↩</button>
     <button id="btnRedoAll" class="w-9 h-9 grid place-items-center rounded-xl text-base font-extrabold hover:bg-[#E9E5DA] dark:hover:bg-slate-800 transition" title="Ulangi (Ctrl+Y)">↪</button>
     <button id="btnDuplicate" class="h-9 px-3 grid place-items-center rounded-xl text-xs font-extrabold hover:bg-[#E9E5DA] dark:hover:bg-slate-800 transition" title="Duplikat bentuk / teks bebas yang dipilih">⧉ Duplikat</button>
-    <div class="flex items-center gap-0.5 bg-[#E9E5DA] dark:bg-[#1D211B] rounded-xl p-1" title="Ratakan elemen terpilih ke kanvas">
+    <div class="flex items-center gap-0.5 bg-[#E9E5DA] dark:bg-[#232B4D] rounded-xl p-1" title="Ratakan elemen terpilih ke kanvas">
       <button id="alignL" class="w-8 h-7 grid place-items-center rounded-lg text-sm font-extrabold hover:bg-white dark:hover:bg-slate-700 transition" title="Rata kiri kanvas">⬅</button>
       <button id="alignC" class="w-8 h-7 grid place-items-center rounded-lg text-sm font-extrabold hover:bg-white dark:hover:bg-slate-700 transition" title="Rata tengah kanvas">⬌</button>
       <button id="alignR" class="w-8 h-7 grid place-items-center rounded-lg text-sm font-extrabold hover:bg-white dark:hover:bg-slate-700 transition" title="Rata kanan kanvas">➡</button>
     </div>
-    <div class="flex items-center gap-1 bg-[#E9E5DA] dark:bg-[#1D211B] rounded-xl px-1.5 py-1">
+    <div class="flex items-center gap-1 bg-[#E9E5DA] dark:bg-[#232B4D] rounded-xl px-1.5 py-1">
       <button id="zoomOutTop" class="w-7 h-7 rounded-lg text-sm font-extrabold hover:bg-white dark:hover:bg-slate-700 transition" title="Perkecil">−</button>
       <span id="zoomValTop" class="text-[11px] font-extrabold w-11 text-center">100%</span>
       <button id="zoomInTop" class="w-7 h-7 rounded-lg text-sm font-extrabold hover:bg-white dark:hover:bg-slate-700 transition" title="Perbesar">＋</button>
     </div>
-    <button id="btnDownloadTop" class="btn-primary inline-flex items-center gap-2 text-white text-sm font-bold px-5 py-2.5 rounded-xl hover:brightness-110 transition" style="background:#1e4d2b" title="Download desain ini">⬇ Download</button>
+    <button id="btnDownloadTop" class="btn-primary inline-flex items-center gap-2 text-[#141A33] text-sm font-bold px-5 py-2.5 rounded-xl hover:brightness-110 transition" style="background:#E9B44C" title="Download desain ini">⬇ Download</button>
   </div>
 
   <div class="mt-6 grid lg:grid-cols-[410px_1fr] gap-6 items-start">
 
     <!-- ===== SIDEBAR KONTROL ===== -->
-    <aside class="bg-white rounded-3xl border border-slate-200/80 shadow-card overflow-hidden lg:sticky lg:top-24 max-h-none lg:max-h-[calc(100vh-7rem)] lg:overflow-y-auto dark:bg-[#141713] dark:border-[#252A21]">
+    <aside class="bg-white rounded-3xl border border-slate-200/80 shadow-card overflow-hidden lg:sticky lg:top-24 max-h-none lg:max-h-[calc(100vh-7rem)] lg:overflow-y-auto dark:bg-[#1C2342] dark:border-[#3A4468]">
       <div class="flex flex-col lg:flex-row">
         <!-- Rel tab ala Canva -->
-        <div id="rail" class="flex lg:flex-col flex-row gap-1 p-2 lg:p-2.5 border-b lg:border-b-0 lg:border-r border-slate-200 dark:border-[#252A21] bg-[#F5F2EB]/70 dark:bg-[#0C0F0C]/50 shrink-0 lg:w-[80px] overflow-x-auto">
+        <div id="rail" class="flex lg:flex-col flex-row gap-1 p-2 lg:p-2.5 border-b lg:border-b-0 lg:border-r border-slate-200 dark:border-[#3A4468] bg-[#F5F2EB]/70 dark:bg-[#141A33]/50 shrink-0 lg:w-[80px] overflow-x-auto">
           <button data-tab="template" class="rail-btn active flex lg:flex-col items-center justify-center gap-1 flex-1 lg:flex-none px-2 py-2 rounded-xl text-[10px] font-extrabold transition min-w-[62px]"><span class="text-lg leading-none">🖼️</span><span>Template</span></button>
           <button data-tab="teks" class="rail-btn flex lg:flex-col items-center justify-center gap-1 flex-1 lg:flex-none px-2 py-2 rounded-xl text-[10px] font-extrabold transition min-w-[62px]"><span class="text-lg leading-none">📝</span><span>Teks</span></button>
           <button data-tab="latar" class="rail-btn flex lg:flex-col items-center justify-center gap-1 flex-1 lg:flex-none px-2 py-2 rounded-xl text-[10px] font-extrabold transition min-w-[62px]"><span class="text-lg leading-none">🎨</span><span>Latar</span></button>
@@ -307,45 +309,45 @@ tailwind.config = {
 
       <!-- Mode Desain: Template vs Custom -->
       <section>
-        <h3 class="flex items-center gap-2 font-extrabold text-sm uppercase tracking-wider text-slate-500 dark:text-slate-400"><span class="w-7 h-7 rounded-lg bg-[#DCE7DA] grid place-items-center">🖌️</span> Mode Desain</h3>
+        <h3 class="flex items-center gap-2 font-extrabold text-sm uppercase tracking-wider text-slate-500 dark:text-[#A39D86]"><span class="w-7 h-7 rounded-lg bg-[#DCE7DA] grid place-items-center">🖌️</span> Mode Desain</h3>
         <div id="modeGroup" class="mt-3 grid grid-cols-2 gap-2">
-          <button data-mode="template" class="opt-btn active border-2 border-[#1e4d2b] dark:border-[#8FCE9A] bg-[#E9EFE4] dark:bg-[#1B2A1E] rounded-xl p-3 text-left hover:shadow-card">
+          <button data-mode="template" class="opt-btn active border-2 border-[#B97F1F] dark:border-[#E9B44C] bg-[#EFE3C2] dark:bg-[#2A3358] rounded-xl p-3 text-left hover:shadow-card">
             <span class="block text-sm font-extrabold">🖼️ Template</span>
-            <span class="block text-[11px] text-slate-500 dark:text-slate-400 mt-0.5">Cepat & rapi, tinggal isi teks</span>
+            <span class="block text-[11px] text-slate-500 dark:text-[#A39D86] mt-0.5">Cepat & rapi, tinggal isi teks</span>
           </button>
-          <button data-mode="custom" class="opt-btn border-2 border-slate-200 rounded-xl p-3 text-left hover:border-[#8FCE9A] hover:shadow-card">
+          <button data-mode="custom" class="opt-btn border-2 border-slate-200 rounded-xl p-3 text-left hover:border-[#E9B44C] hover:shadow-card">
             <span class="block text-sm font-extrabold">✨ Custom Bebas</span>
-            <span class="block text-[11px] text-slate-500 dark:text-slate-400 mt-0.5">Atur layout, BG foto & elemen</span>
+            <span class="block text-[11px] text-slate-500 dark:text-[#A39D86] mt-0.5">Atur layout, BG foto & elemen</span>
           </button>
         </div>
         <!-- Panel khusus mode custom -->
-        <div id="customPanel" class="hidden mt-4 bg-[#F5F2EB] border border-[#C9D8C2] rounded-2xl p-4 space-y-4 dark:bg-[#1D211B]/60 dark:border-[#2A4030]">
+        <div id="customPanel" class="hidden mt-4 bg-[#F5F2EB] border border-[#C9D8C2] rounded-2xl p-4 space-y-4 dark:bg-[#232B4D]/60 dark:border-[#3A4468]">
           <div>
-            <p class="text-xs font-bold text-slate-600 dark:text-slate-300 mb-1.5">Layout posisi konten</p>
+            <p class="text-xs font-bold text-slate-600 dark:text-[#D9D2BC] mb-1.5">Layout posisi konten</p>
             <div id="layoutGroup" class="grid grid-cols-4 gap-1.5">
-              <button data-layout="tengah" class="opt-btn active border-2 border-[#1e4d2b] dark:border-[#8FCE9A] bg-white rounded-xl py-2 text-[11px] font-bold">⬌<br>Tengah</button>
-              <button data-layout="atas" class="opt-btn border-2 border-slate-200 rounded-xl py-2 text-[11px] font-bold hover:border-[#8FCE9A]">⬆<br>Atas</button>
-              <button data-layout="bawah" class="opt-btn border-2 border-slate-200 rounded-xl py-2 text-[11px] font-bold hover:border-[#8FCE9A]">⬇<br>Bawah</button>
-              <button data-layout="foto" class="opt-btn border-2 border-slate-200 rounded-xl py-2 text-[11px] font-bold hover:border-[#8FCE9A]">🖼️<br>Foto Fokus</button>
+              <button data-layout="tengah" class="opt-btn active border-2 border-[#B97F1F] dark:border-[#E9B44C] bg-white rounded-xl py-2 text-[11px] font-bold">⬌<br>Tengah</button>
+              <button data-layout="atas" class="opt-btn border-2 border-slate-200 rounded-xl py-2 text-[11px] font-bold hover:border-[#E9B44C]">⬆<br>Atas</button>
+              <button data-layout="bawah" class="opt-btn border-2 border-slate-200 rounded-xl py-2 text-[11px] font-bold hover:border-[#E9B44C]">⬇<br>Bawah</button>
+              <button data-layout="foto" class="opt-btn border-2 border-slate-200 rounded-xl py-2 text-[11px] font-bold hover:border-[#E9B44C]">🖼️<br>Foto Fokus</button>
             </div>
           </div>
           <div>
-            <p class="text-xs font-bold text-slate-600 dark:text-slate-300 mb-1.5">Elemen yang ditampilkan</p>
+            <p class="text-xs font-bold text-slate-600 dark:text-[#D9D2BC] mb-1.5">Elemen yang ditampilkan</p>
             <div class="flex flex-wrap gap-1.5">
-              <label class="text-[11px] font-bold bg-white dark:bg-[#1D211B] dark:text-slate-200 border border-slate-200 rounded-full px-3 py-1.5 cursor-pointer hover:border-[#8FCE9A] has-[:checked]:border-[#1e4d2b] dark:border-[#8FCE9A] has-[:checked]:bg-[#E9EFE4] transition"><input id="tglBadge" type="checkbox" class="accent-[#1e4d2b]" checked /> Badge</label>
-              <label class="text-[11px] font-bold bg-white dark:bg-[#1D211B] dark:text-slate-200 border border-slate-200 rounded-full px-3 py-1.5 cursor-pointer hover:border-[#8FCE9A] has-[:checked]:border-[#1e4d2b] dark:border-[#8FCE9A] has-[:checked]:bg-[#E9EFE4] transition"><input id="tglIcon" type="checkbox" class="accent-[#1e4d2b]" checked /> Ikon/Foto</label>
-              <label class="text-[11px] font-bold bg-white dark:bg-[#1D211B] dark:text-slate-200 border border-slate-200 rounded-full px-3 py-1.5 cursor-pointer hover:border-[#8FCE9A] has-[:checked]:border-[#1e4d2b] dark:border-[#8FCE9A] has-[:checked]:bg-[#E9EFE4] transition"><input id="tglFooter" type="checkbox" class="accent-[#1e4d2b]" checked /> Tombol</label>
-              <label class="text-[11px] font-bold bg-white dark:bg-[#1D211B] dark:text-slate-200 border border-slate-200 rounded-full px-3 py-1.5 cursor-pointer hover:border-[#8FCE9A] has-[:checked]:border-[#1e4d2b] dark:border-[#8FCE9A] has-[:checked]:bg-[#E9EFE4] transition"><input id="tglDecor" type="checkbox" class="accent-[#1e4d2b]" checked /> Dekorasi</label>
-              <label class="text-[11px] font-bold bg-white dark:bg-[#1D211B] dark:text-slate-200 border border-slate-200 rounded-full px-3 py-1.5 cursor-pointer hover:border-[#8FCE9A] has-[:checked]:border-[#1e4d2b] dark:border-[#8FCE9A] has-[:checked]:bg-[#E9EFE4] transition"><input id="tglMark" type="checkbox" class="accent-[#1e4d2b]" checked /> Watermark</label>
+              <label class="text-[11px] font-bold bg-white dark:bg-[#232B4D] dark:text-[#F3EDDC] border border-slate-200 rounded-full px-3 py-1.5 cursor-pointer hover:border-[#E9B44C] has-[:checked]:border-[#B97F1F] dark:border-[#E9B44C] has-[:checked]:bg-[#EFE3C2] transition"><input id="tglBadge" type="checkbox" class="accent-[#E9B44C]" checked /> Badge</label>
+              <label class="text-[11px] font-bold bg-white dark:bg-[#232B4D] dark:text-[#F3EDDC] border border-slate-200 rounded-full px-3 py-1.5 cursor-pointer hover:border-[#E9B44C] has-[:checked]:border-[#B97F1F] dark:border-[#E9B44C] has-[:checked]:bg-[#EFE3C2] transition"><input id="tglIcon" type="checkbox" class="accent-[#E9B44C]" checked /> Ikon/Foto</label>
+              <label class="text-[11px] font-bold bg-white dark:bg-[#232B4D] dark:text-[#F3EDDC] border border-slate-200 rounded-full px-3 py-1.5 cursor-pointer hover:border-[#E9B44C] has-[:checked]:border-[#B97F1F] dark:border-[#E9B44C] has-[:checked]:bg-[#EFE3C2] transition"><input id="tglFooter" type="checkbox" class="accent-[#E9B44C]" checked /> Tombol</label>
+              <label class="text-[11px] font-bold bg-white dark:bg-[#232B4D] dark:text-[#F3EDDC] border border-slate-200 rounded-full px-3 py-1.5 cursor-pointer hover:border-[#E9B44C] has-[:checked]:border-[#B97F1F] dark:border-[#E9B44C] has-[:checked]:bg-[#EFE3C2] transition"><input id="tglDecor" type="checkbox" class="accent-[#E9B44C]" checked /> Dekorasi</label>
+              <label class="text-[11px] font-bold bg-white dark:bg-[#232B4D] dark:text-[#F3EDDC] border border-slate-200 rounded-full px-3 py-1.5 cursor-pointer hover:border-[#E9B44C] has-[:checked]:border-[#B97F1F] dark:border-[#E9B44C] has-[:checked]:bg-[#EFE3C2] transition"><input id="tglMark" type="checkbox" class="accent-[#E9B44C]" checked /> Watermark</label>
             </div>
           </div>
           <div class="grid grid-cols-2 gap-3">
             <div>
-              <div class="flex justify-between text-[11px] font-bold text-slate-600 dark:text-slate-300"><span>Jarak tepi</span><span id="paddingVal" class="text-[#1e4d2b] dark:text-[#8FCE9A]">32px</span></div>
+              <div class="flex justify-between text-[11px] font-bold text-slate-600 dark:text-[#D9D2BC]"><span>Jarak tepi</span><span id="paddingVal" class="text-[#8A5A12] dark:text-[#E9B44C]">32px</span></div>
               <input id="inPadding" type="range" min="16" max="64" value="32" class="w-full mt-1" />
             </div>
             <div>
-              <div class="flex justify-between text-[11px] font-bold text-slate-600 dark:text-slate-300"><span>Sudut poster</span><span id="radiusVal" class="text-[#1e4d2b] dark:text-[#8FCE9A]">26px</span></div>
+              <div class="flex justify-between text-[11px] font-bold text-slate-600 dark:text-[#D9D2BC]"><span>Sudut poster</span><span id="radiusVal" class="text-[#8A5A12] dark:text-[#E9B44C]">26px</span></div>
               <input id="inRadius" type="range" min="0" max="48" value="26" class="w-full mt-1" />
             </div>
           </div>
@@ -355,7 +357,7 @@ tailwind.config = {
 
       <!-- Galeri Template siap pakai -->
       <section>
-        <h3 class="flex items-center gap-2 font-extrabold text-sm uppercase tracking-wider text-slate-500 dark:text-slate-400"><span class="w-7 h-7 rounded-lg bg-amber-100 grid place-items-center">🎁</span> Galeri Template</h3>
+        <h3 class="flex items-center gap-2 font-extrabold text-sm uppercase tracking-wider text-slate-500 dark:text-[#A39D86]"><span class="w-7 h-7 rounded-lg bg-amber-100 grid place-items-center">🎁</span> Galeri Template</h3>
         <p class="text-[11px] text-slate-400 mt-1">Klik salah satu untuk memakai desain siap pakai.</p>
         <div id="tplGallery" class="mt-3 grid grid-cols-2 gap-2"></div>
       </section>
@@ -364,48 +366,48 @@ tailwind.config = {
 
       <!-- Teks -->
       <section>
-        <h3 class="flex items-center gap-2 font-extrabold text-sm uppercase tracking-wider text-slate-500 dark:text-slate-400"><span class="w-7 h-7 rounded-lg bg-[#DCE7DA] grid place-items-center">📝</span> Teks Poster</h3>
-        <label class="block mt-4 text-xs font-bold text-slate-600 dark:text-slate-300">Badge kecil (atas)</label>
-        <input id="inBadge" type="text" maxlength="30" value="PROMO SPESIAL" class="mt-1.5 w-full border border-slate-200 rounded-xl px-3.5 py-2.5 text-sm font-semibold focus:outline-none focus:ring-2 focus:ring-[#1e4d2b] focus:border-[#1e4d2b] transition" placeholder="cth: GRAND OPENING" />
-        <label class="block mt-3 text-xs font-bold text-slate-600 dark:text-slate-300">Judul utama</label>
-        <textarea id="inTitle" rows="2" maxlength="90" class="mt-1.5 w-full border border-slate-200 rounded-xl px-3.5 py-2.5 text-sm font-semibold focus:outline-none focus:ring-2 focus:ring-[#1e4d2b] focus:border-[#1e4d2b] transition" placeholder="cth: Diskon Akhir Tahun 50%">Diskon Akhir Tahun Hingga 50%</textarea>
-        <label class="block mt-3 text-xs font-bold text-slate-600 dark:text-slate-300">Subjudul / deskripsi</label>
-        <textarea id="inSubtitle" rows="2" maxlength="140" class="mt-1.5 w-full border border-slate-200 rounded-xl px-3.5 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-[#1e4d2b] focus:border-[#1e4d2b] transition" placeholder="cth: Semua item fashion • 20–31 Desember">Semua item fashion • 20–31 Desember • Online & Offline</textarea>
-        <label class="block mt-3 text-xs font-bold text-slate-600 dark:text-slate-300">Teks tombol / footer</label>
-        <input id="inFooter" type="text" maxlength="40" value="KUNJUNGI TOKO SEKARANG" class="mt-1.5 w-full border border-slate-200 rounded-xl px-3.5 py-2.5 text-sm font-semibold focus:outline-none focus:ring-2 focus:ring-[#1e4d2b] focus:border-[#1e4d2b] transition" />
+        <h3 class="flex items-center gap-2 font-extrabold text-sm uppercase tracking-wider text-slate-500 dark:text-[#A39D86]"><span class="w-7 h-7 rounded-lg bg-[#DCE7DA] grid place-items-center">📝</span> Teks Poster</h3>
+        <label class="block mt-4 text-xs font-bold text-slate-600 dark:text-[#D9D2BC]">Badge kecil (atas)</label>
+        <input id="inBadge" type="text" maxlength="30" value="PROMO SPESIAL" class="mt-1.5 w-full border border-slate-200 rounded-xl px-3.5 py-2.5 text-sm font-semibold focus:outline-none focus:ring-2 focus:ring-[#E9B44C] focus:border-[#E9B44C] transition" placeholder="cth: GRAND OPENING" />
+        <label class="block mt-3 text-xs font-bold text-slate-600 dark:text-[#D9D2BC]">Judul utama</label>
+        <textarea id="inTitle" rows="2" maxlength="90" class="mt-1.5 w-full border border-slate-200 rounded-xl px-3.5 py-2.5 text-sm font-semibold focus:outline-none focus:ring-2 focus:ring-[#E9B44C] focus:border-[#E9B44C] transition" placeholder="cth: Diskon Akhir Tahun 50%">Diskon Akhir Tahun Hingga 50%</textarea>
+        <label class="block mt-3 text-xs font-bold text-slate-600 dark:text-[#D9D2BC]">Subjudul / deskripsi</label>
+        <textarea id="inSubtitle" rows="2" maxlength="140" class="mt-1.5 w-full border border-slate-200 rounded-xl px-3.5 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-[#E9B44C] focus:border-[#E9B44C] transition" placeholder="cth: Semua item fashion • 20–31 Desember">Semua item fashion • 20–31 Desember • Online & Offline</textarea>
+        <label class="block mt-3 text-xs font-bold text-slate-600 dark:text-[#D9D2BC]">Teks tombol / footer</label>
+        <input id="inFooter" type="text" maxlength="40" value="KUNJUNGI TOKO SEKARANG" class="mt-1.5 w-full border border-slate-200 rounded-xl px-3.5 py-2.5 text-sm font-semibold focus:outline-none focus:ring-2 focus:ring-[#E9B44C] focus:border-[#E9B44C] transition" />
       </section>
 
       <!-- Font -->
       <section>
-        <h3 class="flex items-center gap-2 font-extrabold text-sm uppercase tracking-wider text-slate-500 dark:text-slate-400"><span class="w-7 h-7 rounded-lg bg-[#E2E7D8] grid place-items-center">🔤</span> Gaya Font</h3>
+        <h3 class="flex items-center gap-2 font-extrabold text-sm uppercase tracking-wider text-slate-500 dark:text-[#A39D86]"><span class="w-7 h-7 rounded-lg bg-[#E2E7D8] grid place-items-center">🔤</span> Gaya Font</h3>
         <div id="fontGroup" class="mt-3 grid grid-cols-2 gap-2">
-          <button data-font="modern" class="opt-btn active border-2 border-[#1e4d2b] dark:border-[#8FCE9A] bg-[#E9EFE4] dark:bg-[#1B2A1E] rounded-xl px-3 py-2.5 text-left hover:shadow-card"><span class="block text-sm font-extrabold" style="font-family:'Plus Jakarta Sans',sans-serif">Modern</span><span class="block text-[11px] text-slate-500 dark:text-slate-400" style="font-family:'Plus Jakarta Sans',sans-serif">Tegas & bersih Aa</span></button>
-          <button data-font="serif" class="opt-btn border-2 border-slate-200 rounded-xl px-3 py-2.5 text-left hover:border-[#8FCE9A] hover:shadow-card"><span class="block text-sm font-bold" style="font-family:'Playfair Display',serif">Serif</span><span class="block text-[11px] text-slate-500 dark:text-slate-400" style="font-family:'Playfair Display',serif">Klasik & mewah Aa</span></button>
-          <button data-font="playful" class="opt-btn border-2 border-slate-200 rounded-xl px-3 py-2.5 text-left hover:border-[#8FCE9A] hover:shadow-card"><span class="block text-sm font-bold" style="font-family:Fredoka,sans-serif">Playful</span><span class="block text-[11px] text-slate-500 dark:text-slate-400" style="font-family:Fredoka,sans-serif">Ceria & fun Aa</span></button>
-          <button data-font="elegant" class="opt-btn border-2 border-slate-200 rounded-xl px-3 py-2.5 text-left hover:border-[#8FCE9A] hover:shadow-card"><span class="block text-sm font-bold" style="font-family:'Cormorant Garamond',serif">Elegant</span><span class="block text-[11px] text-slate-500 dark:text-slate-400 italic" style="font-family:'Cormorant Garamond',serif">Anggun & halus Aa</span></button>
-          <button data-font="poppins" class="opt-btn border-2 border-slate-200 rounded-xl px-3 py-2.5 text-left hover:border-[#8FCE9A] hover:shadow-card"><span class="block text-sm font-bold" style="font-family:Poppins,sans-serif">Poppins</span><span class="block text-[11px] text-slate-500 dark:text-slate-400" style="font-family:Poppins,sans-serif">Geometris modern Aa</span></button>
-          <button data-font="montserrat" class="opt-btn border-2 border-slate-200 rounded-xl px-3 py-2.5 text-left hover:border-[#8FCE9A] hover:shadow-card"><span class="block text-sm font-bold" style="font-family:Montserrat,sans-serif">Montserrat</span><span class="block text-[11px] text-slate-500 dark:text-slate-400" style="font-family:Montserrat,sans-serif">Tegas profesional Aa</span></button>
-          <button data-font="oswald" class="opt-btn border-2 border-slate-200 rounded-xl px-3 py-2.5 text-left hover:border-[#8FCE9A] hover:shadow-card"><span class="block text-sm font-bold" style="font-family:Oswald,sans-serif">Oswald</span><span class="block text-[11px] text-slate-500 dark:text-slate-400" style="font-family:Oswald,sans-serif">Ramping & kuat Aa</span></button>
-          <button data-font="dancing" class="opt-btn border-2 border-slate-200 rounded-xl px-3 py-2.5 text-left hover:border-[#8FCE9A] hover:shadow-card"><span class="block text-sm font-bold" style="font-family:'Dancing Script',cursive">Dancing</span><span class="block text-[11px] text-slate-500 dark:text-slate-400" style="font-family:'Dancing Script',cursive">Tulis tangan Aa</span></button>
+          <button data-font="modern" class="opt-btn active border-2 border-[#B97F1F] dark:border-[#E9B44C] bg-[#EFE3C2] dark:bg-[#2A3358] rounded-xl px-3 py-2.5 text-left hover:shadow-card"><span class="block text-sm font-extrabold" style="font-family:'Plus Jakarta Sans',sans-serif">Modern</span><span class="block text-[11px] text-slate-500 dark:text-[#A39D86]" style="font-family:'Plus Jakarta Sans',sans-serif">Tegas & bersih Aa</span></button>
+          <button data-font="serif" class="opt-btn border-2 border-slate-200 rounded-xl px-3 py-2.5 text-left hover:border-[#E9B44C] hover:shadow-card"><span class="block text-sm font-bold" style="font-family:'Playfair Display',serif">Serif</span><span class="block text-[11px] text-slate-500 dark:text-[#A39D86]" style="font-family:'Playfair Display',serif">Klasik & mewah Aa</span></button>
+          <button data-font="playful" class="opt-btn border-2 border-slate-200 rounded-xl px-3 py-2.5 text-left hover:border-[#E9B44C] hover:shadow-card"><span class="block text-sm font-bold" style="font-family:Fredoka,sans-serif">Playful</span><span class="block text-[11px] text-slate-500 dark:text-[#A39D86]" style="font-family:Fredoka,sans-serif">Ceria & fun Aa</span></button>
+          <button data-font="elegant" class="opt-btn border-2 border-slate-200 rounded-xl px-3 py-2.5 text-left hover:border-[#E9B44C] hover:shadow-card"><span class="block text-sm font-bold" style="font-family:'Cormorant Garamond',serif">Elegant</span><span class="block text-[11px] text-slate-500 dark:text-[#A39D86] italic" style="font-family:'Cormorant Garamond',serif">Anggun & halus Aa</span></button>
+          <button data-font="poppins" class="opt-btn border-2 border-slate-200 rounded-xl px-3 py-2.5 text-left hover:border-[#E9B44C] hover:shadow-card"><span class="block text-sm font-bold" style="font-family:Poppins,sans-serif">Poppins</span><span class="block text-[11px] text-slate-500 dark:text-[#A39D86]" style="font-family:Poppins,sans-serif">Geometris modern Aa</span></button>
+          <button data-font="montserrat" class="opt-btn border-2 border-slate-200 rounded-xl px-3 py-2.5 text-left hover:border-[#E9B44C] hover:shadow-card"><span class="block text-sm font-bold" style="font-family:Montserrat,sans-serif">Montserrat</span><span class="block text-[11px] text-slate-500 dark:text-[#A39D86]" style="font-family:Montserrat,sans-serif">Tegas profesional Aa</span></button>
+          <button data-font="oswald" class="opt-btn border-2 border-slate-200 rounded-xl px-3 py-2.5 text-left hover:border-[#E9B44C] hover:shadow-card"><span class="block text-sm font-bold" style="font-family:Oswald,sans-serif">Oswald</span><span class="block text-[11px] text-slate-500 dark:text-[#A39D86]" style="font-family:Oswald,sans-serif">Ramping & kuat Aa</span></button>
+          <button data-font="dancing" class="opt-btn border-2 border-slate-200 rounded-xl px-3 py-2.5 text-left hover:border-[#E9B44C] hover:shadow-card"><span class="block text-sm font-bold" style="font-family:'Dancing Script',cursive">Dancing</span><span class="block text-[11px] text-slate-500 dark:text-[#A39D86]" style="font-family:'Dancing Script',cursive">Tulis tangan Aa</span></button>
         </div>
         <div class="mt-4 space-y-3">
           <div>
-            <div class="flex justify-between text-xs font-bold text-slate-600 dark:text-slate-300"><span>Ukuran judul</span><span id="titleSizeVal" class="text-[#1e4d2b] dark:text-[#8FCE9A]">44px</span></div>
+            <div class="flex justify-between text-xs font-bold text-slate-600 dark:text-[#D9D2BC]"><span>Ukuran judul</span><span id="titleSizeVal" class="text-[#8A5A12] dark:text-[#E9B44C]">44px</span></div>
             <input id="inTitleSize" type="range" min="24" max="72" value="44" class="w-full mt-1" />
           </div>
           <div class="flex items-center gap-3">
             <div class="flex-1">
-              <p class="text-xs font-bold text-slate-600 dark:text-slate-300 mb-1.5">Warna judul</p>
+              <p class="text-xs font-bold text-slate-600 dark:text-[#D9D2BC] mb-1.5">Warna judul</p>
               <div class="flex items-center gap-2">
                 <input id="inTitleColor" type="color" value="#ffffff" />
-                <button data-tcolor="#ffffff" class="tcolor w-7 h-7 rounded-full border-2 border-[#1e4d2b] dark:border-[#8FCE9A] bg-white" title="Putih"></button>
+                <button data-tcolor="#ffffff" class="tcolor w-7 h-7 rounded-full border-2 border-[#B97F1F] dark:border-[#E9B44C] bg-white" title="Putih"></button>
                 <button data-tcolor="#fef08a" class="tcolor w-7 h-7 rounded-full border-2 border-slate-200 bg-yellow-200" title="Kuning"></button>
                 <button data-tcolor="#1e1b4b" class="tcolor w-7 h-7 rounded-full border-2 border-slate-200 bg-indigo-950" title="Hitam navy"></button>
               </div>
             </div>
             <div class="flex-1">
-              <p class="text-xs font-bold text-slate-600 dark:text-slate-300 mb-1.5">Perataan teks</p>
-              <div id="alignGroup" class="grid grid-cols-3 gap-1 bg-[#E9E5DA] dark:bg-[#1D211B] p-1 rounded-xl">
+              <p class="text-xs font-bold text-slate-600 dark:text-[#D9D2BC] mb-1.5">Perataan teks</p>
+              <div id="alignGroup" class="grid grid-cols-3 gap-1 bg-[#E9E5DA] dark:bg-[#232B4D] p-1 rounded-xl">
                 <button data-align="left" class="opt-btn text-sm py-1.5 rounded-lg hover:bg-white">⬅</button>
                 <button data-align="center" class="opt-btn active bg-white shadow text-sm py-1.5 rounded-lg font-bold">⬌</button>
                 <button data-align="right" class="opt-btn text-sm py-1.5 rounded-lg hover:bg-white">➡</button>
@@ -417,18 +419,18 @@ tailwind.config = {
 
       <!-- Efek judul -->
       <section>
-        <h3 class="flex items-center gap-2 font-extrabold text-sm uppercase tracking-wider text-slate-500 dark:text-slate-400"><span class="w-7 h-7 rounded-lg bg-[#E1E8DB] grid place-items-center">🌟</span> Efek Judul</h3>
+        <h3 class="flex items-center gap-2 font-extrabold text-sm uppercase tracking-wider text-slate-500 dark:text-[#A39D86]"><span class="w-7 h-7 rounded-lg bg-[#E1E8DB] grid place-items-center">🌟</span> Efek Judul</h3>
         <div class="mt-4 space-y-3">
           <div class="flex items-center gap-2">
             <div class="flex-1">
-              <div class="flex justify-between text-xs font-bold text-slate-600 dark:text-slate-300"><span>Bayangan</span><span id="shSizeVal" class="text-[#1e4d2b] dark:text-[#8FCE9A]">0</span></div>
+              <div class="flex justify-between text-xs font-bold text-slate-600 dark:text-[#D9D2BC]"><span>Bayangan</span><span id="shSizeVal" class="text-[#8A5A12] dark:text-[#E9B44C]">0</span></div>
               <input id="inShSize" type="range" min="0" max="20" value="0" class="w-full mt-1" />
             </div>
             <input id="inShColor" type="color" value="#000000" title="Warna bayangan" class="mt-4" />
           </div>
           <div class="flex items-center gap-2">
             <div class="flex-1">
-              <div class="flex justify-between text-xs font-bold text-slate-600 dark:text-slate-300"><span>Garis tepi</span><span id="stSizeVal" class="text-[#1e4d2b] dark:text-[#8FCE9A]">0</span></div>
+              <div class="flex justify-between text-xs font-bold text-slate-600 dark:text-[#D9D2BC]"><span>Garis tepi</span><span id="stSizeVal" class="text-[#8A5A12] dark:text-[#E9B44C]">0</span></div>
               <input id="inStSize" type="range" min="0" max="5" step="0.5" value="0" class="w-full mt-1" />
             </div>
             <input id="inStColor" type="color" value="#ffffff" title="Warna garis tepi" class="mt-4" />
@@ -439,8 +441,8 @@ tailwind.config = {
 
       <!-- Teks bebas -->
       <section>
-        <h3 class="flex items-center gap-2 font-extrabold text-sm uppercase tracking-wider text-slate-500 dark:text-slate-400"><span class="w-7 h-7 rounded-lg bg-teal-100 grid place-items-center">➕</span> Teks Bebas</h3>
-        <button id="btnAddText" class="mt-3 w-full text-xs font-bold bg-[#E9EFE4] dark:bg-[#1B2A1E] text-[#1e4d2b] border border-[#C9D8C2] rounded-xl py-2.5 hover:bg-[#DCE7DA] transition dark:bg-[#16241A] dark:text-[#9FD3A8] dark:border-[#2A4030]">＋ Tambah Teks Bebas</button>
+        <h3 class="flex items-center gap-2 font-extrabold text-sm uppercase tracking-wider text-slate-500 dark:text-[#A39D86]"><span class="w-7 h-7 rounded-lg bg-teal-100 grid place-items-center">➕</span> Teks Bebas</h3>
+        <button id="btnAddText" class="mt-3 w-full text-xs font-bold bg-[#EFE3C2] dark:bg-[#2A3358] text-[#1e4d2b] border border-[#C9D8C2] rounded-xl py-2.5 hover:bg-[#DCE7DA] transition dark:bg-[#2A3358] dark:text-[#E9B44C] dark:border-[#3A4468]">＋ Tambah Teks Bebas</button>
         <div id="extraList" class="mt-3 space-y-2"></div>
         <p class="text-[11px] text-slate-400 mt-2">Klik 2× teks di kanvas untuk edit langsung. Seret untuk memindah (maks 6).</p>
       </section>
@@ -448,26 +450,26 @@ tailwind.config = {
           <div data-panel="latar" class="hidden space-y-7">
       <!-- Background -->
       <section>
-        <h3 class="flex items-center gap-2 font-extrabold text-sm uppercase tracking-wider text-slate-500 dark:text-slate-400"><span class="w-7 h-7 rounded-lg bg-[#E7E3D2] grid place-items-center">🎨</span> Latar / Background</h3>
+        <h3 class="flex items-center gap-2 font-extrabold text-sm uppercase tracking-wider text-slate-500 dark:text-[#A39D86]"><span class="w-7 h-7 rounded-lg bg-[#E7E3D2] grid place-items-center">🎨</span> Latar / Background</h3>
         <div id="bgTypeGroup" class="mt-3 grid grid-cols-3 gap-2">
-          <button data-bgtype="gradient" class="opt-btn active border-2 border-[#1e4d2b] dark:border-[#8FCE9A] bg-[#E9EFE4] dark:bg-[#1B2A1E] rounded-xl py-2 text-xs font-bold hover:shadow-card">🌈 Gradien</button>
-          <button data-bgtype="solid" class="opt-btn border-2 border-slate-200 rounded-xl py-2 text-xs font-bold hover:border-[#8FCE9A]">⬛ Solid</button>
-          <button data-bgtype="image" class="opt-btn border-2 border-slate-200 rounded-xl py-2 text-xs font-bold hover:border-[#8FCE9A]">🖼️ Foto</button>
+          <button data-bgtype="gradient" class="opt-btn active border-2 border-[#B97F1F] dark:border-[#E9B44C] bg-[#EFE3C2] dark:bg-[#2A3358] rounded-xl py-2 text-xs font-bold hover:shadow-card">🌈 Gradien</button>
+          <button data-bgtype="solid" class="opt-btn border-2 border-slate-200 rounded-xl py-2 text-xs font-bold hover:border-[#E9B44C]">⬛ Solid</button>
+          <button data-bgtype="image" class="opt-btn border-2 border-slate-200 rounded-xl py-2 text-xs font-bold hover:border-[#E9B44C]">🖼️ Foto</button>
         </div>
         <div id="presetWrap" class="mt-3">
           <div id="presetGroup" class="grid grid-cols-4 gap-2"></div>
           <div class="mt-4 grid grid-cols-2 gap-3">
-            <label class="bg-[#F5F2EB] dark:bg-[#1D211B] border border-slate-200 rounded-xl p-2.5 flex items-center gap-2 cursor-pointer hover:border-[#8FCE9A] transition">
+            <label class="bg-[#F5F2EB] dark:bg-[#232B4D] border border-slate-200 rounded-xl p-2.5 flex items-center gap-2 cursor-pointer hover:border-[#E9B44C] transition">
               <input id="inC1" type="color" value="#6366f1" />
-              <span class="text-[11px] font-bold text-slate-600 dark:text-slate-300 leading-tight">Warna<br>awal</span>
+              <span class="text-[11px] font-bold text-slate-600 dark:text-[#D9D2BC] leading-tight">Warna<br>awal</span>
             </label>
-            <label class="bg-[#F5F2EB] dark:bg-[#1D211B] border border-slate-200 rounded-xl p-2.5 flex items-center gap-2 cursor-pointer hover:border-[#8FCE9A] transition">
+            <label class="bg-[#F5F2EB] dark:bg-[#232B4D] border border-slate-200 rounded-xl p-2.5 flex items-center gap-2 cursor-pointer hover:border-[#E9B44C] transition">
               <input id="inC2" type="color" value="#ec4899" />
-              <span class="text-[11px] font-bold text-slate-600 dark:text-slate-300 leading-tight">Warna<br>akhir</span>
+              <span class="text-[11px] font-bold text-slate-600 dark:text-[#D9D2BC] leading-tight">Warna<br>akhir</span>
             </label>
           </div>
           <div id="angleWrap" class="mt-3">
-            <div class="flex justify-between text-xs font-bold text-slate-600 dark:text-slate-300"><span>Arah gradien</span><span id="angleVal" class="text-[#1e4d2b] dark:text-[#8FCE9A]">150°</span></div>
+            <div class="flex justify-between text-xs font-bold text-slate-600 dark:text-[#D9D2BC]"><span>Arah gradien</span><span id="angleVal" class="text-[#8A5A12] dark:text-[#E9B44C]">150°</span></div>
             <input id="inAngle" type="range" min="0" max="360" value="150" class="w-full mt-1" />
           </div>
         </div>
@@ -490,16 +492,16 @@ tailwind.config = {
             </div>
           </div>
           <div class="mt-3">
-            <div class="flex justify-between text-xs font-bold text-slate-600 dark:text-slate-300"><span>Gelap overlay (agar teks terbaca)</span><span id="overlayVal" class="text-[#1e4d2b] dark:text-[#8FCE9A]">45%</span></div>
+            <div class="flex justify-between text-xs font-bold text-slate-600 dark:text-[#D9D2BC]"><span>Gelap overlay (agar teks terbaca)</span><span id="overlayVal" class="text-[#8A5A12] dark:text-[#E9B44C]">45%</span></div>
             <input id="inOverlay" type="range" min="0" max="85" value="45" class="w-full mt-1" />
           </div>
         </div>
         <div class="mt-3">
-          <p class="text-xs font-bold text-slate-600 dark:text-slate-300 mb-1.5">Motif overlay</p>
+          <p class="text-xs font-bold text-slate-600 dark:text-[#D9D2BC] mb-1.5">Motif overlay</p>
           <div id="patternGroup" class="grid grid-cols-3 gap-2">
-            <button data-pattern="dots" class="opt-btn active border-2 border-[#1e4d2b] dark:border-[#8FCE9A] bg-[#E9EFE4] dark:bg-[#1B2A1E] rounded-xl py-2 text-xs font-bold hover:shadow-card">⚪ Dots</button>
-            <button data-pattern="grid" class="opt-btn border-2 border-slate-200 rounded-xl py-2 text-xs font-bold hover:border-[#8FCE9A]">🔲 Grid</button>
-            <button data-pattern="none" class="opt-btn border-2 border-slate-200 rounded-xl py-2 text-xs font-bold hover:border-[#8FCE9A]">🚫 Polos</button>
+            <button data-pattern="dots" class="opt-btn active border-2 border-[#B97F1F] dark:border-[#E9B44C] bg-[#EFE3C2] dark:bg-[#2A3358] rounded-xl py-2 text-xs font-bold hover:shadow-card">⚪ Dots</button>
+            <button data-pattern="grid" class="opt-btn border-2 border-slate-200 rounded-xl py-2 text-xs font-bold hover:border-[#E9B44C]">🔲 Grid</button>
+            <button data-pattern="none" class="opt-btn border-2 border-slate-200 rounded-xl py-2 text-xs font-bold hover:border-[#E9B44C]">🚫 Polos</button>
           </div>
         </div>
       </section>
@@ -508,17 +510,17 @@ tailwind.config = {
           <div data-panel="elemen" class="hidden space-y-7">
       <!-- Ikon -->
       <section>
-        <h3 class="flex items-center gap-2 font-extrabold text-sm uppercase tracking-wider text-slate-500 dark:text-slate-400"><span class="w-7 h-7 rounded-lg bg-amber-100 grid place-items-center">✨</span> Ikon / Ilustrasi</h3>
-        <div class="mt-3 flex items-center gap-2 bg-[#F5F2EB] dark:bg-[#1D211B] border border-slate-200 dark:border-slate-700 rounded-xl px-3 py-2 focus-within:ring-2 focus-within:ring-indigo-400 transition">
+        <h3 class="flex items-center gap-2 font-extrabold text-sm uppercase tracking-wider text-slate-500 dark:text-[#A39D86]"><span class="w-7 h-7 rounded-lg bg-amber-100 grid place-items-center">✨</span> Ikon / Ilustrasi</h3>
+        <div class="mt-3 flex items-center gap-2 bg-[#F5F2EB] dark:bg-[#232B4D] border border-slate-200 dark:border-slate-700 rounded-xl px-3 py-2 focus-within:ring-2 focus-within:ring-indigo-400 transition">
           <span class="text-sm">🔍</span>
           <input id="iconSearch" type="text" maxlength="24" placeholder="Cari ikon… mis. kopi, bintang" class="flex-1 min-w-0 bg-transparent text-xs font-semibold focus:outline-none placeholder:text-slate-400" />
         </div>
-        <p class="text-xs font-bold text-slate-600 dark:text-slate-300 mt-3 mb-1.5">Emoji</p>
+        <p class="text-xs font-bold text-slate-600 dark:text-[#D9D2BC] mt-3 mb-1.5">Emoji</p>
         <div id="iconGroup" class="grid grid-cols-6 gap-2"></div>
-        <p class="text-xs font-bold text-slate-600 dark:text-slate-300 mt-3 mb-1.5">Ikon garis (tajam di semua ukuran)</p>
+        <p class="text-xs font-bold text-slate-600 dark:text-[#D9D2BC] mt-3 mb-1.5">Ikon garis (tajam di semua ukuran)</p>
         <div id="svgGroup" class="grid grid-cols-6 gap-2"></div>
         <div class="mt-3">
-          <div class="flex justify-between text-xs font-bold text-slate-600 dark:text-slate-300"><span>Ukuran ikon</span><span id="iconSizeVal" class="text-[#1e4d2b] dark:text-[#8FCE9A]">64px</span></div>
+          <div class="flex justify-between text-xs font-bold text-slate-600 dark:text-[#D9D2BC]"><span>Ukuran ikon</span><span id="iconSizeVal" class="text-[#8A5A12] dark:text-[#E9B44C]">64px</span></div>
           <input id="inIconSize" type="range" min="0" max="110" value="64" class="w-full mt-1" />
           <p class="text-[11px] text-slate-400">Geser ke 0 untuk menyembunyikan ikon.</p>
         </div>
@@ -526,10 +528,10 @@ tailwind.config = {
 
       <!-- Stiker mengambang -->
       <section>
-        <h3 class="flex items-center gap-2 font-extrabold text-sm uppercase tracking-wider text-slate-500 dark:text-slate-400"><span class="w-7 h-7 rounded-lg bg-[#E6E3D1] grid place-items-center">🌟</span> Stiker Mengambang</h3>
+        <h3 class="flex items-center gap-2 font-extrabold text-sm uppercase tracking-wider text-slate-500 dark:text-[#A39D86]"><span class="w-7 h-7 rounded-lg bg-[#E6E3D1] grid place-items-center">🌟</span> Stiker Mengambang</h3>
         <div id="stickerGroup" class="mt-3 grid grid-cols-6 gap-2"></div>
         <div class="mt-3">
-          <div class="flex justify-between text-xs font-bold text-slate-600 dark:text-slate-300"><span>Ukuran stiker</span><span id="stickerSizeVal" class="text-[#1e4d2b] dark:text-[#8FCE9A]">64px</span></div>
+          <div class="flex justify-between text-xs font-bold text-slate-600 dark:text-[#D9D2BC]"><span>Ukuran stiker</span><span id="stickerSizeVal" class="text-[#8A5A12] dark:text-[#E9B44C]">64px</span></div>
           <input id="inStickerSize" type="range" min="24" max="140" value="64" class="w-full mt-1" />
           <p class="text-[11px] text-slate-400">Seret stiker langsung di kanvas untuk memindah.</p>
         </div>
@@ -538,13 +540,13 @@ tailwind.config = {
           <div data-panel="bentuk" class="hidden space-y-7">
       <!-- Bentuk dasar -->
       <section>
-        <h3 class="flex items-center gap-2 font-extrabold text-sm uppercase tracking-wider text-slate-500 dark:text-slate-400"><span class="w-7 h-7 rounded-lg bg-sky-100 grid place-items-center">🔷</span> Bentuk Dasar</h3>
+        <h3 class="flex items-center gap-2 font-extrabold text-sm uppercase tracking-wider text-slate-500 dark:text-[#A39D86]"><span class="w-7 h-7 rounded-lg bg-sky-100 grid place-items-center">🔷</span> Bentuk Dasar</h3>
         <div class="mt-3 grid grid-cols-3 gap-2">
-          <button data-shapeadd="rect" class="opt-btn border-2 border-slate-200 rounded-xl py-2.5 hover:border-[#8FCE9A] hover:shadow-card transition" title="Tambah kotak"><span class="block text-xl leading-none">▢</span><span class="block text-[11px] font-bold mt-1">Kotak</span></button>
-          <button data-shapeadd="circle" class="opt-btn border-2 border-slate-200 rounded-xl py-2.5 hover:border-[#8FCE9A] hover:shadow-card transition" title="Tambah lingkaran"><span class="block text-xl leading-none">⚪</span><span class="block text-[11px] font-bold mt-1">Lingkaran</span></button>
-          <button data-shapeadd="line" class="opt-btn border-2 border-slate-200 rounded-xl py-2.5 hover:border-[#8FCE9A] hover:shadow-card transition" title="Tambah garis"><span class="block text-xl leading-none">➖</span><span class="block text-[11px] font-bold mt-1">Garis</span></button>
+          <button data-shapeadd="rect" class="opt-btn border-2 border-slate-200 rounded-xl py-2.5 hover:border-[#E9B44C] hover:shadow-card transition" title="Tambah kotak"><span class="block text-xl leading-none">▢</span><span class="block text-[11px] font-bold mt-1">Kotak</span></button>
+          <button data-shapeadd="circle" class="opt-btn border-2 border-slate-200 rounded-xl py-2.5 hover:border-[#E9B44C] hover:shadow-card transition" title="Tambah lingkaran"><span class="block text-xl leading-none">⚪</span><span class="block text-[11px] font-bold mt-1">Lingkaran</span></button>
+          <button data-shapeadd="line" class="opt-btn border-2 border-slate-200 rounded-xl py-2.5 hover:border-[#E9B44C] hover:shadow-card transition" title="Tambah garis"><span class="block text-xl leading-none">➖</span><span class="block text-[11px] font-bold mt-1">Garis</span></button>
         </div>
-        <p class="text-xs font-bold text-slate-600 dark:text-slate-300 mb-1.5 mt-4">Warna bentuk terpilih</p>
+        <p class="text-xs font-bold text-slate-600 dark:text-[#D9D2BC] mb-1.5 mt-4">Warna bentuk terpilih</p>
         <div class="flex items-center gap-2">
           <input id="shapeColor" type="color" value="#ffffff" title="Warna bebas" />
           <button data-scolor="#ffffff" class="scol w-7 h-7 rounded-full border-2 border-slate-200 bg-white" title="Putih"></button>
@@ -555,19 +557,19 @@ tailwind.config = {
         </div>
         <div class="mt-4 space-y-3">
           <div>
-            <div class="flex justify-between text-xs font-bold text-slate-600 dark:text-slate-300"><span>Lebar</span><span id="shapeWVal" class="text-[#1e4d2b] dark:text-[#8FCE9A]">40%</span></div>
+            <div class="flex justify-between text-xs font-bold text-slate-600 dark:text-[#D9D2BC]"><span>Lebar</span><span id="shapeWVal" class="text-[#8A5A12] dark:text-[#E9B44C]">40%</span></div>
             <input id="inShapeW" type="range" min="5" max="90" value="40" class="w-full mt-1" />
           </div>
           <div>
-            <div class="flex justify-between text-xs font-bold text-slate-600 dark:text-slate-300"><span>Tinggi (kotak)</span><span id="shapeHVal" class="text-[#1e4d2b] dark:text-[#8FCE9A]">25%</span></div>
+            <div class="flex justify-between text-xs font-bold text-slate-600 dark:text-[#D9D2BC]"><span>Tinggi (kotak)</span><span id="shapeHVal" class="text-[#8A5A12] dark:text-[#E9B44C]">25%</span></div>
             <input id="inShapeH" type="range" min="5" max="90" value="25" class="w-full mt-1" />
           </div>
           <div>
-            <div class="flex justify-between text-xs font-bold text-slate-600 dark:text-slate-300"><span>Tebal garis</span><span id="shapeThickVal" class="text-[#1e4d2b] dark:text-[#8FCE9A]">14</span></div>
+            <div class="flex justify-between text-xs font-bold text-slate-600 dark:text-[#D9D2BC]"><span>Tebal garis</span><span id="shapeThickVal" class="text-[#8A5A12] dark:text-[#E9B44C]">14</span></div>
             <input id="inShapeThick" type="range" min="4" max="60" value="14" class="w-full mt-1" />
           </div>
           <div>
-            <div class="flex justify-between text-xs font-bold text-slate-600 dark:text-slate-300"><span>Sudut putar</span><span id="shapeAngleVal" class="text-[#1e4d2b] dark:text-[#8FCE9A]">0°</span></div>
+            <div class="flex justify-between text-xs font-bold text-slate-600 dark:text-[#D9D2BC]"><span>Sudut putar</span><span id="shapeAngleVal" class="text-[#8A5A12] dark:text-[#E9B44C]">0°</span></div>
             <input id="inShapeAngle" type="range" min="0" max="180" value="0" class="w-full mt-1" />
           </div>
         </div>
@@ -579,7 +581,7 @@ tailwind.config = {
 
       <!-- Upload Foto / Gambar -->
       <section>
-        <h3 class="flex items-center gap-2 font-extrabold text-sm uppercase tracking-wider text-slate-500 dark:text-slate-400"><span class="w-7 h-7 rounded-lg bg-sky-100 grid place-items-center">📷</span> Foto Upload Kamu</h3>
+        <h3 class="flex items-center gap-2 font-extrabold text-sm uppercase tracking-wider text-slate-500 dark:text-[#A39D86]"><span class="w-7 h-7 rounded-lg bg-sky-100 grid place-items-center">📷</span> Foto Upload Kamu</h3>
         <div id="dropPhoto" class="dropzone mt-3 rounded-2xl p-4 text-center">
           <input id="filePhoto" type="file" accept="image/*" class="hidden" />
           <div id="dropPhotoEmpty">
@@ -595,22 +597,22 @@ tailwind.config = {
             </div>
           </div>
         </div>
-        <p class="text-xs font-bold text-slate-600 dark:text-slate-300 mt-3 mb-1.5">Foto dipakai sebagai…</p>
+        <p class="text-xs font-bold text-slate-600 dark:text-[#D9D2BC] mt-3 mb-1.5">Foto dipakai sebagai…</p>
         <div id="useAsGroup" class="grid grid-cols-2 gap-2">
-          <button data-useas="konten" class="opt-btn active border-2 border-[#1e4d2b] dark:border-[#8FCE9A] bg-[#E9EFE4] dark:bg-[#1B2A1E] rounded-xl py-2 text-xs font-bold hover:shadow-card">🧩 Foto konten<br><span class="font-normal text-[10px] text-slate-500 dark:text-slate-400">ganti kotak ikon</span></button>
-          <button data-useas="background" class="opt-btn border-2 border-slate-200 rounded-xl py-2 text-xs font-bold hover:border-[#8FCE9A]">🌄 Background<br><span class="font-normal text-[10px] text-slate-500 dark:text-slate-400">full-bleed + overlay</span></button>
+          <button data-useas="konten" class="opt-btn active border-2 border-[#B97F1F] dark:border-[#E9B44C] bg-[#EFE3C2] dark:bg-[#2A3358] rounded-xl py-2 text-xs font-bold hover:shadow-card">🧩 Foto konten<br><span class="font-normal text-[10px] text-slate-500 dark:text-[#A39D86]">ganti kotak ikon</span></button>
+          <button data-useas="background" class="opt-btn border-2 border-slate-200 rounded-xl py-2 text-xs font-bold hover:border-[#E9B44C]">🌄 Background<br><span class="font-normal text-[10px] text-slate-500 dark:text-[#A39D86]">full-bleed + overlay</span></button>
         </div>
         <div id="photoOpts" class="mt-3 space-y-3">
           <div>
-            <div class="flex justify-between text-xs font-bold text-slate-600 dark:text-slate-300"><span>Ukuran foto konten</span><span id="photoSizeVal" class="text-[#1e4d2b] dark:text-[#8FCE9A]">120px</span></div>
+            <div class="flex justify-between text-xs font-bold text-slate-600 dark:text-[#D9D2BC]"><span>Ukuran foto konten</span><span id="photoSizeVal" class="text-[#8A5A12] dark:text-[#E9B44C]">120px</span></div>
             <input id="inPhotoSize" type="range" min="60" max="260" value="120" class="w-full mt-1" />
           </div>
           <div>
-            <p class="text-xs font-bold text-slate-600 dark:text-slate-300 mb-1.5">Bentuk foto</p>
+            <p class="text-xs font-bold text-slate-600 dark:text-[#D9D2BC] mb-1.5">Bentuk foto</p>
             <div id="photoShapeGroup" class="grid grid-cols-3 gap-2">
-              <button data-shape="rounded" class="opt-btn active border-2 border-[#1e4d2b] dark:border-[#8FCE9A] bg-[#E9EFE4] dark:bg-[#1B2A1E] rounded-xl py-2 text-xs font-bold">▢ Rounded</button>
-              <button data-shape="circle" class="opt-btn border-2 border-slate-200 rounded-xl py-2 text-xs font-bold hover:border-[#8FCE9A]">⚪ Bulat</button>
-              <button data-shape="square" class="opt-btn border-2 border-slate-200 rounded-xl py-2 text-xs font-bold hover:border-[#8FCE9A]">⬛ Kotak</button>
+              <button data-shape="rounded" class="opt-btn active border-2 border-[#B97F1F] dark:border-[#E9B44C] bg-[#EFE3C2] dark:bg-[#2A3358] rounded-xl py-2 text-xs font-bold">▢ Rounded</button>
+              <button data-shape="circle" class="opt-btn border-2 border-slate-200 rounded-xl py-2 text-xs font-bold hover:border-[#E9B44C]">⚪ Bulat</button>
+              <button data-shape="square" class="opt-btn border-2 border-slate-200 rounded-xl py-2 text-xs font-bold hover:border-[#E9B44C]">⬛ Kotak</button>
             </div>
           </div>
         </div>
@@ -620,19 +622,19 @@ tailwind.config = {
           <div data-panel="ukuran" class="hidden space-y-7">
       <!-- Ukuran -->
       <section>
-        <h3 class="flex items-center gap-2 font-extrabold text-sm uppercase tracking-wider text-slate-500 dark:text-slate-400"><span class="w-7 h-7 rounded-lg bg-emerald-100 grid place-items-center">📐</span> Ukuran Poster</h3>
+        <h3 class="flex items-center gap-2 font-extrabold text-sm uppercase tracking-wider text-slate-500 dark:text-[#A39D86]"><span class="w-7 h-7 rounded-lg bg-emerald-100 grid place-items-center">📐</span> Ukuran Poster</h3>
         <div id="sizeGroup" class="mt-3 grid grid-cols-3 gap-2">
-          <button data-size="portrait" class="opt-btn active border-2 border-[#1e4d2b] dark:border-[#8FCE9A] bg-[#E9EFE4] dark:bg-[#1B2A1E] rounded-xl p-3 text-center hover:shadow-card">
+          <button data-size="portrait" class="opt-btn active border-2 border-[#B97F1F] dark:border-[#E9B44C] bg-[#EFE3C2] dark:bg-[#2A3358] rounded-xl p-3 text-center hover:shadow-card">
             <span class="mx-auto block w-7 h-9 rounded bg-gradient-to-br from-[#3E9B52] to-[#1e4d2b]"></span>
-            <span class="block mt-1.5 text-xs font-extrabold">Portrait</span><span class="block text-[10px] text-slate-500 dark:text-slate-400">3:4 • Feed</span>
+            <span class="block mt-1.5 text-xs font-extrabold">Portrait</span><span class="block text-[10px] text-slate-500 dark:text-[#A39D86]">3:4 • Feed</span>
           </button>
-          <button data-size="square" class="opt-btn border-2 border-slate-200 rounded-xl p-3 text-center hover:border-[#8FCE9A] hover:shadow-card">
+          <button data-size="square" class="opt-btn border-2 border-slate-200 rounded-xl p-3 text-center hover:border-[#E9B44C] hover:shadow-card">
             <span class="mx-auto block w-8 h-8 rounded bg-gradient-to-br from-emerald-400 to-sky-400"></span>
-            <span class="block mt-1.5 text-xs font-extrabold">Square</span><span class="block text-[10px] text-slate-500 dark:text-slate-400">1:1 • Feed</span>
+            <span class="block mt-1.5 text-xs font-extrabold">Square</span><span class="block text-[10px] text-slate-500 dark:text-[#A39D86]">1:1 • Feed</span>
           </button>
-          <button data-size="story" class="opt-btn border-2 border-slate-200 rounded-xl p-3 text-center hover:border-[#8FCE9A] hover:shadow-card">
+          <button data-size="story" class="opt-btn border-2 border-slate-200 rounded-xl p-3 text-center hover:border-[#E9B44C] hover:shadow-card">
             <span class="mx-auto block w-6 h-10 rounded bg-gradient-to-br from-amber-400 to-rose-400"></span>
-            <span class="block mt-1.5 text-xs font-extrabold">Story</span><span class="block text-[10px] text-slate-500 dark:text-slate-400">9:16 • IG/WA</span>
+            <span class="block mt-1.5 text-xs font-extrabold">Story</span><span class="block text-[10px] text-slate-500 dark:text-[#A39D86]">9:16 • IG/WA</span>
           </button>
         </div>
       </section>
@@ -641,7 +643,7 @@ tailwind.config = {
           <div data-panel="layer" class="hidden space-y-7">
       <!-- Susunan layer -->
       <section>
-        <h3 class="flex items-center gap-2 font-extrabold text-sm uppercase tracking-wider text-slate-500 dark:text-slate-400"><span class="w-7 h-7 rounded-lg bg-slate-200 grid place-items-center">🗂️</span> Susunan Layer</h3>
+        <h3 class="flex items-center gap-2 font-extrabold text-sm uppercase tracking-wider text-slate-500 dark:text-[#A39D86]"><span class="w-7 h-7 rounded-lg bg-slate-200 grid place-items-center">🗂️</span> Susunan Layer</h3>
         <p class="text-[11px] text-slate-400 mt-1">Paling atas = paling depan. Atur dengan ⬆ ⬇, klik 👁️ untuk tampil/sembunyi.</p>
         <div id="layerList" class="mt-3 space-y-1.5"></div>
       </section>
@@ -650,7 +652,7 @@ tailwind.config = {
       </div><!-- /rail-flex -->
       <div class="p-4 sm:p-5 pt-1">
       <!-- Download -->
-      <section class="bg-gradient-to-br from-[#0E2A16] via-[#2E7D44] to-[#2E7D44] rounded-2xl p-5 text-white">
+      <section class="bg-gradient-to-br from-[#0B1026] via-[#1E2547] to-[#3A4A7A] rounded-2xl p-5 text-white">
         <h3 class="font-extrabold flex items-center gap-2">💾 Ekspor Poster</h3>
         <p class="text-xs text-white/80 mt-1">Resolusi tinggi, siap posting & cetak.</p>
         <div class="mt-3 grid grid-cols-2 gap-2">
@@ -675,26 +677,26 @@ tailwind.config = {
 
     <!-- ===== KANVAS PREVIEW ===== -->
     <section class="lg:sticky lg:top-24">
-      <div class="bg-white rounded-3xl border border-slate-200/80 shadow-card p-4 sm:p-8 dark:bg-[#141713] dark:border-[#252A21]">
+      <div class="bg-white rounded-3xl border border-slate-200/80 shadow-card p-4 sm:p-8 dark:bg-[#1C2342] dark:border-[#3A4468]">
         <div class="flex items-center justify-between mb-4">
-          <div class="flex items-center gap-2 text-sm font-bold text-slate-500 dark:text-slate-400">
+          <div class="flex items-center gap-2 text-sm font-bold text-slate-500 dark:text-[#A39D86]">
             <span class="w-2.5 h-2.5 rounded-full bg-red-400"></span>
             <span class="w-2.5 h-2.5 rounded-full bg-amber-400"></span>
             <span class="w-2.5 h-2.5 rounded-full bg-emerald-400"></span>
-            <span class="ml-2 hidden sm:inline">Live Preview — <span id="sizeLabel" class="text-[#1e4d2b] dark:text-[#8FCE9A]">Portrait 1080×1440</span></span>
+            <span class="ml-2 hidden sm:inline">Live Preview — <span id="sizeLabel" class="text-[#8A5A12] dark:text-[#E9B44C]">Portrait 1080×1440</span></span>
           </div>
-          <span class="text-[11px] font-bold bg-emerald-50 text-emerald-600 border border-emerald-200 px-2.5 py-1 rounded-full">● REALTIME</span>
+          <span class="text-[11px] font-bold bg-[#EFE3C2] text-[#8A5A12] border border-[#D8C58F] px-2.5 py-1 rounded-full">● REALTIME</span>
         </div>
 
         <!-- Toolbar corat-coret -->
-        <div class="mt-4 bg-[#F5F2EB] border border-slate-200 rounded-2xl p-3.5 dark:bg-[#1D211B]/70 dark:border-slate-700">
+        <div class="mt-4 bg-[#F5F2EB] border border-slate-200 rounded-2xl p-3.5 dark:bg-[#232B4D]/70 dark:border-slate-700">
           <div class="flex flex-wrap items-center gap-x-3 gap-y-2.5">
-            <span class="text-[11px] font-extrabold uppercase tracking-wider text-slate-500 dark:text-slate-400">✏️ Corat-coret</span>
-            <div id="drawToolGroup" class="flex bg-white border border-slate-200 rounded-xl p-1 gap-1 dark:bg-[#141713] dark:border-slate-700">
-              <button data-draw="off" class="draw-tool active px-3 py-1.5 text-xs font-bold rounded-lg text-slate-600 dark:text-slate-300">🚫 Mati</button>
-              <button data-draw="pen" class="draw-tool px-3 py-1.5 text-xs font-bold rounded-lg text-slate-600 dark:text-slate-300" title="Pen presisi">🖊️ Pen</button>
-              <button data-draw="marker" class="draw-tool px-3 py-1.5 text-xs font-bold rounded-lg text-slate-600 dark:text-slate-300" title="Spidol tebal transparan">🖌️ Spidol</button>
-              <button data-draw="eraser" class="draw-tool px-3 py-1.5 text-xs font-bold rounded-lg text-slate-600 dark:text-slate-300" title="Penghapus">🧽 Eraser</button>
+            <span class="text-[11px] font-extrabold uppercase tracking-wider text-slate-500 dark:text-[#A39D86]">✏️ Corat-coret</span>
+            <div id="drawToolGroup" class="flex bg-white border border-slate-200 rounded-xl p-1 gap-1 dark:bg-[#1C2342] dark:border-slate-700">
+              <button data-draw="off" class="draw-tool active px-3 py-1.5 text-xs font-bold rounded-lg text-slate-600 dark:text-[#D9D2BC]">🚫 Mati</button>
+              <button data-draw="pen" class="draw-tool px-3 py-1.5 text-xs font-bold rounded-lg text-slate-600 dark:text-[#D9D2BC]" title="Pen presisi">🖊️ Pen</button>
+              <button data-draw="marker" class="draw-tool px-3 py-1.5 text-xs font-bold rounded-lg text-slate-600 dark:text-[#D9D2BC]" title="Spidol tebal transparan">🖌️ Spidol</button>
+              <button data-draw="eraser" class="draw-tool px-3 py-1.5 text-xs font-bold rounded-lg text-slate-600 dark:text-[#D9D2BC]" title="Penghapus">🧽 Eraser</button>
             </div>
             <div id="drawColorGroup" class="flex items-center gap-1.5">
               <button data-dcolor="#ffffff" class="dswatch active w-6 h-6 rounded-full border border-slate-300 bg-white" title="Putih"></button>
@@ -705,11 +707,11 @@ tailwind.config = {
               <input id="drawColor" type="color" value="#a855f7" title="Warna bebas" class="!w-8 !h-7" />
             </div>
             <div class="flex items-center gap-2 flex-1 min-w-[130px]">
-              <span class="text-[11px] font-bold text-slate-500 dark:text-slate-400 whitespace-nowrap">Tebal <span id="drawWidthTool">Pen</span> <span id="drawWidthVal" class="text-[#1e4d2b] dark:text-[#8FCE9A]">6</span></span>
+              <span class="text-[11px] font-bold text-slate-500 dark:text-[#A39D86] whitespace-nowrap">Tebal <span id="drawWidthTool">Pen</span> <span id="drawWidthVal" class="text-[#8A5A12] dark:text-[#E9B44C]">6</span></span>
               <input id="drawWidth" type="range" min="2" max="60" value="6" class="w-full" title="Ketebalan tool yang sedang aktif" />
             </div>
-            <button id="btnUndo" class="text-[11px] font-bold bg-white border border-slate-200 px-3 py-1.5 rounded-xl hover:border-amber-300 hover:text-amber-600 transition dark:bg-[#141713] dark:text-slate-200" title="Urungkan langkah terakhir (Ctrl+Z)">↩ Undo</button>
-            <button id="btnClearDraw" class="text-[11px] font-bold bg-white border border-slate-200 px-3 py-1.5 rounded-xl hover:border-red-300 hover:text-red-500 transition dark:bg-[#141713] dark:text-slate-200" title="Hapus semua coretan">🗑 Bersih</button>
+            <button id="btnUndo" class="text-[11px] font-bold bg-white border border-slate-200 px-3 py-1.5 rounded-xl hover:border-amber-300 hover:text-amber-600 transition dark:bg-[#1C2342] dark:text-[#F3EDDC]" title="Urungkan langkah terakhir (Ctrl+Z)">↩ Undo</button>
+            <button id="btnClearDraw" class="text-[11px] font-bold bg-white border border-slate-200 px-3 py-1.5 rounded-xl hover:border-red-300 hover:text-red-500 transition dark:bg-[#1C2342] dark:text-[#F3EDDC]" title="Hapus semua coretan">🗑 Bersih</button>
           </div>
           <p id="drawHint" class="mt-2 text-[11px] text-slate-400">Pilih Pen / Spidol / Eraser, lalu gambar langsung di atas poster. Coretan ikut tersimpan saat download HD.</p>
         </div>
@@ -717,15 +719,15 @@ tailwind.config = {
         <div class="mt-4 flex flex-wrap items-center gap-2">
           <p class="text-[11px] text-slate-400">↔️ Seret elemen di kanvas • 2× klik elemen = reset • 2× klik teks bebas = edit</p>
           <span class="flex-1"></span>
-          <button id="btnResetPos" class="text-[11px] font-bold bg-white border border-slate-200 px-3 py-1.5 rounded-xl hover:border-[#8FCE9A] hover:text-[#1e4d2b] dark:hover:text-[#8FCE9A] transition dark:bg-[#141713] dark:text-slate-200">🎯 Reset Posisi</button>
-          <div class="flex items-center gap-1 bg-white border border-slate-200 rounded-xl px-1.5 py-1 dark:bg-[#141713]">
+          <button id="btnResetPos" class="text-[11px] font-bold bg-white border border-slate-200 px-3 py-1.5 rounded-xl hover:border-[#E9B44C] hover:text-[#8A5A12] dark:hover:text-[#E9B44C] transition dark:bg-[#1C2342] dark:text-[#F3EDDC]">🎯 Reset Posisi</button>
+          <div class="flex items-center gap-1 bg-white border border-slate-200 rounded-xl px-1.5 py-1 dark:bg-[#1C2342]">
             <button id="zoomOut" class="w-7 h-7 rounded-lg text-sm font-extrabold hover:bg-[#E9E5DA] dark:hover:bg-slate-800 transition" title="Perkecil">−</button>
             <span id="zoomVal" class="text-[11px] font-extrabold w-11 text-center">100%</span>
             <button id="zoomIn" class="w-7 h-7 rounded-lg text-sm font-extrabold hover:bg-[#E9E5DA] dark:hover:bg-slate-800 transition" title="Perbesar">＋</button>
           </div>
         </div>
 
-        <div class="bg-[#E3DFD3] rounded-2xl p-4 sm:p-8 grid place-items-center min-h-[420px] dark:bg-[#0C0F0C]" style="background-image:radial-gradient(#cbd5e1 1px, transparent 1px); background-size:18px 18px;">
+        <div class="bg-[#E3DFD3] rounded-2xl p-4 sm:p-8 grid place-items-center min-h-[420px] dark:bg-[#141A33]" style="background-image:radial-gradient(#B9B49F 1px, transparent 1px); background-size:18px 18px;">
           <!-- POSTER -->
           <div id="poster" class="relative w-full max-w-[420px] overflow-hidden rounded-[1.6rem] shadow-soft text-white" style="aspect-ratio:3/4; background:linear-gradient(150deg,#6366f1,#ec4899);">
             <img id="posterBgImg" alt="" class="absolute inset-0 w-full h-full" style="object-fit:cover; display:none;" />
@@ -760,13 +762,13 @@ tailwind.config = {
           </div>
         </div>
 
-        <div class="mt-4 bg-[#F5F2EB] border border-slate-200 rounded-2xl p-3 dark:bg-[#1D211B]/70 dark:border-slate-700">
+        <div class="mt-4 bg-[#F5F2EB] border border-slate-200 rounded-2xl p-3 dark:bg-[#232B4D]/70 dark:border-slate-700">
           <div class="flex items-center gap-2 mb-2">
-            <span class="text-[11px] font-extrabold uppercase tracking-wider text-slate-500 dark:text-slate-400">📄 Halaman <span id="pageCount" class="text-[#1e4d2b] dark:text-[#8FCE9A]">1</span></span>
+            <span class="text-[11px] font-extrabold uppercase tracking-wider text-slate-500 dark:text-[#A39D86]">📄 Halaman <span id="pageCount" class="text-[#8A5A12] dark:text-[#E9B44C]">1</span></span>
             <span class="flex-1"></span>
-            <button id="btnAddPage" class="text-[11px] font-bold bg-white border border-slate-200 px-2.5 py-1.5 rounded-xl hover:border-[#8FCE9A] hover:text-[#1e4d2b] dark:hover:text-[#8FCE9A] transition dark:bg-[#141713] dark:text-slate-200" title="Tambah halaman baru">＋ Tambah</button>
-            <button id="btnDupPage" class="text-[11px] font-bold bg-white border border-slate-200 px-2.5 py-1.5 rounded-xl hover:border-[#8FCE9A] hover:text-[#1e4d2b] dark:hover:text-[#8FCE9A] transition dark:bg-[#141713] dark:text-slate-200" title="Duplikat halaman ini">⧉ Duplikat</button>
-            <button id="btnDelPage" class="text-[11px] font-bold bg-white border border-slate-200 px-2.5 py-1.5 rounded-xl hover:border-red-300 hover:text-red-500 transition dark:bg-[#141713] dark:text-slate-200" title="Hapus halaman ini">🗑 Hapus</button>
+            <button id="btnAddPage" class="text-[11px] font-bold bg-white border border-slate-200 px-2.5 py-1.5 rounded-xl hover:border-[#E9B44C] hover:text-[#8A5A12] dark:hover:text-[#E9B44C] transition dark:bg-[#1C2342] dark:text-[#F3EDDC]" title="Tambah halaman baru">＋ Tambah</button>
+            <button id="btnDupPage" class="text-[11px] font-bold bg-white border border-slate-200 px-2.5 py-1.5 rounded-xl hover:border-[#E9B44C] hover:text-[#8A5A12] dark:hover:text-[#E9B44C] transition dark:bg-[#1C2342] dark:text-[#F3EDDC]" title="Duplikat halaman ini">⧉ Duplikat</button>
+            <button id="btnDelPage" class="text-[11px] font-bold bg-white border border-slate-200 px-2.5 py-1.5 rounded-xl hover:border-red-300 hover:text-red-500 transition dark:bg-[#1C2342] dark:text-[#F3EDDC]" title="Hapus halaman ini">🗑 Hapus</button>
           </div>
           <div id="pagesBar" class="flex gap-2 overflow-x-auto pb-1"></div>
         </div>
@@ -774,9 +776,9 @@ tailwind.config = {
         <div class="mt-4 flex flex-wrap items-center justify-between gap-3">
           <p class="text-xs text-slate-400">Tips: judul di bawah 6 kata paling gampang dibaca dari jauh.</p>
           <div class="flex flex-wrap gap-2">
-            <button id="btnCopy" class="text-xs font-bold bg-[#E9E5DA] hover:bg-[#DCD6C6] px-3.5 py-2 rounded-xl transition-colors dark:bg-[#1D211B] dark:hover:bg-slate-700 dark:text-slate-200">📋 Salin Teks</button>
-            <button id="btnNewTab" class="text-xs font-bold bg-[#E9EFE4] dark:bg-[#1B2A1E] text-[#1e4d2b] hover:bg-[#DCE7DA] px-3.5 py-2 rounded-xl transition-colors dark:bg-[#16241A] dark:text-[#9FD3A8] dark:hover:bg-[#1C2B1F]">🔗 Buka di Tab Baru</button>
-            <button id="btnPreviewDl" class="text-xs font-bold bg-slate-900 text-white hover:bg-slate-700 px-3.5 py-2 rounded-xl transition-colors dark:bg-white dark:text-slate-900 dark:hover:bg-[#E9E5DA]">⬇ Download Cepat</button>
+            <button id="btnCopy" class="text-xs font-bold bg-[#E9E5DA] hover:bg-[#DCD6C6] px-3.5 py-2 rounded-xl transition-colors dark:bg-[#232B4D] dark:hover:bg-slate-700 dark:text-[#F3EDDC]">📋 Salin Teks</button>
+            <button id="btnNewTab" class="text-xs font-bold bg-[#EFE3C2] dark:bg-[#2A3358] text-[#1e4d2b] hover:bg-[#DCE7DA] px-3.5 py-2 rounded-xl transition-colors dark:bg-[#2A3358] dark:text-[#E9B44C] dark:hover:bg-[#2A3358]">🔗 Buka di Tab Baru</button>
+            <button id="btnPreviewDl" class="text-xs font-bold bg-slate-900 text-white hover:bg-slate-700 px-3.5 py-2 rounded-xl transition-colors dark:bg-[#F3EDDC] dark:text-slate-900 dark:hover:bg-[#E9E5DA]">⬇ Download Cepat</button>
           </div>
         </div>
       </div>
@@ -787,15 +789,15 @@ tailwind.config = {
 <!-- ============ STUDIO SKETSA ============ -->
 <section id="sketsa" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-20 scroll-mt-20">
   <div class="text-center max-w-2xl mx-auto">
-    <span class="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-wider bg-white dark:bg-[#141713] border border-[#C9D8C2] dark:border-[#2A4030] text-[#1e4d2b] dark:text-[#8FCE9A] dark:text-[#9FD3A8] px-3.5 py-1.5 rounded-full shadow-sm">📷✨ Lab Kreatif</span>
+    <span class="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-wider bg-white dark:bg-[#1C2342] border border-[#C9D8C2] dark:border-[#3A4468] text-[#8A5A12] dark:text-[#E9B44C] dark:text-[#E9B44C] px-3.5 py-1.5 rounded-full shadow-sm">📷✨ Lab Kreatif</span>
     <h2 class="mt-4 text-3xl sm:text-4xl font-extrabold tracking-tight dark:text-white font-display">Foto kertas jadi <span class="grad-text">karya seni</span></h2>
-    <p class="mt-3 text-slate-500 dark:text-slate-400">Foto tulisan tangan atau coretan di kertas bisa diubah jadi 13 gaya seni — sketsa, kartun, neon, duotone, dan lainnya. Unduh HD, atau tempel langsung ke poster.</p>
+    <p class="mt-3 text-slate-500 dark:text-[#A39D86]">Foto tulisan tangan atau coretan di kertas bisa diubah jadi 13 gaya seni — sketsa, kartun, neon, duotone, dan lainnya. Unduh HD, atau tempel langsung ke poster.</p>
   </div>
 
   <div class="mt-8 grid lg:grid-cols-[380px_1fr] gap-6 items-start">
-    <aside class="bg-white dark:bg-[#141713] rounded-3xl border border-slate-200/80 dark:border-[#252A21] shadow-card p-6 space-y-6">
+    <aside class="bg-white dark:bg-[#1C2342] rounded-3xl border border-slate-200/80 dark:border-[#3A4468] shadow-card p-6 space-y-6">
       <div>
-        <h3 class="flex items-center gap-2 font-extrabold text-sm uppercase tracking-wider text-slate-500 dark:text-slate-400"><span class="w-7 h-7 rounded-lg bg-amber-100 grid place-items-center">📤</span> Upload Foto</h3>
+        <h3 class="flex items-center gap-2 font-extrabold text-sm uppercase tracking-wider text-slate-500 dark:text-[#A39D86]"><span class="w-7 h-7 rounded-lg bg-amber-100 grid place-items-center">📤</span> Upload Foto</h3>
         <div id="skDrop" class="dropzone mt-3 rounded-2xl p-5 text-center">
           <input id="skFile" type="file" accept="image/*" class="hidden" />
           <p class="text-3xl">📝</p>
@@ -804,68 +806,68 @@ tailwind.config = {
         </div>
       </div>
       <div>
-        <h3 class="flex items-center gap-2 font-extrabold text-sm uppercase tracking-wider text-slate-500 dark:text-slate-400"><span class="w-7 h-7 rounded-lg bg-[#E2E7D8] grid place-items-center">🎨</span> Gaya Seni</h3>
+        <h3 class="flex items-center gap-2 font-extrabold text-sm uppercase tracking-wider text-slate-500 dark:text-[#A39D86]"><span class="w-7 h-7 rounded-lg bg-[#E2E7D8] grid place-items-center">🎨</span> Gaya Seni</h3>
         <div id="skStyleGroup" class="mt-3 grid grid-cols-2 gap-2">
-          <button data-art="sketch" class="art-btn active border-2 border-[#1e4d2b] dark:border-[#8FCE9A] bg-[#E9EFE4] dark:bg-[#1B2A1E] rounded-xl px-3 py-2.5 text-left hover:shadow-card"><span class="block text-sm font-extrabold">✏️ Sketsa Pensil</span><span class="block text-[11px] text-slate-500 dark:text-slate-400">Efek arsir tangan</span></button>
-          <button data-art="ink" class="art-btn border-2 border-slate-200 rounded-xl px-3 py-2.5 text-left hover:border-[#8FCE9A] hover:shadow-card"><span class="block text-sm font-extrabold">🖊️ Tinta Outline</span><span class="block text-[11px] text-slate-500 dark:text-slate-400">Garis tegas bersih</span></button>
-          <button data-art="logo" class="art-btn border-2 border-slate-200 rounded-xl px-3 py-2.5 text-left hover:border-[#8FCE9A] hover:shadow-card"><span class="block text-sm font-extrabold">⬛ Logo BW</span><span class="block text-[11px] text-slate-500 dark:text-slate-400">Hitam-putih pekat</span></button>
-          <button data-art="pop" class="art-btn border-2 border-slate-200 rounded-xl px-3 py-2.5 text-left hover:border-[#8FCE9A] hover:shadow-card"><span class="block text-sm font-extrabold">🎨 Pop Poster</span><span class="block text-[11px] text-slate-500 dark:text-slate-400">Warna ngejreng</span></button>
-          <button data-art="cartoon" class="art-btn border-2 border-slate-200 rounded-xl px-3 py-2.5 text-left hover:border-[#8FCE9A] hover:shadow-card"><span class="block text-sm font-extrabold">🎭 Kartun</span><span class="block text-[11px] text-slate-500 dark:text-slate-400">Gaya komik halus</span></button>
-          <button data-art="mosaic" class="art-btn border-2 border-slate-200 rounded-xl px-3 py-2.5 text-left hover:border-[#8FCE9A] hover:shadow-card"><span class="block text-sm font-extrabold">🧱 Mosaik</span><span class="block text-[11px] text-slate-500 dark:text-slate-400">Kotak-kotak piksel</span></button>
-          <button data-art="neon" class="art-btn border-2 border-slate-200 rounded-xl px-3 py-2.5 text-left hover:border-[#8FCE9A] hover:shadow-card"><span class="block text-sm font-extrabold">💡 Neon</span><span class="block text-[11px] text-slate-500 dark:text-slate-400">Garis menyala</span></button>
-          <button data-art="vintage" class="art-btn border-2 border-slate-200 rounded-xl px-3 py-2.5 text-left hover:border-[#8FCE9A] hover:shadow-card"><span class="block text-sm font-extrabold">📜 Vintage</span><span class="block text-[11px] text-slate-500 dark:text-slate-400">Sepia tempo dulu</span></button>
-          <button data-art="duotone" class="art-btn border-2 border-slate-200 rounded-xl px-3 py-2.5 text-left hover:border-[#8FCE9A] hover:shadow-card"><span class="block text-sm font-extrabold">🌗 Duotone</span><span class="block text-[11px] text-slate-500 dark:text-slate-400">Ungu-teal premium</span></button>
-          <button data-art="thermal" class="art-btn border-2 border-slate-200 rounded-xl px-3 py-2.5 text-left hover:border-[#8FCE9A] hover:shadow-card"><span class="block text-sm font-extrabold">🌡️ Termal</span><span class="block text-[11px] text-slate-500 dark:text-slate-400">Ala kamera panas</span></button>
-          <button data-art="colpencil" class="art-btn border-2 border-slate-200 rounded-xl px-3 py-2.5 text-left hover:border-[#8FCE9A] hover:shadow-card"><span class="block text-sm font-extrabold">🖍️ Pensil Warna</span><span class="block text-[11px] text-slate-500 dark:text-slate-400">Arsiran berwarna</span></button>
-          <button data-art="chalk" class="art-btn border-2 border-slate-200 rounded-xl px-3 py-2.5 text-left hover:border-[#8FCE9A] hover:shadow-card"><span class="block text-sm font-extrabold">🏫 Papan Tulis</span><span class="block text-[11px] text-slate-500 dark:text-slate-400">Kapur putih</span></button>
-          <button data-art="orig" class="art-btn col-span-2 border-2 border-slate-200 rounded-xl px-3 py-2 text-left hover:border-[#8FCE9A] hover:shadow-card"><span class="block text-sm font-extrabold">🖼️ Foto Asli <span class="font-normal text-[11px] text-slate-500 dark:text-slate-400">— tanpa efek, untuk bandingkan</span></span></button>
+          <button data-art="sketch" class="art-btn active border-2 border-[#B97F1F] dark:border-[#E9B44C] bg-[#EFE3C2] dark:bg-[#2A3358] rounded-xl px-3 py-2.5 text-left hover:shadow-card"><span class="block text-sm font-extrabold">✏️ Sketsa Pensil</span><span class="block text-[11px] text-slate-500 dark:text-[#A39D86]">Efek arsir tangan</span></button>
+          <button data-art="ink" class="art-btn border-2 border-slate-200 rounded-xl px-3 py-2.5 text-left hover:border-[#E9B44C] hover:shadow-card"><span class="block text-sm font-extrabold">🖊️ Tinta Outline</span><span class="block text-[11px] text-slate-500 dark:text-[#A39D86]">Garis tegas bersih</span></button>
+          <button data-art="logo" class="art-btn border-2 border-slate-200 rounded-xl px-3 py-2.5 text-left hover:border-[#E9B44C] hover:shadow-card"><span class="block text-sm font-extrabold">⬛ Logo BW</span><span class="block text-[11px] text-slate-500 dark:text-[#A39D86]">Hitam-putih pekat</span></button>
+          <button data-art="pop" class="art-btn border-2 border-slate-200 rounded-xl px-3 py-2.5 text-left hover:border-[#E9B44C] hover:shadow-card"><span class="block text-sm font-extrabold">🎨 Pop Poster</span><span class="block text-[11px] text-slate-500 dark:text-[#A39D86]">Warna ngejreng</span></button>
+          <button data-art="cartoon" class="art-btn border-2 border-slate-200 rounded-xl px-3 py-2.5 text-left hover:border-[#E9B44C] hover:shadow-card"><span class="block text-sm font-extrabold">🎭 Kartun</span><span class="block text-[11px] text-slate-500 dark:text-[#A39D86]">Gaya komik halus</span></button>
+          <button data-art="mosaic" class="art-btn border-2 border-slate-200 rounded-xl px-3 py-2.5 text-left hover:border-[#E9B44C] hover:shadow-card"><span class="block text-sm font-extrabold">🧱 Mosaik</span><span class="block text-[11px] text-slate-500 dark:text-[#A39D86]">Kotak-kotak piksel</span></button>
+          <button data-art="neon" class="art-btn border-2 border-slate-200 rounded-xl px-3 py-2.5 text-left hover:border-[#E9B44C] hover:shadow-card"><span class="block text-sm font-extrabold">💡 Neon</span><span class="block text-[11px] text-slate-500 dark:text-[#A39D86]">Garis menyala</span></button>
+          <button data-art="vintage" class="art-btn border-2 border-slate-200 rounded-xl px-3 py-2.5 text-left hover:border-[#E9B44C] hover:shadow-card"><span class="block text-sm font-extrabold">📜 Vintage</span><span class="block text-[11px] text-slate-500 dark:text-[#A39D86]">Sepia tempo dulu</span></button>
+          <button data-art="duotone" class="art-btn border-2 border-slate-200 rounded-xl px-3 py-2.5 text-left hover:border-[#E9B44C] hover:shadow-card"><span class="block text-sm font-extrabold">🌗 Duotone</span><span class="block text-[11px] text-slate-500 dark:text-[#A39D86]">Ungu-teal premium</span></button>
+          <button data-art="thermal" class="art-btn border-2 border-slate-200 rounded-xl px-3 py-2.5 text-left hover:border-[#E9B44C] hover:shadow-card"><span class="block text-sm font-extrabold">🌡️ Termal</span><span class="block text-[11px] text-slate-500 dark:text-[#A39D86]">Ala kamera panas</span></button>
+          <button data-art="colpencil" class="art-btn border-2 border-slate-200 rounded-xl px-3 py-2.5 text-left hover:border-[#E9B44C] hover:shadow-card"><span class="block text-sm font-extrabold">🖍️ Pensil Warna</span><span class="block text-[11px] text-slate-500 dark:text-[#A39D86]">Arsiran berwarna</span></button>
+          <button data-art="chalk" class="art-btn border-2 border-slate-200 rounded-xl px-3 py-2.5 text-left hover:border-[#E9B44C] hover:shadow-card"><span class="block text-sm font-extrabold">🏫 Papan Tulis</span><span class="block text-[11px] text-slate-500 dark:text-[#A39D86]">Kapur putih</span></button>
+          <button data-art="orig" class="art-btn col-span-2 border-2 border-slate-200 rounded-xl px-3 py-2 text-left hover:border-[#E9B44C] hover:shadow-card"><span class="block text-sm font-extrabold">🖼️ Foto Asli <span class="font-normal text-[11px] text-slate-500 dark:text-[#A39D86]">— tanpa efek, untuk bandingkan</span></span></button>
         </div>
       </div>
       <div class="space-y-3">
-        <h3 class="flex items-center gap-2 font-extrabold text-sm uppercase tracking-wider text-slate-500 dark:text-slate-400"><span class="w-7 h-7 rounded-lg bg-sky-100 grid place-items-center">🎚️</span> Penyesuaian</h3>
+        <h3 class="flex items-center gap-2 font-extrabold text-sm uppercase tracking-wider text-slate-500 dark:text-[#A39D86]"><span class="w-7 h-7 rounded-lg bg-sky-100 grid place-items-center">🎚️</span> Penyesuaian</h3>
         <div>
-          <div class="flex justify-between text-xs font-bold text-slate-600 dark:text-slate-300"><span>Kontras</span><span id="skContrastVal" class="text-[#1e4d2b] dark:text-[#8FCE9A]">20</span></div>
+          <div class="flex justify-between text-xs font-bold text-slate-600 dark:text-[#D9D2BC]"><span>Kontras</span><span id="skContrastVal" class="text-[#8A5A12] dark:text-[#E9B44C]">20</span></div>
           <input id="skContrast" type="range" min="-100" max="100" value="20" class="w-full mt-1" />
         </div>
         <div>
-          <div class="flex justify-between text-xs font-bold text-slate-600 dark:text-slate-300"><span>Kecerahan</span><span id="skBrightVal" class="text-[#1e4d2b] dark:text-[#8FCE9A]">0</span></div>
+          <div class="flex justify-between text-xs font-bold text-slate-600 dark:text-[#D9D2BC]"><span>Kecerahan</span><span id="skBrightVal" class="text-[#8A5A12] dark:text-[#E9B44C]">0</span></div>
           <input id="skBright" type="range" min="-80" max="80" value="0" class="w-full mt-1" />
         </div>
         <div id="skSpecialWrap">
-          <div class="flex justify-between text-xs font-bold text-slate-600 dark:text-slate-300"><span id="skSpecialLbl">Kehalusan garis</span><span id="skSpecialVal" class="text-[#1e4d2b] dark:text-[#8FCE9A]">4</span></div>
+          <div class="flex justify-between text-xs font-bold text-slate-600 dark:text-[#D9D2BC]"><span id="skSpecialLbl">Kehalusan garis</span><span id="skSpecialVal" class="text-[#8A5A12] dark:text-[#E9B44C]">4</span></div>
           <input id="skSpecial" type="range" min="1" max="12" value="4" class="w-full mt-1" />
         </div>
         <div id="skColorizeWrap">
-          <div class="flex justify-between text-xs font-bold text-slate-600 dark:text-slate-300"><span>🖍️ Warnai otomatis</span><span id="skColorizeVal" class="text-[#1e4d2b] dark:text-[#8FCE9A]">0%</span></div>
+          <div class="flex justify-between text-xs font-bold text-slate-600 dark:text-[#D9D2BC]"><span>🖍️ Warnai otomatis</span><span id="skColorizeVal" class="text-[#8A5A12] dark:text-[#E9B44C]">0%</span></div>
           <input id="skColorize" type="range" min="0" max="100" value="0" class="w-full mt-1" />
           <p class="text-[11px] text-slate-400">0% = hitam-putih klasik • 100% = warna foto kembali. Berlaku untuk Sketsa, Tinta & Papan Tulis.</p>
         </div>
       </div>
       <div>
-        <h3 class="flex items-center gap-2 font-extrabold text-sm uppercase tracking-wider text-slate-500 dark:text-slate-400"><span class="w-7 h-7 rounded-lg bg-[#E6E3D1] grid place-items-center">🌈</span> Warna Gaya</h3>
+        <h3 class="flex items-center gap-2 font-extrabold text-sm uppercase tracking-wider text-slate-500 dark:text-[#A39D86]"><span class="w-7 h-7 rounded-lg bg-[#E6E3D1] grid place-items-center">🌈</span> Warna Gaya</h3>
         <p class="text-[11px] text-slate-400 mt-1">Berlaku untuk gaya hitam-putih: Sketsa, Tinta, Logo, Neon & Papan Tulis.</p>
         <div class="flex items-center gap-2 mt-2">
           <input id="skTint" type="color" value="#1a1a1a" title="Warna tinta bebas" />
-          <button data-tint="#1a1a1a" class="sksw w-7 h-7 rounded-full border-2 border-[#1e4d2b] dark:border-[#8FCE9A] bg-neutral-900" title="Hitam"></button>
+          <button data-tint="#1a1a1a" class="sksw w-7 h-7 rounded-full border-2 border-[#B97F1F] dark:border-[#E9B44C] bg-neutral-900" title="Hitam"></button>
           <button data-tint="#8B5E34" class="sksw w-7 h-7 rounded-full border-2 border-slate-200 bg-amber-800" title="Sepia"></button>
           <button data-tint="#1D4ED8" class="sksw w-7 h-7 rounded-full border-2 border-slate-200 bg-blue-700" title="Biru"></button>
           <button data-tint="#DC2626" class="sksw w-7 h-7 rounded-full border-2 border-slate-200 bg-red-600" title="Merah"></button>
           <button data-tint="#047857" class="sksw w-7 h-7 rounded-full border-2 border-slate-200 bg-emerald-700" title="Hijau"></button>
           <button data-tint="#7D2AE8" class="sksw w-7 h-7 rounded-full border-2 border-slate-200 bg-purple-600" title="Ungu"></button>
         </div>
-        <p class="text-xs font-bold text-slate-600 dark:text-slate-300 mt-3 mb-1.5">Warna Duotone (khusus gaya Duotone)</p>
+        <p class="text-xs font-bold text-slate-600 dark:text-[#D9D2BC] mt-3 mb-1.5">Warna Duotone (khusus gaya Duotone)</p>
         <div class="flex items-center gap-3">
-          <label class="bg-[#F5F2EB] dark:bg-[#1D211B] border border-slate-200 dark:border-slate-700 rounded-xl p-2.5 flex items-center gap-2 cursor-pointer hover:border-[#8FCE9A] transition">
+          <label class="bg-[#F5F2EB] dark:bg-[#232B4D] border border-slate-200 dark:border-slate-700 rounded-xl p-2.5 flex items-center gap-2 cursor-pointer hover:border-[#E9B44C] transition">
             <input id="skDuo1" type="color" value="#1e1b4b" />
-            <span class="text-[11px] font-bold text-slate-600 dark:text-slate-300 leading-tight">Warna<br>gelap</span>
+            <span class="text-[11px] font-bold text-slate-600 dark:text-[#D9D2BC] leading-tight">Warna<br>gelap</span>
           </label>
-          <label class="bg-[#F5F2EB] dark:bg-[#1D211B] border border-slate-200 dark:border-slate-700 rounded-xl p-2.5 flex items-center gap-2 cursor-pointer hover:border-[#8FCE9A] transition">
+          <label class="bg-[#F5F2EB] dark:bg-[#232B4D] border border-slate-200 dark:border-slate-700 rounded-xl p-2.5 flex items-center gap-2 cursor-pointer hover:border-[#E9B44C] transition">
             <input id="skDuo2" type="color" value="#5eead4" />
-            <span class="text-[11px] font-bold text-slate-600 dark:text-slate-300 leading-tight">Warna<br>terang</span>
+            <span class="text-[11px] font-bold text-slate-600 dark:text-[#D9D2BC] leading-tight">Warna<br>terang</span>
           </label>
         </div>
       </div>
-      <div class="rounded-2xl p-5 text-white" style="background:linear-gradient(135deg,#0E2A16,#1e4d2b 55%,#2E7D44)">
+      <div class="rounded-2xl p-5 text-white" style="background:linear-gradient(135deg,#0B1026,#1E2547 55%,#3A4A7A)">
         <h3 class="font-extrabold flex items-center gap-2">💾 Unduh & Kirim</h3>
         <p class="text-xs text-white/80 mt-1">PNG kualitas HD, siap cetak & posting.</p>
         <select id="skScale" class="mt-3 w-full text-slate-800 text-sm font-bold rounded-xl px-3 py-2.5 focus:outline-none">
@@ -884,30 +886,30 @@ tailwind.config = {
       </div>
     </aside>
 
-    <div class="bg-white dark:bg-[#141713] rounded-3xl border border-slate-200/80 dark:border-[#252A21] shadow-card p-4 sm:p-8">
+    <div class="bg-white dark:bg-[#1C2342] rounded-3xl border border-slate-200/80 dark:border-[#3A4468] shadow-card p-4 sm:p-8">
       <div class="flex items-center justify-between mb-4">
-        <div class="flex items-center gap-2 text-sm font-bold text-slate-500 dark:text-slate-400">
+        <div class="flex items-center gap-2 text-sm font-bold text-slate-500 dark:text-[#A39D86]">
           <span class="w-2.5 h-2.5 rounded-full bg-red-400"></span>
           <span class="w-2.5 h-2.5 rounded-full bg-amber-400"></span>
           <span class="w-2.5 h-2.5 rounded-full bg-emerald-400"></span>
-          <span class="ml-2 hidden sm:inline">Hasil Karya — <span id="skSize" class="text-[#1e4d2b] dark:text-[#8FCE9A]">—</span></span>
+          <span class="ml-2 hidden sm:inline">Hasil Karya — <span id="skSize" class="text-[#8A5A12] dark:text-[#E9B44C]">—</span></span>
         </div>
-        <span class="text-[11px] font-bold bg-[#E9EFE4] text-[#1e4d2b] border border-[#C4D6C0] px-2.5 py-1 rounded-full dark:bg-purple-950 dark:text-purple-300 dark:border-purple-900">● LAB SKETSA</span>
+        <span class="text-[11px] font-bold bg-[#EFE3C2] text-[#8A5A12] border border-[#D8C58F] px-2.5 py-1 rounded-full dark:bg-[#2A3358] dark:text-[#E9B44C] dark:border-[#3A4468]">● LAB SKETSA</span>
       </div>
       <div id="skEmpty" class="rounded-2xl border-2 border-dashed border-slate-300 dark:border-slate-700 grid place-items-center text-center px-6 py-20">
         <div>
           <p class="text-5xl">📝</p>
           <p class="mt-4 font-extrabold text-lg dark:text-white">Belum ada foto</p>
-          <p class="mt-1 text-sm text-slate-500 dark:text-slate-400 max-w-sm">Upload foto tulisan tangan, sketsa, doodle, atau logo di atas kertas — lalu pilih gaya seninya di panel kiri.</p>
+          <p class="mt-1 text-sm text-slate-500 dark:text-[#A39D86] max-w-sm">Upload foto tulisan tangan, sketsa, doodle, atau logo di atas kertas — lalu pilih gaya seninya di panel kiri.</p>
         </div>
       </div>
       <div id="skWork" class="hidden grid md:grid-cols-2 gap-4">
         <div>
-          <p class="text-[11px] font-extrabold uppercase tracking-wider text-slate-500 dark:text-slate-400 mb-2">📷 Foto asli</p>
+          <p class="text-[11px] font-extrabold uppercase tracking-wider text-slate-500 dark:text-[#A39D86] mb-2">📷 Foto asli</p>
           <img id="skBefore" alt="Foto asli" class="w-full rounded-2xl border border-slate-200 dark:border-slate-700" />
         </div>
         <div>
-          <p class="text-[11px] font-extrabold uppercase tracking-wider text-slate-500 dark:text-slate-400 mb-2">✨ Hasil karya</p>
+          <p class="text-[11px] font-extrabold uppercase tracking-wider text-slate-500 dark:text-[#A39D86] mb-2">✨ Hasil karya</p>
           <canvas id="skCanvas" class="w-full rounded-2xl border border-slate-200 dark:border-slate-700 bg-white"></canvas>
         </div>
       </div>
@@ -917,9 +919,9 @@ tailwind.config = {
 </section>
 
 <!-- ============ FOOTER ============ -->
-<footer class="border-t border-slate-200 bg-white dark:bg-[#0C0F0C] dark:border-[#252A21]">
+<footer class="border-t border-slate-200 bg-white dark:bg-[#141A33] dark:border-[#3A4468]">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 flex flex-col sm:flex-row items-center justify-between gap-3">
-    <p class="text-sm font-bold">Posteria <span class="font-normal text-slate-500 dark:text-slate-400">— studio poster kecil yang jalan langsung dari browser.</span></p>
+    <p class="text-sm font-bold">Posteria <span class="font-normal text-slate-500 dark:text-[#A39D86]">— studio poster kecil yang jalan langsung dari browser.</span></p>
     <p class="text-xs text-slate-400">buatan Rasen — dibuat dengan teliti • © 2026</p>
   </div>
 </footer>
@@ -993,7 +995,7 @@ const pvSvg=$('pvSvg');
 const presetGroup = $('presetGroup');
 PRESETS.forEach((p,i)=>{
   const b=document.createElement('button');
-  b.className='opt-btn h-11 rounded-xl border-2 border-slate-200 hover:scale-105 hover:shadow-card'+(i===0?' active !border-[#1e4d2b]':'');
+  b.className='opt-btn h-11 rounded-xl border-2 border-slate-200 hover:scale-105 hover:shadow-card'+(i===0?' active !border-[#E9B44C]':'');
   b.style.background=`linear-gradient(135deg, ${p.c1}, ${p.c2})`;
   b.title=p.n; b.dataset.i=i;
   b.onclick=()=>{ S.c1=p.c1; S.c2=p.c2; $('inC1').value=p.c1; $('inC2').value=p.c2; markActive(presetGroup,b); render(); };
@@ -1006,7 +1008,7 @@ function buildIconGrid(filter){
   ICONS.filter(o=>!q||o.k.includes(q)||o.e===q).forEach(o=>{
     const on=!S.iconSvg&&S.icon===o.e;
     const b=document.createElement('button');
-    b.className='opt-btn text-xl border-2 rounded-xl py-1.5 hover:scale-110 hover:shadow-card '+(on?'border-[#1e4d2b] dark:border-[#8FCE9A] bg-[#E9EFE4] dark:bg-[#1B2A1E]':'border-slate-200');
+    b.className='opt-btn text-xl border-2 rounded-xl py-1.5 hover:scale-110 hover:shadow-card '+(on?'border-[#B97F1F] dark:border-[#E9B44C] bg-[#EFE3C2] dark:bg-[#2A3358]':'border-slate-200');
     b.textContent=o.e; b.title=o.e; b.dataset.icon=o.e;
     b.onclick=()=>{ S.icon=o.e; S.iconSvg=null; if(S.iconSize===0){S.iconSize=64;$('inIconSize').value=64;} syncIconUI(); render(); };
     iconGroup.appendChild(b);
@@ -1036,9 +1038,9 @@ function buildSvgGrid(filter){
     if(q&&!(o.k.includes(q)||o.n.toLowerCase().includes(q))) return;
     const on=S.iconSvg===o.s;
     const b=document.createElement('button');
-    b.className='opt-btn border-2 rounded-xl p-1.5 grid place-items-center hover:scale-110 hover:shadow-card '+(on?'border-[#1e4d2b] dark:border-[#8FCE9A] bg-[#E9EFE4] dark:bg-[#1B2A1E]':'border-slate-200');
+    b.className='opt-btn border-2 rounded-xl p-1.5 grid place-items-center hover:scale-110 hover:shadow-card '+(on?'border-[#B97F1F] dark:border-[#E9B44C] bg-[#EFE3C2] dark:bg-[#2A3358]':'border-slate-200');
     b.title=o.n; b.dataset.svgidx=idx;
-    b.innerHTML='<span class="block w-6 h-6 rounded-lg p-1" style="background:linear-gradient(135deg,#1e4d2b,#3E9B52)">'+o.s.replace('<svg','<svg width="100%" height="100%"')+'</span>';
+    b.innerHTML='<span class="block w-6 h-6 rounded-lg p-1" style="background:linear-gradient(135deg,#8A5A12,#E9B44C)">'+o.s.replace('<svg','<svg width="100%" height="100%"')+'</span>';
     b.onclick=()=>{ S.iconSvg=o.s; if(S.iconSize===0){S.iconSize=64;$('inIconSize').value=64;} syncIconUI(); render(); };
     g.appendChild(b);
   });
@@ -1050,8 +1052,8 @@ function syncIconUI(){
 }
 buildIconGrid(''); buildSvgGrid('');
 function markActive(container, btn){
-  container.querySelectorAll('.opt-btn').forEach(x=>{x.classList.remove('active','!border-[#1e4d2b]','border-[#1e4d2b] dark:border-[#8FCE9A]','bg-[#E9EFE4] dark:bg-[#1B2A1E]');x.classList.add('border-slate-200');});
-  btn.classList.add('active','border-[#1e4d2b] dark:border-[#8FCE9A]','bg-[#E9EFE4] dark:bg-[#1B2A1E]');btn.classList.remove('border-slate-200');
+  container.querySelectorAll('.opt-btn').forEach(x=>{x.classList.remove('active','!border-[#E9B44C]','border-[#B97F1F] dark:border-[#E9B44C]','bg-[#EFE3C2] dark:bg-[#2A3358]');x.classList.add('border-slate-200');});
+  btn.classList.add('active','border-[#B97F1F] dark:border-[#E9B44C]','bg-[#EFE3C2] dark:bg-[#2A3358]');btn.classList.remove('border-slate-200');
 }
 function segActive(container, btn){
   container.querySelectorAll('.opt-btn').forEach(x=>x.classList.remove('active','bg-white','shadow','font-bold'));
@@ -1174,29 +1176,29 @@ $('inAngle').addEventListener('input',e=>{S.angle=+e.target.value;render();});
 $('inIconSize').addEventListener('input',e=>{S.iconSize=+e.target.value;render();});
 $('fontGroup').querySelectorAll('button').forEach(b=>b.onclick=()=>{
   S.font=b.dataset.font;
-  $('fontGroup').querySelectorAll('button').forEach(x=>{x.classList.remove('active','border-[#1e4d2b] dark:border-[#8FCE9A]','bg-[#E9EFE4] dark:bg-[#1B2A1E]');x.classList.add('border-slate-200');});
-  b.classList.add('active','border-[#1e4d2b] dark:border-[#8FCE9A]','bg-[#E9EFE4] dark:bg-[#1B2A1E]');b.classList.remove('border-slate-200');
+  $('fontGroup').querySelectorAll('button').forEach(x=>{x.classList.remove('active','border-[#B97F1F] dark:border-[#E9B44C]','bg-[#EFE3C2] dark:bg-[#2A3358]');x.classList.add('border-slate-200');});
+  b.classList.add('active','border-[#B97F1F] dark:border-[#E9B44C]','bg-[#EFE3C2] dark:bg-[#2A3358]');b.classList.remove('border-slate-200');
   render();
 });
 $('alignGroup').querySelectorAll('button').forEach(b=>b.onclick=()=>{S.align=b.dataset.align;segActive($('alignGroup'),b);render();});
 $('patternGroup').querySelectorAll('button').forEach(b=>b.onclick=()=>{
   S.pattern=b.dataset.pattern;
-  $('patternGroup').querySelectorAll('button').forEach(x=>{x.classList.remove('active','border-[#1e4d2b] dark:border-[#8FCE9A]','bg-[#E9EFE4] dark:bg-[#1B2A1E]');x.classList.add('border-slate-200');});
-  b.classList.add('active','border-[#1e4d2b] dark:border-[#8FCE9A]','bg-[#E9EFE4] dark:bg-[#1B2A1E]');b.classList.remove('border-slate-200');
+  $('patternGroup').querySelectorAll('button').forEach(x=>{x.classList.remove('active','border-[#B97F1F] dark:border-[#E9B44C]','bg-[#EFE3C2] dark:bg-[#2A3358]');x.classList.add('border-slate-200');});
+  b.classList.add('active','border-[#B97F1F] dark:border-[#E9B44C]','bg-[#EFE3C2] dark:bg-[#2A3358]');b.classList.remove('border-slate-200');
   render();
 });
 $('sizeGroup').querySelectorAll('button').forEach(b=>b.onclick=()=>{
   S.size=b.dataset.size;
-  $('sizeGroup').querySelectorAll('button').forEach(x=>{x.classList.remove('active','border-[#1e4d2b] dark:border-[#8FCE9A]','bg-[#E9EFE4] dark:bg-[#1B2A1E]');x.classList.add('border-slate-200');});
-  b.classList.add('active','border-[#1e4d2b] dark:border-[#8FCE9A]','bg-[#E9EFE4] dark:bg-[#1B2A1E]');b.classList.remove('border-slate-200');
+  $('sizeGroup').querySelectorAll('button').forEach(x=>{x.classList.remove('active','border-[#B97F1F] dark:border-[#E9B44C]','bg-[#EFE3C2] dark:bg-[#2A3358]');x.classList.add('border-slate-200');});
+  b.classList.add('active','border-[#B97F1F] dark:border-[#E9B44C]','bg-[#EFE3C2] dark:bg-[#2A3358]');b.classList.remove('border-slate-200');
   render();
 });
 
 /* ============ MODE, BGTYPE, LAYOUT, UPLOAD ============ */
 $('modeGroup').querySelectorAll('button').forEach(b=>b.onclick=()=>{
   S.mode=b.dataset.mode;
-  $('modeGroup').querySelectorAll('button').forEach(x=>{x.classList.remove('active','border-[#1e4d2b] dark:border-[#8FCE9A]','bg-[#E9EFE4] dark:bg-[#1B2A1E]');x.classList.add('border-slate-200');});
-  b.classList.add('active','border-[#1e4d2b] dark:border-[#8FCE9A]','bg-[#E9EFE4] dark:bg-[#1B2A1E]');b.classList.remove('border-slate-200');
+  $('modeGroup').querySelectorAll('button').forEach(x=>{x.classList.remove('active','border-[#B97F1F] dark:border-[#E9B44C]','bg-[#EFE3C2] dark:bg-[#2A3358]');x.classList.add('border-slate-200');});
+  b.classList.add('active','border-[#B97F1F] dark:border-[#E9B44C]','bg-[#EFE3C2] dark:bg-[#2A3358]');b.classList.remove('border-slate-200');
   $('customPanel').classList.toggle('hidden', S.mode!=='custom');
   if(S.mode==='template'){ S.showBadge=S.showIcon=S.showFooter=S.showDecor=S.showMark=true; S.layout='tengah'; syncToggles(); }
   else if(!silentUI) toast('✨ Mode Custom aktif — atur layout, background foto & elemen sesukamu!');
@@ -1208,14 +1210,14 @@ function syncToggles(){ $('tglBadge').checked=S.showBadge; $('tglIcon').checked=
 });
 $('layoutGroup').querySelectorAll('button').forEach(b=>b.onclick=()=>{
   S.layout=b.dataset.layout;
-  $('layoutGroup').querySelectorAll('button').forEach(x=>{x.classList.remove('active','border-[#1e4d2b] dark:border-[#8FCE9A]','bg-white');x.classList.add('border-slate-200');});
-  b.classList.add('active','border-[#1e4d2b] dark:border-[#8FCE9A]','bg-white');b.classList.remove('border-slate-200');
+  $('layoutGroup').querySelectorAll('button').forEach(x=>{x.classList.remove('active','border-[#B97F1F] dark:border-[#E9B44C]','bg-white');x.classList.add('border-slate-200');});
+  b.classList.add('active','border-[#B97F1F] dark:border-[#E9B44C]','bg-white');b.classList.remove('border-slate-200');
   render();
 });
 $('bgTypeGroup').querySelectorAll('button').forEach(b=>b.onclick=()=>{
   S.bgType=b.dataset.bgtype;
-  $('bgTypeGroup').querySelectorAll('button').forEach(x=>{x.classList.remove('active','border-[#1e4d2b] dark:border-[#8FCE9A]','bg-[#E9EFE4] dark:bg-[#1B2A1E]');x.classList.add('border-slate-200');});
-  b.classList.add('active','border-[#1e4d2b] dark:border-[#8FCE9A]','bg-[#E9EFE4] dark:bg-[#1B2A1E]');b.classList.remove('border-slate-200');
+  $('bgTypeGroup').querySelectorAll('button').forEach(x=>{x.classList.remove('active','border-[#B97F1F] dark:border-[#E9B44C]','bg-[#EFE3C2] dark:bg-[#2A3358]');x.classList.add('border-slate-200');});
+  b.classList.add('active','border-[#B97F1F] dark:border-[#E9B44C]','bg-[#EFE3C2] dark:bg-[#2A3358]');b.classList.remove('border-slate-200');
   $('presetWrap').classList.toggle('hidden', S.bgType==='image');
   $('bgUploadWrap').classList.toggle('hidden', S.bgType!=='image');
   if(S.bgType==='image' && S.useAs!=='background'){ setUseAs('background'); }
@@ -1224,9 +1226,9 @@ $('bgTypeGroup').querySelectorAll('button').forEach(b=>b.onclick=()=>{
 $('useAsGroup').querySelectorAll('button').forEach(b=>b.onclick=()=>{ setUseAs(b.dataset.useas); render(); });
 function setUseAs(v){
   S.useAs=v;
-  $('useAsGroup').querySelectorAll('button').forEach(x=>{x.classList.remove('active','border-[#1e4d2b] dark:border-[#8FCE9A]','bg-[#E9EFE4] dark:bg-[#1B2A1E]');x.classList.add('border-slate-200');});
+  $('useAsGroup').querySelectorAll('button').forEach(x=>{x.classList.remove('active','border-[#B97F1F] dark:border-[#E9B44C]','bg-[#EFE3C2] dark:bg-[#2A3358]');x.classList.add('border-slate-200');});
   const btn=$('useAsGroup').querySelector(`[data-useas="${v}"]`);
-  if(btn){btn.classList.add('active','border-[#1e4d2b] dark:border-[#8FCE9A]','bg-[#E9EFE4] dark:bg-[#1B2A1E]');btn.classList.remove('border-slate-200');}
+  if(btn){btn.classList.add('active','border-[#B97F1F] dark:border-[#E9B44C]','bg-[#EFE3C2] dark:bg-[#2A3358]');btn.classList.remove('border-slate-200');}
   $('photoOpts').style.opacity = v==='konten' ? '1' : '.45';
   if(v==='background' && S.bgType!=='image'){
     // otomatis pindah ke tab background agar langsung terlihat
@@ -1235,8 +1237,8 @@ function setUseAs(v){
 }
 $('photoShapeGroup').querySelectorAll('button').forEach(b=>b.onclick=()=>{
   S.photoShape=b.dataset.shape;
-  $('photoShapeGroup').querySelectorAll('button').forEach(x=>{x.classList.remove('active','border-[#1e4d2b] dark:border-[#8FCE9A]','bg-[#E9EFE4] dark:bg-[#1B2A1E]');x.classList.add('border-slate-200');});
-  b.classList.add('active','border-[#1e4d2b] dark:border-[#8FCE9A]','bg-[#E9EFE4] dark:bg-[#1B2A1E]');b.classList.remove('border-slate-200');
+  $('photoShapeGroup').querySelectorAll('button').forEach(x=>{x.classList.remove('active','border-[#B97F1F] dark:border-[#E9B44C]','bg-[#EFE3C2] dark:bg-[#2A3358]');x.classList.add('border-slate-200');});
+  b.classList.add('active','border-[#B97F1F] dark:border-[#E9B44C]','bg-[#EFE3C2] dark:bg-[#2A3358]');b.classList.remove('border-slate-200');
   render();
 });
 $('inPhotoSize').addEventListener('input',e=>{S.photoSize=+e.target.value;render();});
@@ -1351,7 +1353,7 @@ TEMPLATES.forEach((t,i)=>{
   const b=document.createElement('button');
   b.className='group text-left rounded-xl overflow-hidden border-2 border-slate-200 hover:border-indigo-400 hover:shadow-card hover:-translate-y-0.5 transition-all';
   b.innerHTML='<span class="block h-16" style="background:linear-gradient(135deg,'+t.c1+','+t.c2+')"></span>'
-    +'<span class="block px-2 py-1.5 text-[11px] font-extrabold bg-white dark:bg-[#1D211B]">'+t.name+'</span>';
+    +'<span class="block px-2 py-1.5 text-[11px] font-extrabold bg-white dark:bg-[#232B4D]">'+t.name+'</span>';
   b.onclick=()=>applyTemplate(i);
   tplGallery.appendChild(b);
 });
@@ -1374,10 +1376,10 @@ function tplCard(t,i){
     +(t.footer?'<span class="mt-1 bg-white text-slate-900 rounded-md px-2 py-1" style="font-size:8px;font-weight:800;letter-spacing:.08em">'+t.footer+'</span>':'')
     +'</div>'
     +'<div class="absolute inset-0 opacity-0 group-hover:opacity-100 transition grid place-items-center" style="background:rgba(15,23,42,.45);z-index:2">'
-    +'<button type="button" data-tpluse="'+i+'" class="text-white text-xs font-extrabold px-4 py-2.5 rounded-xl cursor-pointer hover:brightness-110 active:scale-95 transition" style="background:#1e4d2b;pointer-events:auto">✨ Gunakan template</button></div>'
+    +'<button type="button" data-tpluse="'+i+'" class="text-[#141A33] text-xs font-extrabold px-4 py-2.5 rounded-xl cursor-pointer hover:brightness-110 active:scale-95 transition" style="background:#E9B44C;pointer-events:auto">✨ Gunakan template</button></div>'
     +'</div>'
     +'<p class="mt-2 text-sm font-extrabold dark:text-white truncate">'+t.name+'</p>'
-    +'<p class="text-[11px] text-slate-500 dark:text-slate-400">'+TPL_SIZELBL[t.size]+' • Poster</p>';
+    +'<p class="text-[11px] text-slate-500 dark:text-[#A39D86]">'+TPL_SIZELBL[t.size]+' • Poster</p>';
   b.onclick=()=>{ applyTemplate(i); document.getElementById('studio').scrollIntoView({ behavior:'smooth' }); };
   return b;
 }
@@ -1411,8 +1413,8 @@ document.querySelectorAll('[data-cat]').forEach(b=>b.onclick=()=>{
   document.querySelectorAll('[data-cat]').forEach(x=>{
     const on=x===b;
     x.classList.toggle('bg-slate-900',on); x.classList.toggle('text-white',on);
-    x.classList.toggle('dark:bg-white',on); x.classList.toggle('dark:text-slate-900',on);
-    x.classList.toggle('bg-white',!on); x.classList.toggle('dark:bg-[#1D211B]',!on);
+    x.classList.toggle('dark:bg-[#F3EDDC]',on); x.classList.toggle('dark:text-slate-900',on);
+    x.classList.toggle('bg-white',!on); x.classList.toggle('dark:bg-[#232B4D]',!on);
   });
   renderLandingGallery();
 });
@@ -1448,7 +1450,7 @@ function syncStickerUI(){
   stickerGroup.querySelectorAll('.opt-btn').forEach(x=>{
     const on=(x.dataset.sticker===''&&!STICKER)||(STICKER&&x.dataset.sticker===STICKER.emoji);
     x.classList.toggle('active',on);
-    x.classList.toggle('border-[#1e4d2b] dark:border-[#8FCE9A]',on); x.classList.toggle('bg-[#E9EFE4] dark:bg-[#1B2A1E]',on);
+    x.classList.toggle('border-[#B97F1F] dark:border-[#E9B44C]',on); x.classList.toggle('bg-[#EFE3C2] dark:bg-[#2A3358]',on);
     x.classList.toggle('border-slate-200',!on);
   });
   $('inStickerSize').value=STICKER?STICKER.size:64;
@@ -1604,16 +1606,16 @@ function renderExtraList(){
   list.innerHTML='';
   EXTRAS.forEach(t=>{
     const row=document.createElement('div');
-    row.className='bg-[#F5F2EB] dark:bg-[#1D211B]/60 border border-slate-200 dark:border-slate-700 rounded-xl p-2 space-y-2';
+    row.className='bg-[#F5F2EB] dark:bg-[#232B4D]/60 border border-slate-200 dark:border-slate-700 rounded-xl p-2 space-y-2';
     row.innerHTML=
       '<div class="flex items-center gap-2">'
       +'<input data-xkind="color" type="color" value="'+t.color+'" class="!w-8 !h-7 shrink-0" title="Warna teks"/>'
-      +'<input data-xkind="text" type="text" maxlength="40" class="flex-1 min-w-0 bg-white dark:bg-[#141713] border border-slate-200 dark:border-slate-700 rounded-lg px-2 py-1.5 text-xs font-bold focus:outline-none focus:ring-2 focus:ring-[#1e4d2b]"/>'
+      +'<input data-xkind="text" type="text" maxlength="40" class="flex-1 min-w-0 bg-white dark:bg-[#1C2342] border border-slate-200 dark:border-slate-700 rounded-lg px-2 py-1.5 text-xs font-bold focus:outline-none focus:ring-2 focus:ring-[#E9B44C]"/>'
       +'<button data-xkind="del" class="text-[11px] font-bold text-red-500 bg-red-50 hover:bg-red-100 px-2 py-1.5 rounded-lg transition" title="Hapus teks">✕</button>'
       +'</div>'
-      +'<div class="flex items-center gap-2"><span class="text-[10px] font-bold text-slate-500 dark:text-slate-400">Ukuran</span>'
+      +'<div class="flex items-center gap-2"><span class="text-[10px] font-bold text-slate-500 dark:text-[#A39D86]">Ukuran</span>'
       +'<input data-xkind="size" type="range" min="16" max="90" value="'+t.size+'" class="flex-1"/>'
-      +'<span data-xkind="val" class="text-[10px] font-extrabold text-[#1e4d2b] dark:text-[#8FCE9A] w-8 text-right">'+t.size+'</span></div>';
+      +'<span data-xkind="val" class="text-[10px] font-extrabold text-[#8A5A12] dark:text-[#E9B44C] w-8 text-right">'+t.size+'</span></div>';
     const q=s=>row.querySelector('[data-xkind="'+s+'"]');
     q('text').value=t.text;
     q('color').addEventListener('focus',()=>{ selectedExtraId=t.id; activeSel={kind:'extra',id:t.id}; pushHistory(); });
@@ -1772,9 +1774,9 @@ function renderPagesBar(){
   bar.innerHTML='';
   pages.forEach((p,i)=>{
     const b=document.createElement('button');
-    b.className='shrink-0 w-24 text-left rounded-xl overflow-hidden border-2 transition-all '+(i===curPage?'border-[#1e4d2b] dark:border-[#8FCE9A] shadow-card':'border-slate-200 hover:border-[#8FCE9A]');
+    b.className='shrink-0 w-24 text-left rounded-xl overflow-hidden border-2 transition-all '+(i===curPage?'border-[#B97F1F] dark:border-[#E9B44C] shadow-card':'border-slate-200 hover:border-[#E9B44C]');
     b.innerHTML='<span class="block h-14" style="background:linear-gradient(135deg,'+p.S.c1+','+p.S.c2+')"></span>'
-      +'<span class="block px-2 py-1 bg-white dark:bg-[#1D211B] text-[10px] font-extrabold">H'+(i+1)+' • <span id="pgt'+i+'">'+((p.S.title||'Tanpa judul').slice(0,14))+'</span></span>';
+      +'<span class="block px-2 py-1 bg-white dark:bg-[#232B4D] text-[10px] font-extrabold">H'+(i+1)+' • <span id="pgt'+i+'">'+((p.S.title||'Tanpa judul').slice(0,14))+'</span></span>';
     b.onclick=()=>{ if(i!==curPage) restorePage(i); };
     bar.appendChild(b);
   });
@@ -1938,11 +1940,11 @@ function renderLayers(){
     const m=LAYER_META[key]; if(!m) return;
     const on=layerOn(key);
     const row=document.createElement('div');
-    row.className='flex items-center gap-1.5 bg-[#F5F2EB] dark:bg-[#1D211B]/60 border border-slate-200 dark:border-slate-700 rounded-xl px-2.5 py-2';
+    row.className='flex items-center gap-1.5 bg-[#F5F2EB] dark:bg-[#232B4D]/60 border border-slate-200 dark:border-slate-700 rounded-xl px-2.5 py-2';
     let html='<span class="text-base">'+m.icon+'</span><span class="flex-1 text-xs font-bold">'+m.name+'</span>';
     if(!locked&&ZORDER.includes(key)){
-      html+='<button data-lmove="-1" class="text-xs font-extrabold bg-white dark:bg-[#141713] border border-slate-200 dark:border-slate-700 w-7 h-7 rounded-lg hover:border-[#8FCE9A]" title="Kirim ke belakang">⬇</button>'
-        +'<button data-lmove="1" class="text-xs font-extrabold bg-white dark:bg-[#141713] border border-slate-200 dark:border-slate-700 w-7 h-7 rounded-lg hover:border-[#8FCE9A]" title="Bawa ke depan">⬆</button>';
+      html+='<button data-lmove="-1" class="text-xs font-extrabold bg-white dark:bg-[#1C2342] border border-slate-200 dark:border-slate-700 w-7 h-7 rounded-lg hover:border-[#E9B44C]" title="Kirim ke belakang">⬇</button>'
+        +'<button data-lmove="1" class="text-xs font-extrabold bg-white dark:bg-[#1C2342] border border-slate-200 dark:border-slate-700 w-7 h-7 rounded-lg hover:border-[#E9B44C]" title="Bawa ke depan">⬆</button>';
     } else if(locked){
       html+='<span class="text-[9px] font-bold text-slate-400">ATAS</span>';
     }
@@ -2024,7 +2026,7 @@ function renderShapeList(){
   SHAPES.forEach((s,i)=>{
     const row=document.createElement('button');
     row.className='w-full flex items-center gap-2 rounded-xl px-2.5 py-2 border-2 text-left transition '
-      +(s.id===selectedShapeId?'border-[#1e4d2b] dark:border-[#8FCE9A] bg-[#E9EFE4] dark:bg-[#1B2A1E] dark:bg-[#16241A]':'border-slate-200 dark:border-slate-700 hover:border-[#8FCE9A]');
+      +(s.id===selectedShapeId?'border-[#B97F1F] dark:border-[#E9B44C] bg-[#EFE3C2] dark:bg-[#2A3358] dark:bg-[#2A3358]':'border-slate-200 dark:border-slate-700 hover:border-[#E9B44C]');
     row.innerHTML='<span class="text-base">'+icons[s.kind]+'</span>'
       +'<span class="w-4 h-4 rounded-full border border-slate-300 shrink-0" style="background:'+s.color+'"></span>'
       +'<span class="flex-1 text-xs font-bold">'+names[s.kind]+' '+(i+1)+'</span>'
@@ -2252,7 +2254,7 @@ function setTheme(dark){
   try{ localStorage.setItem('posteria-theme',dark?'dark':'light'); }catch(e){}
 }
 $('btnTheme').onclick=()=>{ setTheme(!document.documentElement.classList.contains('dark')); toast(document.documentElement.classList.contains('dark')?'🌙 Mode gelap aktif — nyaman di mata!':'☀️ Mode terang aktif!'); };
-try{ if(localStorage.getItem('posteria-theme')==='dark') setTheme(true); }catch(e){}
+try{ const pp=localStorage.getItem('posteria-theme'); if(pp!=='light') setTheme(true); }catch(e){}
 
 /* ================= ACTIONS ================= */
 function toast(msg){
@@ -2898,8 +2900,8 @@ $('skFile').addEventListener('change',e=>skHandle(e.target.files[0]));
 ['dragleave','drop'].forEach(ev=>$('skDrop').addEventListener(ev,e=>{ e.preventDefault(); $('skDrop').classList.remove('drag'); }));
 $('skDrop').addEventListener('drop',e=>{ const f=e.dataTransfer.files&&e.dataTransfer.files[0]; skHandle(f); });
 document.querySelectorAll('#skStyleGroup .art-btn').forEach(b=>b.onclick=()=>{
-  document.querySelectorAll('#skStyleGroup .art-btn').forEach(x=>{ x.classList.remove('active','border-[#1e4d2b] dark:border-[#8FCE9A]','bg-[#E9EFE4] dark:bg-[#1B2A1E]'); x.classList.add('border-slate-200'); });
-  b.classList.add('active','border-[#1e4d2b] dark:border-[#8FCE9A]','bg-[#E9EFE4] dark:bg-[#1B2A1E]'); b.classList.remove('border-slate-200');
+  document.querySelectorAll('#skStyleGroup .art-btn').forEach(x=>{ x.classList.remove('active','border-[#B97F1F] dark:border-[#E9B44C]','bg-[#EFE3C2] dark:bg-[#2A3358]'); x.classList.add('border-slate-200'); });
+  b.classList.add('active','border-[#B97F1F] dark:border-[#E9B44C]','bg-[#EFE3C2] dark:bg-[#2A3358]'); b.classList.remove('border-slate-200');
   syncSkSpecial(); renderSketch();
 });
 $('skContrast').addEventListener('input',e=>{ $('skContrastVal').textContent=e.target.value; renderSketch(); });
@@ -2909,8 +2911,8 @@ $('skSpecial').addEventListener('input',e=>{ $('skSpecialVal').textContent=e.tar
 $('skTint').addEventListener('input',()=>renderSketch());
 document.querySelectorAll('.sksw').forEach(b=>b.onclick=()=>{
   $('skTint').value=b.dataset.tint;
-  document.querySelectorAll('.sksw').forEach(x=>{ x.classList.remove('border-[#1e4d2b] dark:border-[#8FCE9A]'); x.classList.add('border-slate-200'); });
-  b.classList.add('border-[#1e4d2b] dark:border-[#8FCE9A]'); b.classList.remove('border-slate-200');
+  document.querySelectorAll('.sksw').forEach(x=>{ x.classList.remove('border-[#B97F1F] dark:border-[#E9B44C]'); x.classList.add('border-slate-200'); });
+  b.classList.add('border-[#B97F1F] dark:border-[#E9B44C]'); b.classList.remove('border-slate-200');
   renderSketch();
 });
 $('skDuo1').addEventListener('input',()=>renderSketch());
