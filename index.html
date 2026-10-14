@@ -89,6 +89,7 @@ tailwind.config = {
   .draw-tool.active { background:#0f172a; color:#fff; box-shadow:0 4px 12px -4px rgba(0,0,0,.4); }
   html.dark .draw-tool.active { background:#fff; color:#0f172a; }
   #drawLayer.draw-on { pointer-events:auto !important; cursor:crosshair; touch-action:none; }
+  button { touch-action:manipulation; -webkit-tap-highlight-color:transparent; }
   #drawLayer { touch-action:pan-y; }
   .dswatch { transition:transform .15s ease, box-shadow .15s ease; }
   .dswatch:hover { transform:scale(1.15); }
@@ -3358,7 +3359,6 @@ $('dSend').onclick=()=>{
   document.getElementById('studio').scrollIntoView({ behavior:'smooth' });
 };
 dPaint();
-dPaint();
 document.querySelector('.dtool2[data-dtool="pen"]').classList.add('active');
 
 /* ---- Vector Studio ---- */
@@ -3486,8 +3486,8 @@ $('vPng').onclick=()=>{
 vRender();
 
 /* ---- Animation Studio (halaman poster → video) ---- */
-let anThumbs=[], anPlaying=false, anPlayTimer=null, anExporting=false;
-async function anThumbs(){
+let anPlaying=false, anPlayTimer=null, anExporting=false;
+async function anBuildThumbs(){
   const su=UNDO, sr=REDO, back=curPage;
   saveCurrentPage();
   const out=[];
@@ -3504,12 +3504,12 @@ function anStop(){ anPlaying=false; clearInterval(anPlayTimer); const b=$('anPla
 $('anPlay').onclick=async()=>{
   if(anPlaying){ anStop(); return; }
   toast('⏳ Merender pratinjau…');
-  anThumbs=await anThumbs();
-  if(!anThumbs.length) return;
-  $('anPages').textContent=anThumbs.length+' halaman';
+  const thumbs=await anBuildThumbs();
+  if(!thumbs.length) return;
+  $('anPages').textContent=thumbs.length+' halaman';
   anPlaying=true; $('anPlay').textContent='⏸ Stop';
   let i=0;
-  const step=()=>{ if(!anPlaying) return; $('anPrev').src=anThumbs[i%anThumbs.length]; i++; };
+  const step=()=>{ if(!anPlaying) return; $('anPrev').src=thumbs[i%thumbs.length]; i++; };
   step();
   anPlayTimer=setInterval(step,(+$('anDur').value)*1000);
 };
