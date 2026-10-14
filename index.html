@@ -823,6 +823,11 @@ tailwind.config = {
           <div class="flex justify-between text-xs font-bold text-slate-600 dark:text-slate-300"><span id="skSpecialLbl">Kehalusan garis</span><span id="skSpecialVal" class="text-indigo-600">4</span></div>
           <input id="skSpecial" type="range" min="1" max="12" value="4" class="w-full mt-1" />
         </div>
+        <div id="skColorizeWrap">
+          <div class="flex justify-between text-xs font-bold text-slate-600 dark:text-slate-300"><span>🖍️ Warnai otomatis</span><span id="skColorizeVal" class="text-indigo-600">0%</span></div>
+          <input id="skColorize" type="range" min="0" max="100" value="0" class="w-full mt-1" />
+          <p class="text-[11px] text-slate-400">0% = hitam-putih klasik • 100% = warna foto kembali. Berlaku untuk Sketsa, Tinta & Papan Tulis.</p>
+        </div>
       </div>
       <div>
         <h3 class="flex items-center gap-2 font-extrabold text-sm uppercase tracking-wider text-slate-500 dark:text-slate-400"><span class="w-7 h-7 rounded-lg bg-rose-100 grid place-items-center">🌈</span> Warna Gaya</h3>
@@ -2542,7 +2547,8 @@ function skStyle(){
 }
 function skOpts(){
   return { style:skStyle(), contrast:+$('skContrast').value, bright:+$('skBright').value, special:+$('skSpecial').value,
-    tint:$('skTint').value||'#1a1a1a', duo1:$('skDuo1').value||'#1e1b4b', duo2:$('skDuo2').value||'#5eead4' };
+    tint:$('skTint').value||'#1a1a1a', duo1:$('skDuo1').value||'#1e1b4b', duo2:$('skDuo2').value||'#5eead4',
+    colorize:+$('skColorize').value||0 };
 }
 function hexRgb(hh){
   let h=String(hh||'#000000').replace('#','');
@@ -2556,6 +2562,7 @@ function syncSkSpecial(){
   const r=$('skSpecial'); r.min=c.min; r.max=c.max; r.value=c.val;
   $('skSpecialVal').textContent=c.val;
   $('skSpecialWrap').style.opacity=skStyle()==='orig'?'.4':'1';
+  $('skColorizeWrap').style.opacity=['sketch','ink','chalk'].includes(skStyle())?'1':'.4';
 }
 function boxBlur(a,W,H,r){
   const tmp=new Float32Array(a.length);
@@ -2610,8 +2617,13 @@ function processArt(img,maxDim,o){
       if(b>=255) v=255;
       else { v=gray[i]*255/(255-b); if(v>255) v=255; }
       v=v*.92+gray[i]*.08;
-      const k=1-v/255;
-      op[i*4]=255-(255-tc[0])*k; op[i*4+1]=255-(255-tc[1])*k; op[i*4+2]=255-(255-tc[2])*k; op[i*4+3]=255;
+      const k=1-v/255, ca=o.colorize/100;
+      let rr=255-(255-tc[0])*k, gg=255-(255-tc[1])*k, bb=255-(255-tc[2])*k;
+      if(ca>0){
+        const f=v/Math.max(gray[i],14);
+        rr+=(px[i*4]*f-rr)*ca; gg+=(px[i*4+1]*f-gg)*ca; bb+=(px[i*4+2]*f-bb)*ca;
+      }
+      op[i*4]=rr; op[i*4+1]=gg; op[i*4+2]=bb; op[i*4+3]=255;
     }
   } else if(o.style==='ink'){
     // tinta outline: tepi Sobel → balik
@@ -2623,8 +2635,14 @@ function processArt(img,maxDim,o){
       const gy=-gray[ym*W+xm]-2*gray[ym*W+x]-gray[ym*W+xp]+gray[yp*W+xm]+2*gray[yp*W+x]+gray[yp*W+xp];
       let m=Math.sqrt(gx*gx+gy*gy)*gain/4;
       if(m>255) m=255;
-      const k=m/255;
-      op[i*4]=255-(255-tc[0])*k; op[i*4+1]=255-(255-tc[1])*k; op[i*4+2]=255-(255-tc[2])*k; op[i*4+3]=255;
+      const k=m/255, ca=o.colorize/100;
+      const v=255-m;
+      let rr=255-(255-tc[0])*k, gg=255-(255-tc[1])*k, bb=255-(255-tc[2])*k;
+      if(ca>0){
+        const f=v/Math.max(gray[i],14);
+        rr+=(px[i*4]*f-rr)*ca; gg+=(px[i*4+1]*f-gg)*ca; bb+=(px[i*4+2]*f-bb)*ca;
+      }
+      op[i*4]=rr; op[i*4+1]=gg; op[i*4+2]=bb; op[i*4+3]=255;
     }
   } else if(o.style==='logo'){
     // logo BW: ambang batas tegas
@@ -2746,10 +2764,14 @@ function processArt(img,maxDim,o){
       const gy=-gray[ym*W+xm]-2*gray[ym*W+x]-gray[ym*W+xp]+gray[yp*W+xm]+2*gray[yp*W+x]+gray[yp*W+xp];
       let m=Math.sqrt(gx*gx+gy*gy)*gain/4/255;
       if(m>1) m=1;
-      op[i*4]=bg[0]+(tc[0]-bg[0])*m;
-      op[i*4+1]=bg[1]+(tc[1]-bg[1])*m;
-      op[i*4+2]=bg[2]+(tc[2]-bg[2])*m;
-      op[i*4+3]=255;
+      const ca=o.colorize/100;
+      let rr=bg[0]+(tc[0]-bg[0])*m, gg=bg[1]+(tc[1]-bg[1])*m, bb=bg[2]+(tc[2]-bg[2])*m;
+      if(ca>0){
+        rr+=(bg[0]+(px[i*4]-bg[0])*m-rr)*ca;
+        gg+=(bg[1]+(px[i*4+1]-bg[1])*m-gg)*ca;
+        bb+=(bg[2]+(px[i*4+2]-bg[2])*m-bb)*ca;
+      }
+      op[i*4]=rr; op[i*4+1]=gg; op[i*4+2]=bb; op[i*4+3]=255;
     }
   }
   ctx.putImageData(out,0,0);
@@ -2800,6 +2822,7 @@ document.querySelectorAll('#skStyleGroup .art-btn').forEach(b=>b.onclick=()=>{
 });
 $('skContrast').addEventListener('input',e=>{ $('skContrastVal').textContent=e.target.value; renderSketch(); });
 $('skBright').addEventListener('input',e=>{ $('skBrightVal').textContent=e.target.value; renderSketch(); });
+$('skColorize').addEventListener('input',e=>{ $('skColorizeVal').textContent=e.target.value+'%'; renderSketch(); });
 $('skSpecial').addEventListener('input',e=>{ $('skSpecialVal').textContent=e.target.value; renderSketch(); });
 $('skTint').addEventListener('input',()=>renderSketch());
 document.querySelectorAll('.sksw').forEach(b=>b.onclick=()=>{
