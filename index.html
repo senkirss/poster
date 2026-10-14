@@ -1161,6 +1161,22 @@ html.dark .rail-btn.active { background:#2A3358; color:#F3EDDC; }
 
 <script>
 /* ================= STATE ================= */
+/* Perkuat classList agar menerima beberapa kelas sekaligus (dipakai di banyak panel) */
+['add','remove'].forEach(m=>{
+  const orig=DOMTokenList.prototype[m];
+  DOMTokenList.prototype[m]=function(...a){ a.forEach(x=>String(x).split(' ').filter(Boolean).forEach(t=>orig.call(this,t))); };
+});
+(function(){
+  const origT=DOMTokenList.prototype.toggle;
+  DOMTokenList.prototype.toggle=function(t,f){
+    if(typeof t==='string'&&t.indexOf(' ')>-1){
+      const ts=t.split(' ').filter(Boolean);
+      if(f===undefined){ ts.forEach(x=>origT.call(this,x)); return this.contains(ts[0]); }
+      ts.forEach(x=>origT.call(this,x,!!f)); return !!f;
+    }
+    return origT.call(this,t,f);
+  };
+})();
 const FONTS = {
   modern:  { title: "'Plus Jakarta Sans','Inter',sans-serif", sub: "'Plus Jakarta Sans','Inter',sans-serif", weight: 800 },
   serif:   { title: "'Playfair Display',serif",               sub: "'Plus Jakarta Sans',sans-serif",          weight: 700 },
@@ -3188,6 +3204,21 @@ document.querySelectorAll('[data-labgoto]').forEach(b=>b.onclick=()=>{
   document.getElementById('labStudio').scrollIntoView({ behavior:'smooth', block:'start' });
 });
 
+/* ---- Util video lintas browser (Safari tidak dukung vp9/requestFrame manual) ---- */
+function pickMime(){
+  const cands=['video/webm;codecs=vp9','video/webm','video/mp4'];
+  for(const m of cands){ try{ if(typeof MediaRecorder!=='undefined'&&MediaRecorder.isTypeSupported(m)) return m; }catch(e){} }
+  return '';
+}
+function videoExt(m){ return (m||'').indexOf('mp4')>-1?'mp4':'webm'; }
+function manualCapture(cv){
+  try{
+    const s=cv.captureStream(0), t=s.getVideoTracks()[0];
+    if(t&&typeof t.requestFrame==='function') return {stream:s,track:t};
+  }catch(e){}
+  return {stream:cv.captureStream(15),track:null};
+}
+
 /* ---- Stop Motion ---- */
 let smStream=null, smFrames=[], smPlayTimer=null, smPlaying=false, smExporting=false;
 function smLoad(src){ return new Promise((res,rej)=>{ const im=new Image(); im.onload=()=>res(im); im.onerror=rej; im.src=src; }); }
@@ -3262,18 +3293,18 @@ $('smExport').onclick=async()=>{
     const imgs=await Promise.all(smFrames.map(smLoad));
     const cv=document.createElement('canvas'); cv.width=imgs[0].naturalWidth; cv.height=imgs[0].naturalHeight;
     const ctx=cv.getContext('2d');
-    const stream=cv.captureStream(0), track=stream.getVideoTracks()[0];
-    const mime=MediaRecorder.isTypeSupported('video/webm;codecs=vp9')?'video/webm;codecs=vp9':'video/webm';
-    const rec=new MediaRecorder(stream,{mimeType:mime,videoBitsPerSecond:5000000});
+    const cap=manualCapture(cv), stream=cap.stream, track=cap.track;
+    const mime=pickMime();
+    const rec=new MediaRecorder(stream, mime?{mimeType:mime,videoBitsPerSecond:5000000}:{videoBitsPerSecond:5000000});
     const chunks=[];
     rec.ondataavailable=e=>{ if(e.data&&e.data.size) chunks.push(e.data); };
     const done=new Promise(r=>{ rec.onstop=r; });
     rec.start();
-    for(const im of imgs){ ctx.drawImage(im,0,0,cv.width,cv.height); track.requestFrame(); await new Promise(r=>setTimeout(r,Math.round(1000/fps))); }
+    for(const im of imgs){ ctx.drawImage(im,0,0,cv.width,cv.height); if(track) track.requestFrame(); await new Promise(r=>setTimeout(r,Math.round(1000/fps))); }
     await new Promise(r=>setTimeout(r,500));
     rec.stop(); await done;
-    const url=URL.createObjectURL(new Blob(chunks,{type:'video/webm'}));
-    const a=document.createElement('a'); a.href=url; a.download='stop-motion-'+smFrames.length+'frame.webm'; a.click();
+    const url=URL.createObjectURL(new Blob(chunks,{type:'video/'+videoExt(mime)}));
+    const a=document.createElement('a'); a.href=url; a.download='stop-motion-'+smFrames.length+'frame.'+videoExt(mime); a.click();
     setTimeout(()=>URL.revokeObjectURL(url),8000);
     toast('🎬 Video stop motion terdownload!');
   }catch(err){ toast('❌ Gagal mengekspor video.'); }
@@ -3526,9 +3557,9 @@ $('anExport').onclick=async()=>{
     loadSnap(back); UNDO=su; REDO=sr; renderPagesBar();
     const S2=1080, cv=document.createElement('canvas'); cv.width=S2; cv.height=S2;
     const ctx=cv.getContext('2d');
-    const stream=cv.captureStream(0), track=stream.getVideoTracks()[0];
-    const mime=MediaRecorder.isTypeSupported('video/webm;codecs=vp9')?'video/webm;codecs=vp9':'video/webm';
-    const rec=new MediaRecorder(stream,{mimeType:mime,videoBitsPerSecond:6000000});
+    const cap=manualCapture(cv), stream=cap.stream, track=cap.track;
+    const mime=pickMime();
+    const rec=new MediaRecorder(stream, mime?{mimeType:mime,videoBitsPerSecond:6000000}:{videoBitsPerSecond:6000000});
     const chunks=[];
     rec.ondataavailable=e=>{ if(e.data&&e.data.size) chunks.push(e.data); };
     const done=new Promise(r=>{ rec.onstop=r; });
@@ -3549,14 +3580,14 @@ $('anExport').onclick=async()=>{
         if(mode==='zoom') drawCover(pc,1+t*.12,0);
         else if(mode==='pan') drawCover(pc,1.06,(t-.5)*pc.width*.1);
         else drawCover(pc,1,0);
-        track.requestFrame();
+        if(track) track.requestFrame();
         await new Promise(r=>setTimeout(r,Math.round(1000/fps)));
       }
     }
     await new Promise(r=>setTimeout(r,500));
     rec.stop(); await done;
-    const url=URL.createObjectURL(new Blob(chunks,{type:'video/webm'}));
-    const a=document.createElement('a'); a.href=url; a.download='animasi-poster-'+canvases.length+'halaman.webm'; a.click();
+    const url=URL.createObjectURL(new Blob(chunks,{type:'video/'+videoExt(mime)}));
+    const a=document.createElement('a'); a.href=url; a.download='animasi-poster-'+canvases.length+'halaman.'+videoExt(mime); a.click();
     setTimeout(()=>URL.revokeObjectURL(url),8000);
     toast('🎞️ Video animasi terdownload!');
   }catch(err){ toast('❌ Gagal mengekspor video.'); }
@@ -3598,24 +3629,29 @@ $('vdCut').onclick=async()=>{
     cv.width=Math.round(vw*sc); cv.height=Math.round(vh*sc);
     const ctx=cv.getContext('2d');
     const stream=cv.captureStream(30);
-    const mime=MediaRecorder.isTypeSupported('video/webm;codecs=vp9')?'video/webm;codecs=vp9':'video/webm';
-    const rec=new MediaRecorder(stream,{mimeType:mime,videoBitsPerSecond:6000000});
+    const mime=pickMime();
+    const rec=new MediaRecorder(stream, mime?{mimeType:mime,videoBitsPerSecond:6000000}:{videoBitsPerSecond:6000000});
     const chunks=[];
     rec.ondataavailable=e=>{ if(e.data&&e.data.size) chunks.push(e.data); };
     const done=new Promise(r=>{ rec.onstop=r; });
     v.currentTime=Math.min(s,v.duration||s);
     await new Promise(r=>{ v.onseeked=()=>r(); setTimeout(r,1500); });
+    if(!v.videoWidth){ toast('⏳ Video belum siap — tunggu sebentar lalu coba lagi.'); return; }
     rec.start();
     await v.play();
     await new Promise(r=>{
-      const chk=()=>{ ctx.drawImage(v,0,0,cv.width,cv.height); if(v.currentTime>=en||v.ended){ v.pause(); v.removeEventListener('timeupdate',chk); cancelAnimationFrame(raf); r(); } };
-      const loop=()=>{ if(!v.paused) ctx.drawImage(v,0,0,cv.width,cv.height); var raf=requestAnimationFrame(loop); };
+      let finished=false;
+      const fin=()=>{ if(finished) return; finished=true; try{ v.pause(); }catch(e){} v.removeEventListener('timeupdate',chk); v.removeEventListener('ended',fin); cancelAnimationFrame(raf); clearTimeout(safety); r(); };
+      const chk=()=>{ ctx.drawImage(v,0,0,cv.width,cv.height); if(v.currentTime>=en||v.ended) fin(); };
+      const loop=()=>{ if(finished) return; if(!v.paused) ctx.drawImage(v,0,0,cv.width,cv.height); raf=requestAnimationFrame(loop); };
+      const safety=setTimeout(fin,(en-s+10)*1000);
       v.addEventListener('timeupdate',chk);
+      v.addEventListener('ended',fin);
       var raf=requestAnimationFrame(loop);
     });
     rec.stop(); await done;
-    const url=URL.createObjectURL(new Blob(chunks,{type:'video/webm'}));
-    const a=document.createElement('a'); a.href=url; a.download='potongan-video.webm'; a.click();
+    const url=URL.createObjectURL(new Blob(chunks,{type:'video/'+videoExt(mime)}));
+    const a=document.createElement('a'); a.href=url; a.download='potongan-video.'+videoExt(mime); a.click();
     setTimeout(()=>URL.revokeObjectURL(url),8000);
     toast('✂️ Potongan video terdownload (tanpa suara)!');
   }catch(err){ toast('❌ Gagal memotong video.'); }
