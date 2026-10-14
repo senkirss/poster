@@ -112,8 +112,21 @@ tailwind.config = {
   html.dark .rail-btn { color:#94a3b8; }
   .rail-btn:hover { background:#f1f5f9; }
   html.dark .rail-btn:hover { background:#1e293b; }
-  .rail-btn.active { background:#E2EADF; color:#1e4d2b; }
-  html.dark .rail-btn.active { background:#1C2B1F; color:#9FD3A8; }
+.rail-btn.active { background:#E2EADF; color:#1e4d2b; }
+html.dark .rail-btn.active { background:#2A3358; color:#F3EDDC; }
+  /* ---- Lab Kreatif ---- */
+  .labtab { color:#64748b; }
+  html.dark .labtab { color:#A39D86; }
+  .labtab:hover { background:#F5F2EB; }
+  html.dark .labtab:hover { background:#232B4D; }
+  .labtab.active { background:#E9B44C; color:#141A33; }
+  html.dark .labtab.active { background:#E9B44C; color:#141A33; }
+  .dtool2.active { background:#141A33; color:#fff; box-shadow:0 4px 12px -4px rgba(0,0,0,.4); }
+  html.dark .dtool2.active { background:#E9B44C; color:#141A33; }
+  .dsw2 { transition:transform .15s ease, box-shadow .15s ease; }
+  .dsw2:hover { transform:scale(1.15); }
+  .dsw2.active { box-shadow:0 0 0 2px #fff, 0 0 0 4px #E9B44C; }
+  .checker { background-color:#fff; background-image:linear-gradient(45deg,#d8d8d8 25%,transparent 25%,transparent 75%,#d8d8d8 75%),linear-gradient(45deg,#d8d8d8 25%,transparent 25%,transparent 75%,#d8d8d8 75%); background-size:20px 20px; background-position:0 0,10px 10px; }
   /* ---- Kepala seksi panel: bersih tanpa ikon, aksen garis khas ---- */
   aside section > h3 > span:first-child { display:none; }
   aside div[data-panel] > section > h3, #sketsa aside > section > h3 { border-left:3px solid #1e4d2b; padding-left:10px; }
@@ -214,6 +227,222 @@ tailwind.config = {
     <p class="text-4xl">🔍</p>
     <p class="mt-3 font-extrabold dark:text-white">Tidak ketemu template-nya</p>
     <p class="text-sm text-slate-500 dark:text-[#A39D86] mt-1">Coba kata kunci lain atau <a href="#studio" class="text-[#1e4d2b] dark:text-[#E9B44C] font-bold">mulai dari kanvas kosong →</a></p>
+  </div>
+</section>
+
+<!-- ============ LAB KREATIF ============ -->
+<section id="lab" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 lg:py-14 scroll-mt-20">
+  <div class="text-center max-w-2xl mx-auto">
+    <h2 class="text-2xl sm:text-3xl font-extrabold tracking-tight dark:text-[#F3EDDC] font-display">Mau bikin apa <span class="grad-text">hari ini?</span></h2>
+    <p class="mt-1.5 text-sm text-slate-500 dark:text-[#A39D86]">Enam studio mini ala MediaLab — klik kartu untuk mulai berkarya.</p>
+  </div>
+  <div class="mt-6 grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+    <button data-labgoto="stop" class="text-left rounded-2xl p-6 border border-[#3A4468] hover:-translate-y-1 hover:shadow-card transition-all" style="background:#1C2342">
+      <span class="text-4xl">📷</span>
+      <span class="block mt-3 text-xl font-extrabold" style="color:#F3EDDC;font-family:'Zilla Slab',serif">Stop Motion</span>
+      <span class="block mt-1.5 text-sm" style="color:#D9D2BC">Animasi dengan kamera, satu frame dalam sekali waktu.</span>
+      <span class="block mt-4 pt-3 text-[11px] font-bold" style="border-top:1px solid #3A4468;color:#A39D86">🎬 Buka studio →</span>
+    </button>
+    <button data-labgoto="gambar" class="text-left rounded-2xl p-6 border border-[#3A4468] hover:-translate-y-1 hover:shadow-card transition-all" style="background:#1C2342">
+      <span class="text-4xl">✏️</span>
+      <span class="block mt-3 text-xl font-extrabold" style="color:#F3EDDC;font-family:'Zilla Slab',serif">Drawing</span>
+      <span class="block mt-1.5 text-sm" style="color:#D9D2BC">Gambar dan warnai dengan kuas digital, langsung di browser.</span>
+      <span class="block mt-4 pt-3 text-[11px] font-bold" style="border-top:1px solid #3A4468;color:#A39D86">🎨 Buka studio →</span>
+    </button>
+    <button data-labgoto="vektor" class="text-left rounded-2xl p-6 border border-[#3A4468] hover:-translate-y-1 hover:shadow-card transition-all" style="background:#1C2342">
+      <span class="text-4xl">📐</span>
+      <span class="block mt-3 text-xl font-extrabold" style="color:#F3EDDC;font-family:'Zilla Slab',serif">Vector Drawing</span>
+      <span class="block mt-1.5 text-sm" style="color:#D9D2BC">Susun bentuk vektor yang tajam, unduh sebagai SVG asli.</span>
+      <span class="block mt-4 pt-3 text-[11px] font-bold" style="border-top:1px solid #3A4468;color:#A39D86">⬢ Buka studio →</span>
+    </button>
+    <button data-labgoto="animasi" class="text-left rounded-2xl p-6 border border-[#3A4468] hover:-translate-y-1 hover:shadow-card transition-all" style="background:#1C2342">
+      <span class="text-4xl">✨</span>
+      <span class="block mt-3 text-xl font-extrabold" style="color:#F3EDDC;font-family:'Zilla Slab',serif">Animation</span>
+      <span class="block mt-1.5 text-sm" style="color:#D9D2BC">Ubah halaman poster jadi video animasi yang hidup.</span>
+      <span class="block mt-4 pt-3 text-[11px] font-bold" style="border-top:1px solid #3A4468;color:#A39D86">🎞️ Buka studio →</span>
+    </button>
+    <button data-labgoto="video" class="text-left rounded-2xl p-6 border border-[#3A4468] hover:-translate-y-1 hover:shadow-card transition-all" style="background:#1C2342">
+      <span class="text-4xl">🎬</span>
+      <span class="block mt-3 text-xl font-extrabold" style="color:#F3EDDC;font-family:'Zilla Slab',serif">Video Editing</span>
+      <span class="block mt-1.5 text-sm" style="color:#D9D2BC">Potong klip videomu dan simpan bagian terbaiknya.</span>
+      <span class="block mt-4 pt-3 text-[11px] font-bold" style="border-top:1px solid #3A4468;color:#A39D86">✂️ Buka studio →</span>
+    </button>
+    <button data-labgoto="kode" class="text-left rounded-2xl p-6 border border-[#3A4468] hover:-translate-y-1 hover:shadow-card transition-all" style="background:#1C2342">
+      <span class="text-4xl">💻</span>
+      <span class="block mt-3 text-xl font-extrabold" style="color:#F3EDDC;font-family:'Zilla Slab',serif">Coding</span>
+      <span class="block mt-1.5 text-sm" style="color:#D9D2BC">Belajar kode: ubah contoh, lihat hasilnya langsung.</span>
+      <span class="block mt-4 pt-3 text-[11px] font-bold" style="border-top:1px solid #3A4468;color:#A39D86">⌨️ Buka studio →</span>
+    </button>
+  </div>
+
+  <div id="labStudio" class="mt-8 bg-white dark:bg-[#1C2342] rounded-3xl border border-slate-200/80 dark:border-[#3A4468] shadow-card p-4 sm:p-8 scroll-mt-24">
+    <div class="flex gap-2 overflow-x-auto pb-1" id="labTabs">
+      <button data-lab="stop" class="labtab active shrink-0 flex items-center gap-1.5 px-3.5 py-2 rounded-xl text-xs font-extrabold transition">📷 Stop Motion</button>
+      <button data-lab="gambar" class="labtab shrink-0 flex items-center gap-1.5 px-3.5 py-2 rounded-xl text-xs font-extrabold transition">✏️ Drawing</button>
+      <button data-lab="vektor" class="labtab shrink-0 flex items-center gap-1.5 px-3.5 py-2 rounded-xl text-xs font-extrabold transition">📐 Vector</button>
+      <button data-lab="animasi" class="labtab shrink-0 flex items-center gap-1.5 px-3.5 py-2 rounded-xl text-xs font-extrabold transition">✨ Animation</button>
+      <button data-lab="video" class="labtab shrink-0 flex items-center gap-1.5 px-3.5 py-2 rounded-xl text-xs font-extrabold transition">🎬 Video</button>
+      <button data-lab="kode" class="labtab shrink-0 flex items-center gap-1.5 px-3.5 py-2 rounded-xl text-xs font-extrabold transition">💻 Coding</button>
+    </div>
+
+    <div data-labpanel="stop" class="mt-5">
+      <div class="grid lg:grid-cols-2 gap-5">
+        <div class="relative rounded-2xl overflow-hidden bg-black aspect-video">
+          <video id="smVideo" playsinline muted class="absolute inset-0 w-full h-full object-cover"></video>
+          <img id="smOnion" alt="" class="absolute inset-0 w-full h-full object-cover pointer-events-none" style="opacity:.35;display:none" />
+          <span id="smLive" class="hidden absolute top-3 left-3 text-[10px] font-extrabold bg-red-600 text-white px-2.5 py-1 rounded-full">● KAMERA</span>
+        </div>
+        <div>
+          <div class="flex flex-wrap gap-2">
+            <button id="smCam" class="text-[11px] font-bold bg-white border border-slate-200 px-3 py-2 rounded-xl hover:border-[#E9B44C] transition dark:bg-[#141A33] dark:text-[#F3EDDC]">📷 Nyalakan Kamera</button>
+            <button id="smSnap" class="text-[11px] font-bold text-[#141A33] px-3 py-2 rounded-xl hover:brightness-110 transition" style="background:#E9B44C">📸 Ambil Frame</button>
+            <label class="text-[11px] font-bold bg-white border border-slate-200 px-3 py-2 rounded-xl hover:border-[#E9B44C] transition cursor-pointer dark:bg-[#141A33] dark:text-[#F3EDDC]">🖼️ Upload Frame<input id="smFileUp" type="file" accept="image/*" class="hidden" /></label>
+          </div>
+          <div class="grid grid-cols-3 gap-2 mt-3">
+            <label class="bg-[#F5F2EB] dark:bg-[#141A33] border border-slate-200 dark:border-[#3A4468] rounded-xl px-2.5 py-2 text-[11px] font-bold">FPS
+              <select id="smFps" class="block w-full mt-1 bg-transparent font-extrabold focus:outline-none"><option value="4">4</option><option value="8" selected>8</option><option value="12">12</option></select>
+            </label>
+            <label class="bg-[#F5F2EB] dark:bg-[#141A33] border border-slate-200 dark:border-[#3A4468] rounded-xl px-2.5 py-2 text-[11px] font-bold flex items-center gap-2 cursor-pointer"><input id="smOnionTgl" type="checkbox" class="accent-[#E9B44C]" checked /> Bayangan frame</label>
+            <div class="bg-[#F5F2EB] dark:bg-[#141A33] border border-slate-200 dark:border-[#3A4468] rounded-xl px-2.5 py-2 text-[11px] font-bold">Frame<div id="smCount" class="text-base font-extrabold">0</div></div>
+          </div>
+          <div class="flex flex-wrap gap-2 mt-3">
+            <button id="smPlay" class="text-[11px] font-bold bg-white border border-slate-200 px-3 py-2 rounded-xl hover:border-[#E9B44C] transition dark:bg-[#141A33] dark:text-[#F3EDDC]">▶ Putar</button>
+            <button id="smClear" class="text-[11px] font-bold bg-white border border-slate-200 px-3 py-2 rounded-xl hover:border-red-300 hover:text-red-500 transition dark:bg-[#141A33] dark:text-[#F3EDDC]">🗑 Hapus Semua</button>
+            <button id="smExport" class="text-[11px] font-bold text-[#141A33] px-3 py-2 rounded-xl hover:brightness-110 transition" style="background:#E9B44C">⬇ Unduh Video</button>
+          </div>
+          <p class="text-[11px] text-slate-400 mt-2">Klik thumbnail frame untuk menghapusnya. Butuh HTTPS/izin untuk kamera — kalau gagal, pakai upload foto.</p>
+        </div>
+      </div>
+      <div class="mt-4 grid lg:grid-cols-[280px_1fr] gap-4 items-start">
+        <div>
+          <p class="text-[11px] font-extrabold uppercase tracking-wider text-slate-500 dark:text-[#A39D86] mb-2">Pratinjau putar</p>
+          <canvas id="smPlayCv" width="480" height="360" class="w-full rounded-2xl border border-slate-200 dark:border-[#3A4468] bg-black"></canvas>
+        </div>
+        <div>
+          <p class="text-[11px] font-extrabold uppercase tracking-wider text-slate-500 dark:text-[#A39D86] mb-2">Urutan frame</p>
+          <div id="smStrip" class="flex gap-2 overflow-x-auto pb-2 min-h-[76px] rounded-2xl border border-dashed border-slate-300 dark:border-[#3A4468] p-2"></div>
+        </div>
+      </div>
+    </div>
+
+    <div data-labpanel="gambar" class="hidden mt-5">
+      <div class="flex flex-wrap items-center gap-2">
+        <div class="flex bg-[#F5F2EB] dark:bg-[#141A33] border border-slate-200 dark:border-[#3A4468] rounded-xl p-1 gap-1">
+          <button data-dtool="pen" class="dtool2 active px-3 py-1.5 text-xs font-bold rounded-lg">🖊️ Pen</button>
+          <button data-dtool="eraser" class="dtool2 px-3 py-1.5 text-xs font-bold rounded-lg">🧽 Eraser</button>
+        </div>
+        <div class="flex items-center gap-1.5" id="dColors">
+          <button data-dcolor="#141A33" class="dsw2 active w-6 h-6 rounded-full border border-slate-300 bg-slate-900" title="Hitam"></button>
+          <button data-dcolor="#DC2626" class="dsw2 w-6 h-6 rounded-full border border-slate-300 bg-red-600" title="Merah"></button>
+          <button data-dcolor="#1D4ED8" class="dsw2 w-6 h-6 rounded-full border border-slate-300 bg-blue-700" title="Biru"></button>
+          <button data-dcolor="#047857" class="dsw2 w-6 h-6 rounded-full border border-slate-300 bg-emerald-700" title="Hijau"></button>
+          <button data-dcolor="#E9B44C" class="dsw2 w-6 h-6 rounded-full border border-slate-300 bg-yellow-500" title="Emas"></button>
+          <input id="dColor" type="color" value="#7D2AE8" title="Warna bebas" class="!w-8 !h-7" />
+        </div>
+        <div class="flex items-center gap-2 flex-1 min-w-[130px]">
+          <span class="text-[11px] font-bold text-slate-500 dark:text-[#A39D86] whitespace-nowrap">Tebal <span id="dWidthVal" class="text-[#8A5A12] dark:text-[#E9B44C]">8</span></span>
+          <input id="dWidth" type="range" min="2" max="60" value="8" class="w-full" />
+        </div>
+        <button id="dUndo" class="text-[11px] font-bold bg-white border border-slate-200 px-3 py-1.5 rounded-xl hover:border-amber-300 transition dark:bg-[#141A33] dark:text-[#F3EDDC]">↩ Undo</button>
+        <button id="dClear" class="text-[11px] font-bold bg-white border border-slate-200 px-3 py-1.5 rounded-xl hover:border-red-300 hover:text-red-500 transition dark:bg-[#141A33] dark:text-[#F3EDDC]">🗑 Bersih</button>
+      </div>
+      <canvas id="dPad" width="960" height="600" class="mt-3 w-full rounded-2xl border border-slate-200 dark:border-[#3A4468] bg-white cursor-crosshair" style="touch-action:none"></canvas>
+      <div class="flex flex-wrap gap-2 mt-3">
+        <button id="dPng" class="text-[11px] font-bold text-[#141A33] px-3.5 py-2 rounded-xl hover:brightness-110 transition" style="background:#E9B44C">⬇ PNG</button>
+        <button id="dSvg" class="text-[11px] font-bold bg-white border border-slate-200 px-3.5 py-2 rounded-xl hover:border-[#E9B44C] transition dark:bg-[#141A33] dark:text-[#F3EDDC]">⬢ SVG (vektor)</button>
+        <button id="dSend" class="text-[11px] font-bold bg-white border border-slate-200 px-3.5 py-2 rounded-xl hover:border-[#E9B44C] transition dark:bg-[#141A33] dark:text-[#F3EDDC]">🧩 Kirim ke Poster</button>
+      </div>
+    </div>
+
+    <div data-labpanel="vektor" class="hidden mt-5">
+      <div class="flex flex-wrap items-center gap-2">
+        <button data-vadd="rect" class="text-[11px] font-bold bg-white border border-slate-200 px-3 py-2 rounded-xl hover:border-[#E9B44C] transition dark:bg-[#141A33] dark:text-[#F3EDDC]">▢ Kotak</button>
+        <button data-vadd="circle" class="text-[11px] font-bold bg-white border border-slate-200 px-3 py-2 rounded-xl hover:border-[#E9B44C] transition dark:bg-[#141A33] dark:text-[#F3EDDC]">⚪ Lingkaran</button>
+        <button data-vadd="line" class="text-[11px] font-bold bg-white border border-slate-200 px-3 py-2 rounded-xl hover:border-[#E9B44C] transition dark:bg-[#141A33] dark:text-[#F3EDDC]">➖ Garis</button>
+        <button data-vadd="star" class="text-[11px] font-bold bg-white border border-slate-200 px-3 py-2 rounded-xl hover:border-[#E9B44C] transition dark:bg-[#141A33] dark:text-[#F3EDDC]">⭐ Bintang</button>
+        <input id="vColor" type="color" value="#E9B44C" title="Warna bentuk" />
+        <div class="flex items-center gap-2 flex-1 min-w-[130px]">
+          <span class="text-[11px] font-bold text-slate-500 dark:text-[#A39D86] whitespace-nowrap">Ukuran <span id="vSizeVal" class="text-[#8A5A12] dark:text-[#E9B44C]">120</span></span>
+          <input id="vSize" type="range" min="20" max="400" value="120" class="w-full" />
+        </div>
+        <button id="vDel" class="text-[11px] font-bold bg-white border border-slate-200 px-3 py-2 rounded-xl hover:border-red-300 hover:text-red-500 transition dark:bg-[#141A33] dark:text-[#F3EDDC]">✕ Hapus</button>
+        <button id="vClear" class="text-[11px] font-bold bg-white border border-slate-200 px-3 py-2 rounded-xl hover:border-red-300 hover:text-red-500 transition dark:bg-[#141A33] dark:text-[#F3EDDC]">🗑 Bersih</button>
+      </div>
+      <canvas id="vPad" width="960" height="600" class="checker mt-3 w-full rounded-2xl border border-slate-200 dark:border-[#3A4468]" style="touch-action:none"></canvas>
+      <div class="flex flex-wrap gap-2 mt-3 items-center">
+        <button id="vSvg" class="text-[11px] font-bold text-[#141A33] px-3.5 py-2 rounded-xl hover:brightness-110 transition" style="background:#E9B44C">⬢ Unduh SVG</button>
+        <button id="vPng" class="text-[11px] font-bold bg-white border border-slate-200 px-3.5 py-2 rounded-xl hover:border-[#E9B44C] transition dark:bg-[#141A33] dark:text-[#F3EDDC]">⬇ PNG</button>
+        <p class="text-[11px] text-slate-400">Klik bentuk untuk memilih • seret untuk memindah • SVG = vektor asli, tajam di semua ukuran.</p>
+      </div>
+    </div>
+
+    <div data-labpanel="animasi" class="hidden mt-5">
+      <div class="grid lg:grid-cols-[280px_1fr] gap-4 items-start">
+        <div>
+          <p class="text-[11px] font-extrabold uppercase tracking-wider text-slate-500 dark:text-[#A39D86] mb-2">Pratinjau</p>
+          <img id="anPrev" alt="Pratinjau animasi" class="w-full rounded-2xl border border-slate-200 dark:border-[#3A4468] bg-black aspect-square object-cover" />
+        </div>
+        <div>
+          <p class="text-sm dark:text-[#F3EDDC]"><b id="anPages">1 halaman</b> poster akan dijadikan video.</p>
+          <div class="grid grid-cols-2 gap-2 mt-3">
+            <label class="bg-[#F5F2EB] dark:bg-[#141A33] border border-slate-200 dark:border-[#3A4468] rounded-xl px-3 py-2 text-[11px] font-bold">Durasi / halaman
+              <select id="anDur" class="block w-full mt-1 bg-transparent font-extrabold focus:outline-none"><option value="1">1 dtk</option><option value="2" selected>2 dtk</option><option value="3">3 dtk</option></select>
+            </label>
+            <label class="bg-[#F5F2EB] dark:bg-[#141A33] border border-slate-200 dark:border-[#3A4468] rounded-xl px-3 py-2 text-[11px] font-bold">Gerakan kamera
+              <select id="anZoom" class="block w-full mt-1 bg-transparent font-extrabold focus:outline-none"><option value="zoom">Zoom masuk</option><option value="pan">Geser kanan</option><option value="none">Diam</option></select>
+            </label>
+          </div>
+          <div class="flex flex-wrap gap-2 mt-3">
+            <button id="anPlay" class="text-[11px] font-bold bg-white border border-slate-200 px-3.5 py-2 rounded-xl hover:border-[#E9B44C] transition dark:bg-[#141A33] dark:text-[#F3EDDC]">▶ Putar</button>
+            <button id="anExport" class="text-[11px] font-bold text-[#141A33] px-3.5 py-2 rounded-xl hover:brightness-110 transition" style="background:#E9B44C">⬇ Unduh Video</button>
+          </div>
+          <p class="text-[11px] text-slate-400 mt-2">Video square 1080×1080 WebM. Tambah halaman lewat Studio (📄 Halaman) untuk cerita lebih panjang.</p>
+        </div>
+      </div>
+    </div>
+
+    <div data-labpanel="video" class="hidden mt-5">
+      <div class="grid lg:grid-cols-2 gap-5">
+        <div>
+          <video id="vdVideo" controls playsinline muted class="w-full rounded-2xl border border-slate-200 dark:border-[#3A4468] bg-black aspect-video"></video>
+          <label class="mt-3 flex items-center justify-center gap-2 text-xs font-bold bg-white border border-slate-200 px-3 py-2.5 rounded-xl hover:border-[#E9B44C] transition cursor-pointer dark:bg-[#141A33] dark:text-[#F3EDDC]">📁 Pilih video (MP4/WebM)<input id="vdFile" type="file" accept="video/*" class="hidden" /></label>
+        </div>
+        <div>
+          <div class="grid grid-cols-2 gap-2">
+            <label class="bg-[#F5F2EB] dark:bg-[#141A33] border border-slate-200 dark:border-[#3A4468] rounded-xl px-3 py-2 text-[11px] font-bold">Mulai (detik)<input id="vdStart" type="number" min="0" step="0.5" value="0" class="block w-full mt-1 bg-transparent font-extrabold focus:outline-none" /></label>
+            <label class="bg-[#F5F2EB] dark:bg-[#141A33] border border-slate-200 dark:border-[#3A4468] rounded-xl px-3 py-2 text-[11px] font-bold">Selesai (detik)<input id="vdEnd" type="number" min="0" step="0.5" value="5" class="block w-full mt-1 bg-transparent font-extrabold focus:outline-none" /></label>
+          </div>
+          <div class="flex flex-wrap gap-2 mt-3">
+            <button id="vdPlaySeg" class="text-[11px] font-bold bg-white border border-slate-200 px-3.5 py-2 rounded-xl hover:border-[#E9B44C] transition dark:bg-[#141A33] dark:text-[#F3EDDC]">▶ Putar Segmen</button>
+            <button id="vdCut" class="text-[11px] font-bold text-[#141A33] px-3.5 py-2 rounded-xl hover:brightness-110 transition" style="background:#E9B44C">✂️ Potong & Unduh</button>
+          </div>
+          <p class="text-[11px] text-slate-400 mt-2">Hasil WebM tanpa suara. Atur detik mulai & selesai, putar dulu buat cek, baru potong.</p>
+        </div>
+      </div>
+    </div>
+
+    <div data-labpanel="kode" class="hidden mt-5">
+      <div class="grid lg:grid-cols-2 gap-4">
+        <div>
+          <label class="block text-[11px] font-extrabold uppercase tracking-wider text-slate-500 dark:text-[#A39D86] mb-2">Contoh
+            <select id="codeEx" class="mt-1.5 w-full bg-[#F5F2EB] dark:bg-[#141A33] border border-slate-200 dark:border-[#3A4468] rounded-xl px-3 py-2.5 text-xs font-bold focus:outline-none">
+              <option value="kartu">Kartu Nama</option>
+              <option value="tombol">Tombol Animasi</option>
+              <option value="galeri">Galeri Foto</option>
+            </select>
+          </label>
+          <textarea id="codeArea" rows="12" spellcheck="false" class="mt-2 w-full bg-[#141A33] text-[#F3EDDC] border border-[#3A4468] rounded-2xl p-4 font-mono text-xs leading-relaxed focus:outline-none focus:ring-2 focus:ring-[#E9B44C]"></textarea>
+          <div class="flex gap-2 mt-3">
+            <button id="codeRun" class="text-[11px] font-bold text-[#141A33] px-3.5 py-2 rounded-xl hover:brightness-110 transition" style="background:#E9B44C">▶ Jalankan</button>
+            <button id="codeDl" class="text-[11px] font-bold bg-white border border-slate-200 px-3.5 py-2 rounded-xl hover:border-[#E9B44C] transition dark:bg-[#141A33] dark:text-[#F3EDDC]">⬇ Unduh .html</button>
+          </div>
+        </div>
+        <div>
+          <p class="text-[11px] font-extrabold uppercase tracking-wider text-slate-500 dark:text-[#A39D86] mb-2">Hasil langsung</p>
+          <iframe id="codeView" title="Pratinjau kode" class="w-full h-[380px] rounded-2xl border border-slate-200 dark:border-[#3A4468] bg-white" sandbox="allow-scripts"></iframe>
+        </div>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -2946,6 +3175,474 @@ function skToPoster(as){
 }
 $('btnSkToKonten').onclick=()=>skToPoster('konten');
 $('btnSkToBg').onclick=()=>skToPoster('background');
+
+/* ============ LAB KREATIF ============ */
+function switchLab(name){
+  document.querySelectorAll('[data-labpanel]').forEach(p=>p.classList.toggle('hidden',p.dataset.labpanel!==name));
+  document.querySelectorAll('#labTabs .labtab').forEach(b=>b.classList.toggle('active',b.dataset.lab===name));
+}
+document.querySelectorAll('#labTabs .labtab').forEach(b=>b.onclick=()=>switchLab(b.dataset.lab));
+document.querySelectorAll('[data-labgoto]').forEach(b=>b.onclick=()=>{
+  switchLab(b.dataset.labgoto);
+  document.getElementById('labStudio').scrollIntoView({ behavior:'smooth', block:'start' });
+});
+
+/* ---- Stop Motion ---- */
+let smStream=null, smFrames=[], smPlayTimer=null, smPlaying=false, smExporting=false;
+function smLoad(src){ return new Promise((res,rej)=>{ const im=new Image(); im.onload=()=>res(im); im.onerror=rej; im.src=src; }); }
+async function smStartCam(){
+  try{
+    smStream=await navigator.mediaDevices.getUserMedia({ video:{ width:{ ideal:1280 } }, audio:false });
+    const v=$('smVideo'); v.srcObject=smStream; await v.play();
+    $('smLive').classList.remove('hidden');
+    toast('📷 Kamera aktif — ambil frame pertamamu!');
+  }catch(err){ toast('❌ Kamera tidak bisa diakses (butuh HTTPS & izin). Bisa upload foto sebagai frame.'); }
+}
+function smRenderStrip(){
+  const st=$('smStrip'); st.innerHTML='';
+  $('smCount').textContent=smFrames.length;
+  if(!smFrames.length){ st.innerHTML='<p class="text-[11px] text-slate-400 self-center px-2">Belum ada frame. Ambil dari kamera atau upload foto.</p>'; return; }
+  smFrames.forEach((f,i)=>{
+    const w=document.createElement('div');
+    w.className='relative shrink-0 group';
+    w.innerHTML='<img src="'+f+'" class="w-16 h-16 rounded-xl object-cover border border-slate-200 dark:border-[#3A4468]" alt="Frame '+(i+1)+'">'
+      +'<span class="absolute bottom-1 left-1 text-[9px] font-extrabold bg-black/60 text-white px-1.5 rounded">'+(i+1)+'</span>'
+      +'<button class="absolute -top-1.5 -right-1.5 w-5 h-5 rounded-full bg-red-500 text-white text-[10px] font-bold opacity-0 group-hover:opacity-100 transition" title="Hapus frame">✕</button>';
+    w.querySelector('button').onclick=e=>{ e.stopPropagation(); smFrames.splice(i,1); smRenderStrip(); smStopPlay(); smOnionUpd(); };
+    st.appendChild(w);
+  });
+}
+function smStopPlay(){ smPlaying=false; clearInterval(smPlayTimer); const b=$('smPlay'); if(b) b.textContent='▶ Putar'; }
+$('smCam').onclick=smStartCam;
+$('smSnap').onclick=()=>{
+  const v=$('smVideo');
+  if(!v.videoWidth){ toast('📷 Nyalakan kamera dulu, atau upload foto sebagai frame.'); return; }
+  const c=document.createElement('canvas'); c.width=v.videoWidth; c.height=v.videoHeight;
+  c.getContext('2d').drawImage(v,0,0);
+  smFrames.push(c.toDataURL('image/jpeg',.85));
+  smRenderStrip(); smOnionUpd();
+  toast('📸 Frame '+smFrames.length+' diambil!');
+};
+$('smFileUp').addEventListener('change',e=>{
+  const f=e.target.files&&e.target.files[0]; if(!f) return;
+  if(!f.type.startsWith('image/')){ toast('❌ File harus gambar.'); return; }
+  const rd=new FileReader();
+  rd.onload=()=>{ smFrames.push(rd.result); smRenderStrip(); smOnionUpd(); toast('🖼️ Frame ditambahkan!'); };
+  rd.readAsDataURL(f);
+  e.target.value='';
+});
+function smOnionUpd(){
+  const on=$('smOnionTgl').checked&&smFrames.length>0;
+  $('smOnion').style.display=on?'block':'none';
+  if(on) $('smOnion').src=smFrames[smFrames.length-1];
+}
+$('smOnionTgl').addEventListener('change',smOnionUpd);
+$('smPlay').onclick=async()=>{
+  if(smPlaying){ smStopPlay(); return; }
+  if(smFrames.length<2){ toast('⚠️ Butuh minimal 2 frame untuk diputar.'); return; }
+  smPlaying=true; $('smPlay').textContent='⏸ Stop';
+  const fps=+$('smFps').value, cv=$('smPlayCv');
+  const ctx=cv.getContext('2d');
+  const imgs=await Promise.all(smFrames.map(smLoad));
+  cv.width=imgs[0].naturalWidth; cv.height=imgs[0].naturalHeight;
+  let i=0;
+  const step=()=>{ if(!smPlaying) return; ctx.drawImage(imgs[i%imgs.length],0,0,cv.width,cv.height); i++; };
+  step();
+  smPlayTimer=setInterval(step,Math.round(1000/fps));
+};
+$('smClear').onclick=()=>{ if(!smFrames.length){ toast('Sudah kosong.'); return; } smFrames=[]; smRenderStrip(); smStopPlay(); smOnionUpd(); toast('🗑 Semua frame dihapus.'); };
+$('smExport').onclick=async()=>{
+  if(smExporting) return;
+  if(smFrames.length<2){ toast('⚠️ Butuh minimal 2 frame.'); return; }
+  if(typeof MediaRecorder==='undefined'){ toast('❌ Browser tidak mendukung perekam video.'); return; }
+  smExporting=true;
+  try{
+    const fps=+$('smFps').value;
+    const imgs=await Promise.all(smFrames.map(smLoad));
+    const cv=document.createElement('canvas'); cv.width=imgs[0].naturalWidth; cv.height=imgs[0].naturalHeight;
+    const ctx=cv.getContext('2d');
+    const stream=cv.captureStream(0), track=stream.getVideoTracks()[0];
+    const mime=MediaRecorder.isTypeSupported('video/webm;codecs=vp9')?'video/webm;codecs=vp9':'video/webm';
+    const rec=new MediaRecorder(stream,{mimeType:mime,videoBitsPerSecond:5000000});
+    const chunks=[];
+    rec.ondataavailable=e=>{ if(e.data&&e.data.size) chunks.push(e.data); };
+    const done=new Promise(r=>{ rec.onstop=r; });
+    rec.start();
+    for(const im of imgs){ ctx.drawImage(im,0,0,cv.width,cv.height); track.requestFrame(); await new Promise(r=>setTimeout(r,Math.round(1000/fps))); }
+    await new Promise(r=>setTimeout(r,500));
+    rec.stop(); await done;
+    const url=URL.createObjectURL(new Blob(chunks,{type:'video/webm'}));
+    const a=document.createElement('a'); a.href=url; a.download='stop-motion-'+smFrames.length+'frame.webm'; a.click();
+    setTimeout(()=>URL.revokeObjectURL(url),8000);
+    toast('🎬 Video stop motion terdownload!');
+  }catch(err){ toast('❌ Gagal mengekspor video.'); }
+  smExporting=false;
+};
+smRenderStrip();
+
+/* ---- Drawing Pad ---- */
+const dPad=$('dPad');
+let dStrokes=[], dTool='pen', dColor='#141A33', dWidth=8, dCur=null, dDrawing=false;
+function dPaint(){
+  const ctx=dPad.getContext('2d');
+  ctx.save(); ctx.setTransform(1,0,0,1,0,0);
+  ctx.fillStyle='#ffffff'; ctx.fillRect(0,0,dPad.width,dPad.height);
+  ctx.restore();
+  ctx.lineCap='round'; ctx.lineJoin='round';
+  for(const st of dStrokes){
+    ctx.strokeStyle=st.tool==='eraser'?'#ffffff':st.color;
+    ctx.lineWidth=st.w; ctx.globalAlpha=1;
+    ctx.beginPath();
+    st.pts.forEach((p,i)=>{ const x=p[0]*dPad.width, y=p[1]*dPad.height; i?ctx.lineTo(x,y):ctx.moveTo(x,y); });
+    if(st.pts.length===1){ const p=st.pts[0]; ctx.lineTo(p[0]*dPad.width+.2,p[1]*dPad.height+.2); }
+    ctx.stroke();
+  }
+}
+function dPos(e){ const r=dPad.getBoundingClientRect(); return [Math.min(1,Math.max(0,(e.clientX-r.left)/r.width)),Math.min(1,Math.max(0,(e.clientY-r.top)/r.height))]; }
+dPad.addEventListener('pointerdown',e=>{
+  e.preventDefault();
+  dDrawing=true;
+  try{ dPad.setPointerCapture(e.pointerId); }catch(err){}
+  dCur={tool:dTool,color:dColor,w:dWidth,pts:[dPos(e)]};
+  dStrokes.push(dCur); dPaint();
+});
+dPad.addEventListener('pointermove',e=>{
+  if(!dDrawing||!dCur) return;
+  e.preventDefault(); dCur.pts.push(dPos(e));
+  if(dCur.pts.length>1500) dCur.pts.shift();
+  dPaint();
+});
+const dEnd=()=>{ dDrawing=false; dCur=null; };
+dPad.addEventListener('pointerup',dEnd);
+dPad.addEventListener('pointercancel',dEnd);
+window.addEventListener('pointerup',()=>{ dDrawing=false; dCur=null; });
+document.querySelectorAll('.dtool2').forEach(b=>b.onclick=()=>{
+  dTool=b.dataset.dtool;
+  document.querySelectorAll('.dtool2').forEach(x=>x.classList.toggle('active',x===b));
+});
+document.querySelectorAll('#dColors .dsw2').forEach(b=>b.onclick=()=>{
+  dColor=b.dataset.dcolor; $('dColor').value=b.dataset.dcolor;
+  document.querySelectorAll('#dColors .dsw2').forEach(x=>x.classList.toggle('active',x===b));
+});
+$('dColor').addEventListener('input',e=>{ dColor=e.target.value; document.querySelectorAll('#dColors .dsw2').forEach(x=>x.classList.remove('active')); });
+$('dWidth').addEventListener('input',e=>{ dWidth=+e.target.value; $('dWidthVal').textContent=dWidth; });
+$('dUndo').onclick=()=>{ if(!dStrokes.length){ toast('↩ Tidak ada yang di-undo.'); return; } dStrokes.pop(); dPaint(); };
+$('dClear').onclick=()=>{ if(!dStrokes.length){ toast('Sudah bersih.'); return; } dStrokes=[]; dPaint(); };
+$('dPng').onclick=()=>{
+  const a=document.createElement('a'); a.download='gambar-posterialab.png'; a.href=dPad.toDataURL('image/png'); a.click();
+  toast('✅ Gambar terdownload (PNG)!');
+};
+function dToSvg(){
+  let s='<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 '+dPad.width+' '+dPad.height+'" width="'+dPad.width+'" height="'+dPad.height+'">';
+  s+='<rect width="100%" height="100%" fill="#ffffff"/>';
+  for(const st of dStrokes){
+    if(!st.pts.length) continue;
+    const d=st.pts.map((p,i)=>(i?'L':'M')+(p[0]*dPad.width).toFixed(1)+' '+(p[1]*dPad.height).toFixed(1)).join('');
+    s+='<path d="'+d+'" fill="none" stroke="'+(st.tool==='eraser'?'#ffffff':st.color)+'" stroke-width="'+st.w+'" stroke-linecap="round" stroke-linejoin="round"/>';
+  }
+  return s+'</svg>';
+}
+$('dSvg').onclick=()=>{
+  const blob=new Blob([dToSvg()],{type:'image/svg+xml'});
+  const a=document.createElement('a'); a.href=URL.createObjectURL(blob); a.download='gambar-posterialab.svg'; a.click();
+  setTimeout(()=>URL.revokeObjectURL(a.href),5000);
+  toast('✅ Gambar terdownload (SVG vektor)!');
+};
+$('dSend').onclick=()=>{
+  uploadDataURL=dPad.toDataURL('image/png');
+  uploadImgEl=new Image(); uploadImgEl.src=uploadDataURL;
+  uploadName='gambar-lab.png';
+  showUploadFilled(uploadName);
+  setUseAs('konten');
+  toast('🧩 Gambar dikirim jadi foto konten!');
+  document.getElementById('studio').scrollIntoView({ behavior:'smooth' });
+};
+dPaint();
+dPaint();
+document.querySelector('.dtool2[data-dtool="pen"]').classList.add('active');
+
+/* ---- Vector Studio ---- */
+const vPad=$('vPad');
+let vShapes=[], vSel=null, vSeq=1;
+function vRender(){
+  const ctx=vPad.getContext('2d');
+  ctx.clearRect(0,0,vPad.width,vPad.height);
+  for(const s of vShapes){
+    ctx.save();
+    ctx.fillStyle=s.color; ctx.strokeStyle=s.color;
+    const cx=s.x*vPad.width, cy=s.y*vPad.height;
+    if(s.kind==='rect'){
+      const w=s.size, h=s.size*.6;
+      ctx.fillRect(cx-w/2,cy-h/2,w,h);
+    } else if(s.kind==='circle'){
+      ctx.beginPath(); ctx.arc(cx,cy,s.size/2,0,7); ctx.fill();
+    } else if(s.kind==='line'){
+      ctx.translate(cx,cy); ctx.rotate((s.angle||0)*Math.PI/180);
+      ctx.lineWidth=Math.max(3,s.size*.08); ctx.lineCap='round';
+      ctx.beginPath(); ctx.moveTo(-s.size/2,0); ctx.lineTo(s.size/2,0); ctx.stroke();
+    } else if(s.kind==='star'){
+      const R=s.size/2, r=R*.45;
+      ctx.beginPath();
+      for(let i=0;i<10;i++){
+        const a=-Math.PI/2+i*Math.PI/5, rr=i%2?r:R;
+        const px=cx+Math.cos(a)*rr, py=cy+Math.sin(a)*rr;
+        i?ctx.lineTo(px,py):ctx.moveTo(px,py);
+      }
+      ctx.closePath(); ctx.fill();
+    }
+    ctx.restore();
+    if(s.id===vSel){
+      ctx.save();
+      ctx.strokeStyle='#E9B44C'; ctx.lineWidth=3; ctx.setLineDash([8,6]);
+      ctx.strokeRect(cx-s.size/2-10,cy-s.size/2-10,s.size+20,s.size+20);
+      ctx.restore();
+    }
+  }
+}
+function vPos(e){ const r=vPad.getBoundingClientRect(); return { fx:Math.min(1,Math.max(0,(e.clientX-r.left)/r.width)), fy:Math.min(1,Math.max(0,(e.clientY-r.top)/r.height)), W:r.width, H:r.height }; }
+vPad.addEventListener('pointerdown',e=>{
+  e.preventDefault();
+  const p=vPos(e);
+  const hit=[...vShapes].reverse().find(s=>{
+    const cx=s.x*vPad.width, cy=s.y*vPad.height, m=24;
+    const r0=vPad.getBoundingClientRect();
+    const px=e.clientX-r0.left, py=e.clientY-r0.top;
+    const scx=vPad.width/p.W;
+    return Math.abs(px*scx-cx)<s.size/2+m&&Math.abs(py*scx-cy)<s.size/2+m;
+  });
+  if(hit){
+    vSel=hit.id;
+    hit._sx=e.clientX; hit._sy=e.clientY; hit._ox=hit.x; hit._oy=hit.y;
+    hit._drag=true;
+    try{ vPad.setPointerCapture(e.pointerId); }catch(err){}
+  } else { vSel=null; }
+  vRender();
+});
+vPad.addEventListener('pointermove',e=>{
+  const s=vShapes.find(x=>x._drag); if(!s) return;
+  e.preventDefault();
+  const r=vPad.getBoundingClientRect();
+  s.x=Math.min(.98,Math.max(.02,s._ox+(e.clientX-s._sx)/r.width));
+  s.y=Math.min(.98,Math.max(.02,s._oy+(e.clientY-s._sy)/r.height));
+  vRender();
+});
+const vEnd=()=>{ vShapes.forEach(s=>{ s._drag=false; }); };
+vPad.addEventListener('pointerup',vEnd);
+vPad.addEventListener('pointercancel',vEnd);
+document.querySelectorAll('[data-vadd]').forEach(b=>b.onclick=()=>{
+  const kind=b.dataset.vadd;
+  vShapes.push({ id:'v'+Date.now().toString(36)+(vSeq++), kind, color:$('vColor').value, size:+$('vSize').value, angle:0, x:.5, y:.5 });
+  vSel=vShapes[vShapes.length-1].id;
+  vRender();
+  toast('⬢ Bentuk ditambahkan — seret untuk memindah!');
+});
+$('vColor').addEventListener('input',e=>{ const s=vShapes.find(x=>x.id===vSel); if(!s){ toast('👆 Pilih bentuk dulu di kanvas.'); return; } s.color=e.target.value; vRender(); });
+$('vSize').addEventListener('input',e=>{
+  $('vSizeVal').textContent=e.target.value;
+  const s=vShapes.find(x=>x.id===vSel); if(!s) return;
+  s.size=+e.target.value; vRender();
+});
+$('vDel').onclick=()=>{ if(!vSel){ toast('👆 Pilih bentuk dulu.'); return; } vShapes=vShapes.filter(x=>x.id!==vSel); vSel=null; vRender(); };
+$('vClear').onclick=()=>{ if(!vShapes.length){ toast('Sudah kosong.'); return; } vShapes=[]; vSel=null; vRender(); };
+function vToSvg(){
+  const W=vPad.width, H=vPad.height;
+  let s='<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 '+W+' '+H+'" width="'+W+'" height="'+H+'">';
+  for(const sh of vShapes){
+    const cx=(sh.x*W).toFixed(1), cy=(sh.y*H).toFixed(1);
+    if(sh.kind==='rect'){
+      const w=sh.size, h=sh.size*.6;
+      s+='<rect x="'+(cx-w/2).toFixed(1)+'" y="'+(cy-h/2).toFixed(1)+'" width="'+w.toFixed(1)+'" height="'+h.toFixed(1)+'" fill="'+sh.color+'"/>';
+    } else if(sh.kind==='circle'){
+      s+='<circle cx="'+cx+'" cy="'+cy+'" r="'+(sh.size/2).toFixed(1)+'" fill="'+sh.color+'"/>';
+    } else if(sh.kind==='line'){
+      const L=sh.size/2;
+      s+='<line x1="'+(cx-L)+'" y1="'+cy+'" x2="'+(cx+L)+'" y2="'+cy+'" stroke="'+sh.color+'" stroke-width="'+Math.max(3,sh.size*.08).toFixed(1)+'" stroke-linecap="round"/>';
+    } else if(sh.kind==='star'){
+      const R=sh.size/2, r=R*.45; let pts=[];
+      for(let i=0;i<10;i++){
+        const a=-Math.PI/2+i*Math.PI/5, rr=i%2?r:R;
+        pts.push((+cx+Math.cos(a)*rr).toFixed(1)+','+(+cy+Math.sin(a)*rr).toFixed(1));
+      }
+      s+='<polygon points="'+pts.join(' ')+'" fill="'+sh.color+'"/>';
+    }
+  }
+  return s+'</svg>';
+}
+$('vSvg').onclick=()=>{
+  if(!vShapes.length){ toast('⚠️ Tambahkan bentuk dulu.'); return; }
+  const blob=new Blob([vToSvg()],{type:'image/svg+xml'});
+  const a=document.createElement('a'); a.href=URL.createObjectURL(blob); a.download='vektor-posterialab.svg'; a.click();
+  setTimeout(()=>URL.revokeObjectURL(a.href),5000);
+  toast('✅ Vektor terdownload (SVG asli)!');
+};
+$('vPng').onclick=()=>{
+  const out=document.createElement('canvas'); out.width=vPad.width; out.height=vPad.height;
+  const octx=out.getContext('2d');
+  octx.fillStyle='#ffffff'; octx.fillRect(0,0,out.width,out.height);
+  octx.drawImage(vPad,0,0);
+  const a=document.createElement('a'); a.download='vektor-posterialab.png'; a.href=out.toDataURL('image/png'); a.click();
+  toast('✅ Vektor terdownload (PNG)!');
+};
+vRender();
+
+/* ---- Animation Studio (halaman poster → video) ---- */
+let anThumbs=[], anPlaying=false, anPlayTimer=null, anExporting=false;
+async function anThumbs(){
+  const su=UNDO, sr=REDO, back=curPage;
+  saveCurrentPage();
+  const out=[];
+  for(let i=0;i<pages.length;i++){
+    loadSnap(i);
+    const cv=await getPosterCanvas();
+    out.push(cv.toDataURL('image/jpeg',.85));
+  }
+  loadSnap(back);
+  UNDO=su; REDO=sr; renderPagesBar();
+  return out;
+}
+function anStop(){ anPlaying=false; clearInterval(anPlayTimer); const b=$('anPlay'); if(b) b.textContent='▶ Putar'; }
+$('anPlay').onclick=async()=>{
+  if(anPlaying){ anStop(); return; }
+  toast('⏳ Merender pratinjau…');
+  anThumbs=await anThumbs();
+  if(!anThumbs.length) return;
+  $('anPages').textContent=anThumbs.length+' halaman';
+  anPlaying=true; $('anPlay').textContent='⏸ Stop';
+  let i=0;
+  const step=()=>{ if(!anPlaying) return; $('anPrev').src=anThumbs[i%anThumbs.length]; i++; };
+  step();
+  anPlayTimer=setInterval(step,(+$('anDur').value)*1000);
+};
+$('anExport').onclick=async()=>{
+  if(anExporting) return;
+  if(typeof MediaRecorder==='undefined'){ toast('❌ Browser tidak mendukung perekam video.'); return; }
+  anExporting=true;
+  try{
+    toast('⏳ Merender halaman…');
+    const su=UNDO, sr=REDO, back=curPage;
+    saveCurrentPage();
+    const canvases=[];
+    for(let i=0;i<pages.length;i++){ loadSnap(i); canvases.push(await getPosterCanvas()); }
+    loadSnap(back); UNDO=su; REDO=sr; renderPagesBar();
+    const S2=1080, cv=document.createElement('canvas'); cv.width=S2; cv.height=S2;
+    const ctx=cv.getContext('2d');
+    const stream=cv.captureStream(0), track=stream.getVideoTracks()[0];
+    const mime=MediaRecorder.isTypeSupported('video/webm;codecs=vp9')?'video/webm;codecs=vp9':'video/webm';
+    const rec=new MediaRecorder(stream,{mimeType:mime,videoBitsPerSecond:6000000});
+    const chunks=[];
+    rec.ondataavailable=e=>{ if(e.data&&e.data.size) chunks.push(e.data); };
+    const done=new Promise(r=>{ rec.onstop=r; });
+    rec.start();
+    const dur=+$('anDur').value, mode=$('anZoom').value, fps=15, frames=Math.max(8,dur*fps);
+    const drawCover=(img,z,px)=>{
+      const iw=img.width, ih=img.height, target=iw/z, th=target*(S2/S2);
+      let sw=iw/z, sh=iw/z;
+      if(sh>ih){ sh=ih; sw=ih; }
+      let sx=(iw-sw)/2+px, sy=(ih-sh)/2;
+      sx=Math.max(0,Math.min(iw-sw,sx)); sy=Math.max(0,Math.min(ih-sh,sy));
+      ctx.fillStyle='#000'; ctx.fillRect(0,0,S2,S2);
+      ctx.drawImage(img,sx,sy,sw,sh,0,0,S2,S2);
+    };
+    for(const pc of canvases){
+      for(let f=0;f<frames;f++){
+        const t=frames===1?1:f/(frames-1);
+        if(mode==='zoom') drawCover(pc,1+t*.12,0);
+        else if(mode==='pan') drawCover(pc,1.06,(t-.5)*pc.width*.1);
+        else drawCover(pc,1,0);
+        track.requestFrame();
+        await new Promise(r=>setTimeout(r,Math.round(1000/fps)));
+      }
+    }
+    await new Promise(r=>setTimeout(r,500));
+    rec.stop(); await done;
+    const url=URL.createObjectURL(new Blob(chunks,{type:'video/webm'}));
+    const a=document.createElement('a'); a.href=url; a.download='animasi-poster-'+canvases.length+'halaman.webm'; a.click();
+    setTimeout(()=>URL.revokeObjectURL(url),8000);
+    toast('🎞️ Video animasi terdownload!');
+  }catch(err){ toast('❌ Gagal mengekspor video.'); }
+  anExporting=false;
+};
+
+/* ---- Video Editing (potong klip) ---- */
+$('vdFile').addEventListener('change',e=>{
+  const f=e.target.files&&e.target.files[0]; if(!f) return;
+  const v=$('vdVideo');
+  if(v.src&&v.src.startsWith('blob:')) URL.revokeObjectURL(v.src);
+  v.src=URL.createObjectURL(f);
+  v.onloadedmetadata=()=>{
+    $('vdStart').value=0;
+    $('vdEnd').value=Math.max(1,Math.floor(v.duration||5));
+    toast('📁 Video dimuat ('+Math.floor(v.duration||0)+' dtk)!');
+  };
+});
+$('vdPlaySeg').onclick=async()=>{
+  const v=$('vdVideo');
+  if(!v.src){ toast('📁 Pilih video dulu.'); return; }
+  const s=Math.max(0,+$('vdStart').value), en=Math.max(s+.5,+$('vdEnd').value);
+  v.currentTime=Math.min(s,v.duration||s);
+  try{ await v.play(); }catch(err){ return; }
+  const chk=()=>{
+    if(v.currentTime>=en||v.paused){ v.pause(); v.removeEventListener('timeupdate',chk); }
+  };
+  v.addEventListener('timeupdate',chk);
+};
+$('vdCut').onclick=async()=>{
+  const v=$('vdVideo');
+  if(!v.src){ toast('📁 Pilih video dulu.'); return; }
+  if(typeof MediaRecorder==='undefined'){ toast('❌ Browser tidak mendukung perekam video.'); return; }
+  const s=Math.max(0,+$('vdStart').value), en=Math.max(s+.5,+$('vdEnd').value);
+  try{
+    const vw=v.videoWidth||1280, vh=v.videoHeight||720;
+    const sc=Math.min(1,1280/Math.max(vw,vh));
+    const cv=document.createElement('canvas');
+    cv.width=Math.round(vw*sc); cv.height=Math.round(vh*sc);
+    const ctx=cv.getContext('2d');
+    const stream=cv.captureStream(30);
+    const mime=MediaRecorder.isTypeSupported('video/webm;codecs=vp9')?'video/webm;codecs=vp9':'video/webm';
+    const rec=new MediaRecorder(stream,{mimeType:mime,videoBitsPerSecond:6000000});
+    const chunks=[];
+    rec.ondataavailable=e=>{ if(e.data&&e.data.size) chunks.push(e.data); };
+    const done=new Promise(r=>{ rec.onstop=r; });
+    v.currentTime=Math.min(s,v.duration||s);
+    await new Promise(r=>{ v.onseeked=()=>r(); setTimeout(r,1500); });
+    rec.start();
+    await v.play();
+    await new Promise(r=>{
+      const chk=()=>{ ctx.drawImage(v,0,0,cv.width,cv.height); if(v.currentTime>=en||v.ended){ v.pause(); v.removeEventListener('timeupdate',chk); cancelAnimationFrame(raf); r(); } };
+      const loop=()=>{ if(!v.paused) ctx.drawImage(v,0,0,cv.width,cv.height); var raf=requestAnimationFrame(loop); };
+      v.addEventListener('timeupdate',chk);
+      var raf=requestAnimationFrame(loop);
+    });
+    rec.stop(); await done;
+    const url=URL.createObjectURL(new Blob(chunks,{type:'video/webm'}));
+    const a=document.createElement('a'); a.href=url; a.download='potongan-video.webm'; a.click();
+    setTimeout(()=>URL.revokeObjectURL(url),8000);
+    toast('✂️ Potongan video terdownload (tanpa suara)!');
+  }catch(err){ toast('❌ Gagal memotong video.'); }
+};
+
+/* ---- Coding Playground ---- */
+const CODE_EX={
+  kartu:{ name:'kartu.html', code:'<div class="card">\n  <h1>Halo, aku Rasen!</h1>\n  <p>Ini kartu pertamaku dari kode.</p>\n  <button>Klik Aku</button>\n</div>\n<style>\nbody { font-family: sans-serif; background: #141A33; display: grid; place-items: center; min-height: 100vh; margin: 0; }\n.card { background: #F3EDDC; color: #141A33; padding: 32px 40px; border-radius: 20px; text-align: center; }\n.card button { background: #E9B44C; border: none; padding: 10px 22px; border-radius: 10px; font-weight: bold; cursor: pointer; }\n</style>' },
+  tombol:{ name:'tombol.html', code:'<button class="ajaib">Arahkan kursor ke aku!</button>\n<style>\nbody { font-family: sans-serif; background: #141A33; display: grid; place-items: center; min-height: 100vh; margin: 0; }\n.ajaib { font-size: 18px; font-weight: bold; color: #141A33; background: #E9B44C; border: none; padding: 16px 32px; border-radius: 14px; cursor: pointer; transition: transform .2s; animation: goyang 2s infinite; }\n.ajaib:hover { transform: scale(1.1) rotate(-2deg); }\n@keyframes goyang { 0%,100% { transform: rotate(0); } 25% { transform: rotate(2deg); } 75% { transform: rotate(-2deg); } }\n</style>' },
+  galeri:{ name:'galeri.html', code:'<h2>Galeri Mini</h2>\n<div class="grid">\n  <div style="background:#E9B44C">1</div>\n  <div style="background:#7D9B76">2</div>\n  <div style="background:#E33D94">3</div>\n  <div style="background:#00C4CC">4</div>\n</div>\n<style>\nbody { font-family: sans-serif; background: #141A33; color: #F3EDDC; text-align: center; padding: 24px; }\n.grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; max-width: 420px; margin: 16px auto; }\n.grid div { aspect-ratio: 1; display: grid; place-items: center; font-size: 32px; font-weight: bold; color: #141A33; border-radius: 16px; }\n</style>' }
+};
+function codeLoad(){
+  const k=$('codeEx').value;
+  $('codeArea').value=CODE_EX[k].code;
+  codeRun();
+}
+function codeRun(){ $('codeView').srcdoc=$('codeArea').value; }
+$('codeEx').addEventListener('change',codeLoad);
+$('codeRun').onclick=codeRun;
+$('codeDl').onclick=()=>{
+  const k=$('codeEx').value;
+  const blob=new Blob(['<!DOCTYPE html>\n<html lang="id">\n<head><meta charset="UTF-8">\n<title>'+CODE_EX[k].name+'</title></head>\n<body>\n'+$('codeArea').value+'\n</body>\n</html>'],{type:'text/html'});
+  const a=document.createElement('a'); a.href=URL.createObjectURL(blob); a.download=CODE_EX[k].name; a.click();
+  setTimeout(()=>URL.revokeObjectURL(a.href),5000);
+  toast('✅ File HTML terdownload!');
+};
+codeLoad();
 </script>
 </body>
 </html>
