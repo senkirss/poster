@@ -134,7 +134,8 @@ html.dark .rail-btn.active { background:#2A3358; color:#F3EDDC; }
 </style>
 </head>
 <body class="bg-[#F1EEE8] text-[#292826] antialiased dark:bg-[#141A33] dark:text-[#F3EDDC]">
-<div id="scrollProgress" class="fixed top-0 left-0 right-0 h-[3px] z-[60]" style="background:linear-gradient(90deg,#2E7D44,#1e4d2b)"></div>
+<div id="scrollProgress" class="fixed top-0 left-0 right-0 h-[3px] z-[60]" style="background:linear-gradient(90deg,#E9B44C,#8A5A12)"></div>
+<div id="noNet" style="display:none;position:fixed;top:0;left:0;right:0;z-index:999;background:#7f1d1d;color:#fff;font:600 13px/1.5 sans-serif;padding:10px 16px;text-align:center">⚠️ Tampilan butuh internet (CDN) — sambungkan internet lalu muat ulang halaman.</div>
 
 <!-- ============ NAVBAR ============ -->
 <header class="sticky top-0 z-40 bg-white/80 backdrop-blur-xl border-b border-slate-200/70 dark:bg-[#141A33]/80 dark:border-[#3A4468]">
@@ -2788,7 +2789,8 @@ $('btnNewTab').onclick=async()=>{
 };
 
 /* ============ ANIMASI SCROLL: reveal + parallax + progres ============ */
-const revealObs=new IntersectionObserver(es=>{
+const hasIO=typeof IntersectionObserver!=='undefined';
+const revealObs=hasIO?new IntersectionObserver(es=>{
   es.forEach(en=>{
     const el=en.target;
     if(en.isIntersecting){
@@ -2803,9 +2805,11 @@ const revealObs=new IntersectionObserver(es=>{
       el.classList.remove('revealed');
     }
   });
-},{threshold:.12,rootMargin:'0px 0px -8% 0px'});
+},{threshold:.12,rootMargin:'0px 0px -8% 0px'}):null;
 function observeReveals(root){
-  (root||document).querySelectorAll('[data-reveal]:not(.revealed)').forEach(el=>{
+  const els=(root||document).querySelectorAll('[data-reveal]:not(.revealed)');
+  if(!hasIO||!revealObs){ els.forEach(el=>el.classList.add('revealed')); return; }
+  els.forEach(el=>{
     if(el.dataset.delay) el.style.transitionDelay=el.dataset.delay+'ms';
     revealObs.observe(el);
   });
@@ -2849,6 +2853,16 @@ function onScrollPage(){
 window.addEventListener('scroll',onScrollPage,{passive:true});
 onScrollPage();
 poster.classList.add('ready-move');
+(function(){
+  try{
+    var t=document.createElement('div'); t.className='hidden'; document.body.appendChild(t);
+    var cssFailed=getComputedStyle(t).display!=='none';
+    t.remove();
+    if(cssFailed) document.getElementById('noNet').style.display='block';
+  }catch(e){}
+  window.addEventListener('error',function(e){ try{ if(e&&e.message) toast('⚠️ Galat: '+e.message); }catch(err){} });
+  window.addEventListener('unhandledrejection',function(e){ try{ var r=e.reason; toast('⚠️ Gagal: '+((r&&r.message)||'unknown')); }catch(err){} });
+})();
 render();
 pages=[snapshot()];
 renderPagesBar();
