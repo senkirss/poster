@@ -1,0 +1,12 @@
+{
+  "name": "posteria",
+  "private": true,
+  "description": "Posteria — studio poster statis. CSS Tailwind di-build sekali ke assets/tailwind.css (tanpa CDN runtime).",
+  "scripts": {
+    "build:css": "tailwindcss -i ./src/input.css -o ./assets/tailwind.css --minify",
+    "watch:css": "tailwindcss -i ./src/input.css -o ./assets/tailwind.css --watch"
+  },
+  "devDependencies": {
+    "tailwindcss": "^3.4.17"
+  }
+}
