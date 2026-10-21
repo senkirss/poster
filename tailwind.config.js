@@ -1,6 +1,6 @@
 /** Tailwind config Posteria — dipakai saat build CSS (lihat package.json: npm run build:css). */
 module.exports = {
-  content: ['./index.html'],
+  content: ['./index.html', './src/**/*.js', './src/**/*.html'],
   darkMode: 'class',
   theme: {
     extend: {
