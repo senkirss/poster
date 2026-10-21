@@ -380,3 +380,52 @@ html.dark .rail-btn.active { background:#2A3358; color:#F3EDDC; }
 .\!w-8{ width:2rem !important; }
 .\!h-7{ height:1.75rem !important; }
 @media (min-width:1024px){ .lg\:max-h-\[calc\(100vh-7rem\)\]{ max-height:calc(100vh - 7rem); } }
+
+/* ---------------------------------------------------------------
+   Aksesibilitas keyboard: fokus selalu terlihat untuk kontrol baru
+   --------------------------------------------------------------- */
+.lp-btn:focus-visible,
+.lp-ghost-btn:focus-visible,
+.lp-tool-btn:focus-visible,
+.lp-icon-btn:focus-visible,
+.lp-filter:focus-visible,
+.lp-tag:focus-visible,
+.lp-mini-btn:focus-visible,
+.lp-use:focus-visible,
+.lp-resume button:focus-visible{
+  outline:2px solid var(--lp-ink);
+  outline-offset:2px;
+  border-radius:10px;
+}
+html.dark .lp-btn:focus-visible,
+html.dark .lp-ghost-btn:focus-visible,
+html.dark .lp-tool-btn:focus-visible,
+html.dark .lp-icon-btn:focus-visible,
+html.dark .lp-filter:focus-visible,
+html.dark .lp-tag:focus-visible,
+html.dark .lp-mini-btn:focus-visible,
+html.dark .lp-use:focus-visible{ outline-color:var(--lp-ink); }
+
+/* ---------------------------------------------------------------
+   Hormati prefers-reduced-motion: tanpa animasi scroll & transisi baru
+   --------------------------------------------------------------- */
+@media (prefers-reduced-motion:reduce){
+  [data-reveal]{ opacity:1 !important; transform:none !important; filter:none !important; transition:none !important; }
+  .lp-btn, .lp-ghost-btn, .lp-tool-btn, .lp-icon-btn, .lp-filter, .lp-tag,
+  .lp-mini-btn, .lp-use, .lp-row, .lp-poster{ transition:none !important; }
+  .lp-row:hover .lp-row-title{ text-decoration:none; }
+  #handleLayer .sel-handle, #handleLayer .sel-rot{ transition:none !important; }
+  #toast{ transition:none !important; }
+  html{ scroll-behavior:auto !important; }
+}
+
+/* ---------------------------------------------------------------
+   Layar sentuh: target sentuh rail & panel minimal 44px
+   --------------------------------------------------------------- */
+@media (pointer:coarse){
+  #rail .rail-btn{ min-height:44px; padding-top:.35rem; padding-bottom:.35rem; }
+  .labtab{ min-height:40px; }
+  .lp-filter, .lp-tag, .lp-mini-btn, .lp-tool-btn{ min-height:40px; }
+  .lp-btn, .lp-ghost-btn{ min-height:44px; }
+}
+.lp-search input:focus-visible{ outline:2px solid var(--lp-ink); outline-offset:3px; border-radius:6px; }
