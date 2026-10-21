@@ -374,7 +374,10 @@ function editedPhotoCanvas(maxSide){
   const sig=photoSig()+'|'+(maxSide||0)+'|'+img.naturalWidth+'x'+img.naturalHeight;
   if(photoCache.sig===sig&&photoCache.cv) return photoCache.cv;
   const iw=img.naturalWidth, ih=img.naturalHeight;
-  const rot=((PHOTO.rot%360)+360)%360, sw=(rot===90||rot===270)?ih:iw, sh=(rot===90||rot===270)?iw:ih;
+  const rot=((PHOTO.rot%360)+360)%360;
+  // bila ada potongan, hanya bagian itu yang dipakai
+  const cw=PHOTO.crop?PHOTO.crop.w*iw:iw, ch=PHOTO.crop?PHOTO.crop.h*ih:ih;
+  const sw=(rot===90||rot===270)?ch:cw, sh=(rot===90||rot===270)?cw:ch;
   let scale=1;
   if(maxSide&&Math.max(sw,sh)>maxSide) scale=maxSide/Math.max(sw,sh);
   const cv=document.createElement('canvas');
@@ -386,9 +389,9 @@ function editedPhotoCanvas(maxSide){
   if(PHOTO.flipX||PHOTO.flipY) c.scale(PHOTO.flipX?-1:1,PHOTO.flipY?-1:1);
   if(PHOTO.crop){
     const cr=PHOTO.crop;
-    c.drawImage(img, cr.x*iw, cr.y*ih, cr.w*iw, cr.h*ih, -cr.w*iw*scale/2, -cr.h*ih*scale/2, cr.w*iw*scale, cr.h*ih*scale);
+    c.drawImage(img, cr.x*iw, cr.y*ih, cr.w*iw, cr.h*ih, -cw*scale/2, -ch*scale/2, cw*scale, ch*scale);
   } else {
-    c.drawImage(img, -iw*scale/2, -ih*scale/2, iw*scale, ih*scale);
+    c.drawImage(img, -cw*scale/2, -ch*scale/2, cw*scale, ch*scale);
   }
   c.restore();
   photoCache={ sig, cv, url:'' };
@@ -2149,6 +2152,7 @@ if(typeof syncQrUI==='function') syncQrUI();
 if(typeof syncTxtUI==='function') syncTxtUI();
 loadMyTpl();
 renderLandingGallery();
+renderHeroPosters();
 syncWaLink();
 /* tawarkan melanjutkan desain terakhir (hanya sekali, setelah semua siap) */
 (function(){
