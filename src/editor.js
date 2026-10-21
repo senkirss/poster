@@ -229,15 +229,61 @@ $('btnResetPos').onclick=()=>{
 };
 
 /* ---- Zoom pratinjau ---- */
+let panX=0, panY=0;
+function applyPan(){
+  if(!poster) return;
+  poster.style.transform=(panX||panY)?('translate('+panX.toFixed(1)+'px,'+panY.toFixed(1)+'px)'):'';
+}
 function setZoom(z){
-  zoom=Math.min(1.3, Math.max(.6, Math.round(z*10)/10));
+  zoom=Math.min(1.6, Math.max(.4, Math.round(z*100)/100));
+  if(zoom<=0.4){ panX=0; panY=0; }
   $('zoomVal').textContent=Math.round(zoom*100)+'%';
   const zvT=$('zoomValTop'); if(zvT) zvT.textContent=Math.round(zoom*100)+'%';
   render();
+  applyPan();
 }
 $('zoomIn').onclick=()=>setZoom(zoom+.1);
 $('zoomOut').onclick=()=>setZoom(zoom-.1);
 $('zoomInTop').onclick=()=>setZoom(zoom+.1);
+
+/* ---- Zoom cubit dua jari & Ctrl + gulir ---- */
+(function bindPinchZoom(){
+  const area=$('canvasArea'); if(!area) return;
+  const pts=new Map();
+  let pinch=null;
+  area.addEventListener('pointerdown',e=>{
+    if(e.pointerType==='mouse'&&e.button!==0) return;
+    pts.set(e.pointerId,{x:e.clientX,y:e.clientY});
+    if(pts.size===2){
+      const v=[...pts.values()];
+      pinch={ dist:Math.hypot(v[0].x-v[1].x,v[0].y-v[1].y)||1, zoom:zoom,
+              mid:{x:(v[0].x+v[1].x)/2,y:(v[0].y+v[1].y)/2}, px:panX, py:panY };
+      activeSel=null; if(typeof hideSelBox==='function') hideSelBox();
+    }
+  });
+  area.addEventListener('pointermove',e=>{
+    if(!pts.has(e.pointerId)) return;
+    pts.set(e.pointerId,{x:e.clientX,y:e.clientY});
+    if(pts.size<2||!pinch) return;
+    const v=[...pts.values()];
+    const dist=Math.hypot(v[0].x-v[1].x,v[0].y-v[1].y)||1;
+    const mid={x:(v[0].x+v[1].x)/2,y:(v[0].y+v[1].y)/2};
+    e.preventDefault();
+    setZoom(pinch.zoom*(dist/pinch.dist));
+    panX=pinch.px+(mid.x-pinch.mid.x);
+    panY=pinch.py+(mid.y-pinch.mid.y);
+    applyPan();
+  });
+  const up=e=>{ pts.delete(e.pointerId); if(pts.size<2) pinch=null; };
+  area.addEventListener('pointerup',up);
+  area.addEventListener('pointercancel',up);
+  area.addEventListener('pointerleave',up);
+  area.addEventListener('wheel',e=>{
+    if(!e.ctrlKey&&!e.metaKey) return;
+    e.preventDefault();
+    setZoom(zoom+(e.deltaY<0?0.08:-0.08));
+  },{passive:false});
+})();
 $('zoomOutTop').onclick=()=>setZoom(zoom-.1);
 $('btnDownloadTop').onclick=()=>exportPoster();
 
@@ -248,7 +294,7 @@ $('btnAddText').onclick=()=>{
   pushHistory();
   const f=FONTS[S.font];
   EXTRAS.push({ id:'x'+Date.now().toString(36)+(extraSeq++), text:'Teks baru '+(EXTRAS.length+1),
-    size:Math.max(24,S.titleSize-8), color:S.titleColor, family:f.title, weight:f.weight, x:.5, y:.78, rot:0 });
+    size:Math.max(24,S.titleSize-8), color:S.titleColor, family:f.title, weight:f.weight, x:.5, y:.78, rot:0, locked:false });
   switchTab('teks');
   renderExtras(); renderExtraList();
   toast('Teks bebas ditambahkan, seret di kanvas!');
@@ -294,6 +340,7 @@ function renderExtraList(){
       '<div class="flex items-center gap-2">'
       +'<input data-xkind="color" type="color" value="'+t.color+'" class="!w-8 !h-7 shrink-0" title="Warna teks"/>'
       +'<input data-xkind="text" type="text" maxlength="40" class="flex-1 min-w-0 bg-white dark:bg-[#1C2342] border border-slate-200 dark:border-slate-700 rounded-lg px-2 py-1.5 text-xs font-bold focus:outline-none focus:ring-2 focus:ring-[#E9B44C]"/>'
+      +'<button data-xkind="lock" class="text-[11px] font-bold px-2 py-1.5 rounded-lg transition '+(t.locked?'bg-[#EFE3C2] text-[#8A5A12] dark:bg-[#2A3358] dark:text-[#E9B44C]':'text-slate-500 dark:text-[#A39D86] hover:bg-[#E9E5DA]')+'" title="'+(t.locked?'Buka kunci teks':'Kunci teks')+'" aria-label="'+(t.locked?'Buka kunci teks':'Kunci teks')+'" aria-pressed="'+(t.locked?'true':'false')+'">'+(t.locked?markSvg('Gembok',14,'currentColor'):markSvg('Buka',14,'currentColor'))+'</button>'
       +'<button data-xkind="del" class="text-[11px] font-bold text-red-500 bg-red-50 hover:bg-red-100 px-2 py-1.5 rounded-lg transition" title="Hapus teks"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4.5 6.5h15M9.5 6.5V5A1.5 1.5 0 0 1 11 3.5h2A1.5 1.5 0 0 1 14.5 5v1.5M6.5 6.5 7.5 20h9l1-13.5M10 10v6M14 10v6"/></svg></button>'
       +'</div>'
       +'<div class="flex items-center gap-2"><span class="text-[10px] font-bold text-slate-500 dark:text-[#A39D86]">Ukuran</span>'
@@ -311,6 +358,8 @@ function renderExtraList(){
       +'</div>';
     const q=s=>row.querySelector('[data-xkind="'+s+'"]');
     q('text').value=t.text;
+    if(t.locked){ ['text','color','size','ls','lh'].forEach(k=>{ const e=q(k); if(e) e.disabled=true; });
+      ['bold','italic','underline'].forEach(k=>{ const e=q(k); if(e) e.disabled=true; }); }
     q('color').addEventListener('focus',()=>{ selectedExtraId=t.id; activeSel={kind:'extra',id:t.id}; pushHistory(); });
     q('text').addEventListener('focus',()=>{ selectedExtraId=t.id; activeSel={kind:'extra',id:t.id}; pushHistory(); });
     q('size').addEventListener('pointerdown',()=>pushHistory());
@@ -337,6 +386,9 @@ function renderExtraList(){
         renderExtras(); });
       lhEl.addEventListener('pointerdown',()=>pushHistory()); }
     q('del').onclick=()=>{ pushHistory(); EXTRAS=EXTRAS.filter(x=>x.id!==t.id); renderExtras(); renderExtraList(); toast('🗑 Teks bebas dihapus.'); };
+
+    const lk=q('lock');
+    if(lk) lk.onclick=()=>{ pushHistory(); t.locked=!t.locked; renderExtras(); renderExtraList(); };
     list.appendChild(row);
   });
 }
@@ -347,6 +399,7 @@ poster.addEventListener('pointerdown',e=>{
   if(tgt.isContentEditable) return;
   const t=EXTRAS.find(x=>x.id===tgt.dataset.extra); if(!t) return;
   if(isLocked('extras')){ toast('Layer teks bebas dikunci.'); return; }
+  if(t.locked){ toast('Teks ini dikunci. Buka kuncinya dulu.'); return; }
   e.preventDefault();
   selectedExtraId=t.id; activeSel={kind:'extra',id:t.id};
   pushHistory();
@@ -476,45 +529,52 @@ function renderCropBox(){
 }
 function cropRectToNorm(){
   const rect=$('cropRect'); if(!rect) return null;
-  const x=parseFloat(rect.dataset.cx), y=parseFloat(rect.dataset.cy);
-  const w=parseFloat(rect.dataset.cw), h=parseFloat(rect.dataset.ch);
+  const num=v=>{ const n=parseFloat(v); return isFinite(n)?n:null; };
+  let x=num(rect.dataset.cx), y=num(rect.dataset.cy), w=num(rect.dataset.cw), h=num(rect.dataset.ch);
+  if(x===null||y===null||w===null||h===null){
+    const c=PHOTO.crop; if(c) return { x:c.x, y:c.y, w:c.w, h:c.h };
+    return { x:.1, y:.1, w:.8, h:.8 };
+  }
   return { x, y, w, h };
 }
-/* --- interaksi crop: geser kotak, tarik sudut kanan bawah --- */
+/* --- interaksi crop: geser kotak, tarik 4 sudut + 4 sisi --- */
 (function bindCrop(){
-  const box=$('cropBox'), rect=$('cropRect'), grip=$('cropGrip');
-  if(!box||!rect||!grip) return;
+  const box=$('cropBox'), rect=$('cropRect');
+  if(!box||!rect) return;
   let mode=null, start=null, orig=null;
   const normPos=e=>{ const r=box.getBoundingClientRect(); return { x:e.clientX-r.left, y:e.clientY-r.top }; };
-  const down=(e,isGrip)=>{
+  const down=(e,dir)=>{
     if(!uploadDataURL) return;
     e.preventDefault(); e.stopPropagation();
-    mode=isGrip?'size':'move'; start=normPos(e); orig=cropRectToNorm()||{x:.1,y:.1,w:.8,h:.8};
+    mode=dir||'move'; start=normPos(e); orig=cropRectToNorm()||{x:.1,y:.1,w:.8,h:.8};
     pushHistory();
-    try{ (isGrip?grip:rect).setPointerCapture(e.pointerId); }catch(err){}
+    try{ e.currentTarget.setPointerCapture(e.pointerId); }catch(err){}
   };
   const mv=e=>{
     if(!mode) return;
     const p=normPos(e);
     const ox=parseFloat(rect.dataset.ox)||0, oy=parseFloat(rect.dataset.oy)||0;
     const dw=parseFloat(rect.dataset.dw)||1, dh=parseFloat(rect.dataset.dh)||1;
-    let nx=orig.x, ny=orig.y, nw=orig.w, nh=orig.h;
+    const dx=(p.x-start.x)/dw, dy=(p.y-start.y)/dh;
+    let x=orig.x, y=orig.y, w=orig.w, h=orig.h;
     if(mode==='move'){
-      nx=orig.x+(p.x-start.x)/dw; ny=orig.y+(p.y-start.y)/dh;
-      nx=Math.min(1-orig.w,Math.max(0,nx)); ny=Math.min(1-orig.h,Math.max(0,ny));
+      x=Math.min(1-w,Math.max(0,orig.x+dx)); y=Math.min(1-h,Math.max(0,orig.y+dy));
     } else {
-      nw=orig.w+(p.x-start.x)/dw; nh=orig.h+(p.y-start.y)/dh;
-      nw=Math.max(.08,Math.min(1-orig.x,nw)); nh=Math.max(.08,Math.min(1-orig.y,nh));
+      if(mode.indexOf('w')>=0){ const nx=Math.min(x+w-.08,Math.max(0,orig.x+dx)); w=orig.w+(orig.x-nx); x=nx; }
+      if(mode.indexOf('e')>=0){ w=Math.max(.08,Math.min(1-x,orig.w+dx)); }
+      if(mode.indexOf('n')>=0){ const ny=Math.min(y+h-.08,Math.max(0,orig.y+dy)); h=orig.h+(orig.y-ny); y=ny; }
+      if(mode.indexOf('s')>=0){ h=Math.max(.08,Math.min(1-y,orig.h+dy)); }
     }
-    PHOTO.crop={ x:nx, y:ny, w:nw, h:nh };
+    PHOTO.crop={ x:x, y:y, w:w, h:h };
     renderCropBox(); refreshPhotoPreview(); render();
   };
   const up=()=>{ mode=null; };
-  rect.addEventListener('pointerdown',e=>down(e,false));
-  grip.addEventListener('pointerdown',e=>down(e,true));
-  [rect,grip].forEach(el=>{
-    el.addEventListener('pointermove',mv); el.addEventListener('pointerup',up); el.addEventListener('pointercancel',up);
+  rect.addEventListener('pointerdown',e=>{ if(e.target.closest('.crop-h')) return; down(e,'move'); });
+  rect.querySelectorAll('.crop-h').forEach(h=>{
+    h.addEventListener('pointerdown',e=>down(e,h.dataset.crop));
+    h.addEventListener('pointermove',mv); h.addEventListener('pointerup',up); h.addEventListener('pointercancel',up);
   });
+  rect.addEventListener('pointermove',mv); rect.addEventListener('pointerup',up); rect.addEventListener('pointercancel',up);
 })();
 $('phRot').onclick=()=>{ pushHistory(); PHOTO.rot=((PHOTO.rot||0)+90)%360; photoCache={sig:'',cv:null,url:''}; refreshPhotoPreview(); syncPhotoUI(); render(); };
 $('phFlipH').onclick=()=>{ pushHistory(); PHOTO.flipX=!PHOTO.flipX; photoCache={sig:'',cv:null,url:''}; refreshPhotoPreview(); render(); };
@@ -778,6 +838,7 @@ function syncSelPanel(t){
 }
 function onHandlePointerDown(e,mode,handle){
   const t=selTarget(); if(!t) return;
+  if(t.obj&&t.obj.locked){ toast('Elemen ini dikunci. Buka kuncinya dulu.'); return; }
   e.preventDefault(); e.stopPropagation();
   const pr=poster.getBoundingClientRect();
   const r=t.el.getBoundingClientRect();
@@ -1336,7 +1397,7 @@ document.querySelectorAll('[data-shapeadd]').forEach(b=>b.onclick=()=>{
   if(SHAPES.length>=20){ toast('️ Maksimal 20 bentuk per halaman.'); return; }
   pushHistory();
   const kind=b.dataset.shapeadd;
-  const base={ id:'s'+Date.now().toString(36)+(shapeSeq++), kind, color:$('shapeColor').value, x:.5, y:.5, angle:0, radius:.12 };
+  const base={ id:'s'+Date.now().toString(36)+(shapeSeq++), kind, color:$('shapeColor').value, x:.5, y:.5, angle:0, radius:.12, locked:false };
   if(kind==='rect') Object.assign(base,{w:.5,h:.2});
   else if(kind==='circle') Object.assign(base,{w:.32,h:.32});
   else if(kind==='triangle') Object.assign(base,{w:.42,h:.42});
@@ -1347,14 +1408,14 @@ document.querySelectorAll('[data-shapeadd]').forEach(b=>b.onclick=()=>{
   switchTab('bentuk'); renderShapes();
   toast('🔷 Bentuk ditambahkan, seret di kanvas!');
 });
-$('shapeColor').addEventListener('input',e=>{ const s=needSel(); if(!s) return; s.color=e.target.value; renderShapes(); });
+$('shapeColor').addEventListener('input',e=>{ const s=needSel(); if(!s) return; if(s.locked){ toast('Bentuk ini dikunci.'); return; } s.color=e.target.value; renderShapes(); });
 $('shapeColor').addEventListener('pointerdown',()=>{ if(selShape()) pushHistory(); });
 document.querySelectorAll('.scol').forEach(b=>b.onclick=()=>{ const s=needSel(); if(!s) return; pushHistory(); s.color=b.dataset.scolor; $('shapeColor').value=s.color; renderShapes(); });
-$('inShapeW').addEventListener('input',e=>{ const s=needSel(); if(!s) return; s.w=+e.target.value/100; $('shapeWVal').textContent=e.target.value+'%'; renderShapes(); });
-$('inShapeH').addEventListener('input',e=>{ const s=needSel(); if(!s||s.kind!=='rect') return; s.h=+e.target.value/100; $('shapeHVal').textContent=e.target.value+'%'; renderShapes(); });
-$('inShapeThick').addEventListener('input',e=>{ const s=needSel(); if(!s||s.kind!=='line') return; s.thick=+e.target.value/1080; $('shapeThickVal').textContent=e.target.value; renderShapes(); });
-$('inShapeAngle').addEventListener('input',e=>{ const s=needSel(); if(!s||s.kind==='circle') return; s.angle=+e.target.value; $('shapeAngleVal').textContent=e.target.value+'°'; renderShapes(); });
-$('inShapeRadius').addEventListener('input',e=>{ const s=needSel(); if(!s||s.kind!=='rect') return; s.radius=+e.target.value/100; $('shapeRadiusVal').textContent=e.target.value+'%'; renderShapes(); });
+$('inShapeW').addEventListener('input',e=>{ const s=needSel(); if(!s||s.locked){ toast('Bentuk ini dikunci.'); return; } if(!s) return; s.w=+e.target.value/100; $('shapeWVal').textContent=e.target.value+'%'; renderShapes(); });
+$('inShapeH').addEventListener('input',e=>{ const s=needSel(); if(!s||s.locked){ toast('Bentuk ini dikunci.'); return; } if(!s||s.kind!=='rect') return; s.h=+e.target.value/100; $('shapeHVal').textContent=e.target.value+'%'; renderShapes(); });
+$('inShapeThick').addEventListener('input',e=>{ const s=needSel(); if(!s||s.locked){ toast('Bentuk ini dikunci.'); return; } if(!s||s.kind!=='line') return; s.thick=+e.target.value/1080; $('shapeThickVal').textContent=e.target.value; renderShapes(); });
+$('inShapeAngle').addEventListener('input',e=>{ const s=needSel(); if(!s||s.locked){ toast('Bentuk ini dikunci.'); return; } if(!s||s.kind==='circle') return; s.angle=+e.target.value; $('shapeAngleVal').textContent=e.target.value+'°'; renderShapes(); });
+$('inShapeRadius').addEventListener('input',e=>{ const s=needSel(); if(!s||s.locked){ toast('Bentuk ini dikunci.'); return; } if(!s||s.kind!=='rect') return; s.radius=+e.target.value/100; $('shapeRadiusVal').textContent=e.target.value+'%'; renderShapes(); });
 ['inShapeW','inShapeH','inShapeThick','inShapeAngle','inShapeRadius'].forEach(id=>$(id).addEventListener('pointerdown',()=>{ if(selShape()) pushHistory(); }));
 function renderShapes(){
   const layer=$('shapeLayer'); if(!layer) return;
@@ -1415,8 +1476,10 @@ function renderShapeList(){
     row.innerHTML='<span class="text-base">'+icons[s.kind]+'</span>'
       +'<span class="w-4 h-4 rounded-full border border-slate-300 shrink-0" style="background:'+s.color+'"></span>'
       +'<span class="flex-1 text-xs font-bold">'+names[s.kind]+' '+(i+1)+'</span>'
+      +'<span data-xlock class="text-[12px] leading-none '+(s.locked?'text-[#8A5A12] dark:text-[#E9B44C]':'text-slate-300 dark:text-slate-600')+'" title="'+(s.locked?'Buka kunci bentuk':'Kunci bentuk')+'" aria-label="'+(s.locked?'Buka kunci bentuk':'Kunci bentuk')+'">'+(s.locked?markSvg('Gembok',14,'currentColor'):markSvg('Buka',14,'currentColor'))+'</span>'
       +'<span data-xdel class="text-[11px] font-bold text-red-500 hover:scale-110" title="Hapus"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4.5 6.5h15M9.5 6.5V5A1.5 1.5 0 0 1 11 3.5h2A1.5 1.5 0 0 1 14.5 5v1.5M6.5 6.5 7.5 20h9l1-13.5M10 10v6M14 10v6"/></svg></span>';
     row.onclick=e=>{
+      if(e.target.closest('[data-xlock]')){ pushHistory(); s.locked=!s.locked; renderShapes(); return; }
       if(e.target.closest('[data-xdel]')){ pushHistory(); SHAPES=SHAPES.filter(x=>x.id!==s.id); renderShapes(); toast('🗑 Bentuk dihapus.'); }
       else { selectedShapeId=s.id; activeSel={kind:'shape',id:s.id}; renderShapes(); }
     };
@@ -1442,6 +1505,7 @@ poster.addEventListener('pointerdown',e=>{
   if(!tgt||drawTool!=='off') return;
   const s=SHAPES.find(x=>x.id===tgt.dataset.shape); if(!s) return;
   if(isLocked('shapes')){ toast('Layer bentuk dikunci.'); return; }
+  if(s.locked){ toast('Bentuk ini dikunci. Buka kuncinya dulu.'); return; }
   e.preventDefault();
   pushHistory();
   selectedShapeId=s.id; activeSel={kind:'shape',id:s.id}; renderShapes();

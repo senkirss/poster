@@ -360,27 +360,11 @@ html.dark .rail-btn.active { background:#2A3358; color:#F3EDDC; }
   .lp-mini-btn:disabled{ opacity:.45; cursor:not-allowed; }
 
 /* ---------------------------------------------------------------
-   Utilitas kecil untuk fitur baru.
-   Build Tailwind di proyek ini masih parsial, jadi kelas yang
-   dipakai fitur baru ditulis manual di sini agar tetap berlaku.
+   Utilitas kecil yang tidak dibuat Tailwind (nilai non-standar)
    --------------------------------------------------------------- */
-.h-36{ height:9rem; }
-.rounded-\[2px\]{ border-radius:2px; }
-.rounded-\[3px\]{ border-radius:3px; }
-.text-\[13px\]{ font-size:13px; }
 .tracking-\[0\.06em\]{ letter-spacing:.06em; }
 .tracking-\[0\.08em\]{ letter-spacing:.08em; }
-.no-underline{ text-decoration:none; }
-.object-contain{ object-fit:contain; }
-.cursor-move{ cursor:move; }
-.cursor-nwse-resize{ cursor:nwse-resize; }
-.pt-4{ padding-top:1rem; }
-.text-white\/60{ color:rgba(255,255,255,.6); }
-.border-\[\#E9B44C\]{ border-color:#E9B44C; }
-.\!w-8{ width:2rem !important; }
-.\!h-7{ height:1.75rem !important; }
 @media (min-width:1024px){ .lg\:max-h-\[calc\(100vh-7rem\)\]{ max-height:calc(100vh - 7rem); } }
-
 /* ---------------------------------------------------------------
    Aksesibilitas keyboard: fokus selalu terlihat untuk kontrol baru
    --------------------------------------------------------------- */
@@ -439,3 +423,15 @@ html.dark .lp-use:focus-visible{ outline-color:var(--lp-ink); }
   .lp-btn, .lp-ghost-btn{ min-height:44px; }
 }
 .lp-search input:focus-visible{ outline:2px solid var(--lp-ink); outline-offset:3px; border-radius:6px; }
+
+/* Pegangan crop: 4 sudut + 4 sisi */
+.crop-h{ position:absolute; width:11px; height:11px; background:#E9B44C; border:1px solid #fff; border-radius:3px; touch-action:none; }
+.crop-h[data-crop="nw"]{ left:-6px; top:-6px; cursor:nwse-resize; }
+.crop-h[data-crop="n"] { left:50%; top:-6px; margin-left:-6px; width:12px; height:7px; cursor:ns-resize; }
+.crop-h[data-crop="ne"]{ right:-6px; top:-6px; cursor:nesw-resize; }
+.crop-h[data-crop="e"] { right:-6px; top:50%; margin-top:-6px; width:7px; height:12px; cursor:ew-resize; }
+.crop-h[data-crop="se"]{ right:-6px; bottom:-6px; cursor:nwse-resize; }
+.crop-h[data-crop="s"] { left:50%; bottom:-6px; margin-left:-6px; width:12px; height:7px; cursor:ns-resize; }
+.crop-h[data-crop="sw"]{ left:-6px; bottom:-6px; cursor:nesw-resize; }
+.crop-h[data-crop="w"] { left:-6px; top:50%; margin-top:-6px; width:7px; height:12px; cursor:ew-resize; }
+.crop-h:focus-visible{ outline:2px solid var(--lp-ink); outline-offset:2px; }

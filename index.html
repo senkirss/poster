@@ -791,8 +791,16 @@
           <p class="text-xs font-bold text-slate-600 dark:text-[#D9D2BC] mt-4 mb-1.5">Potong</p>
           <div id="cropBox" class="relative w-full h-36 bg-[#F5F2EB] dark:bg-[#232B4D] rounded-xl overflow-hidden border border-slate-200 dark:border-slate-700">
             <img id="cropImg" alt="Pratinjau potong foto" class="absolute inset-0 w-full h-full object-contain pointer-events-none" />
-            <div id="cropRect" class="absolute border-2 border-[#E9B44C] cursor-move" style="left:10%;top:10%;width:80%;height:80%"></div>
-            <span id="cropGrip" class="absolute w-4 h-4 bg-[#E9B44C] rounded-[2px] cursor-nwse-resize" style="right:-2px;bottom:-2px"></span>
+            <div id="cropRect" class="absolute border-2 border-[#E9B44C] cursor-move" style="left:10%;top:10%;width:80%;height:80%">
+              <span class="crop-h" data-crop="nw" title="Sudut kiri atas"></span>
+              <span class="crop-h" data-crop="n"  title="Sisi atas"></span>
+              <span class="crop-h" data-crop="ne" title="Sudut kanan atas"></span>
+              <span class="crop-h" data-crop="e"  title="Sisi kanan"></span>
+              <span class="crop-h" data-crop="se" title="Sudut kanan bawah"></span>
+              <span class="crop-h" data-crop="s"  title="Sisi bawah"></span>
+              <span class="crop-h" data-crop="sw" title="Sudut kiri bawah"></span>
+              <span class="crop-h" data-crop="w"  title="Sisi kiri"></span>
+            </div>
           </div>
           <div class="flex gap-2 mt-2">
             <button id="phCropReset" class="lp-mini-btn flex-1" type="button">Reset potong</button>
@@ -938,7 +946,7 @@
           </div>
         </div>
 
-        <div class="bg-[#E3DFD3] rounded-2xl p-4 sm:p-8 grid place-items-center min-h-[420px] dark:bg-[#141A33]" style="background-image:radial-gradient(#B9B49F 1px, transparent 1px); background-size:18px 18px;">
+        <div id="canvasArea" class="bg-[#E3DFD3] rounded-2xl p-4 sm:p-8 grid place-items-center min-h-[420px] dark:bg-[#141A33]" style="background-image:radial-gradient(#B9B49F 1px, transparent 1px); background-size:18px 18px;">
           <!-- POSTER -->
           <div id="poster" class="relative w-full max-w-[420px] overflow-hidden rounded-[1.6rem] shadow-soft text-white" style="aspect-ratio:3/4; background:linear-gradient(150deg,#141A33,#2A3260);">
             <img id="posterBgImg" alt="" class="absolute inset-0 w-full h-full" style="object-fit:cover; display:none;" />
