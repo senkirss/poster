@@ -262,7 +262,7 @@ function renderExtras(){
       const d=document.createElement('div');
       d.dataset.extra=t.id;
       d.className='absolute';
-      d.style.cssText+=';pointer-events:auto;white-space:nowrap;line-height:1.15;max-width:94%;';
+      d.style.cssText+=';pointer-events:auto;white-space:pre-wrap;line-height:1.15;max-width:88%;';
       layer.appendChild(d);
     });
     builtExtraIds=sig;
@@ -298,7 +298,17 @@ function renderExtraList(){
       +'</div>'
       +'<div class="flex items-center gap-2"><span class="text-[10px] font-bold text-slate-500 dark:text-[#A39D86]">Ukuran</span>'
       +'<input data-xkind="size" type="range" min="16" max="90" value="'+t.size+'" class="flex-1"/>'
-      +'<span data-xkind="val" class="text-[10px] font-extrabold text-[#8A5A12] dark:text-[#E9B44C] w-8 text-right">'+t.size+'</span></div>';
+      +'<span data-xkind="val" class="text-[10px] font-extrabold text-[#8A5A12] dark:text-[#E9B44C] w-8 text-right">'+t.size+'</span></div>'
+      +'<div class="flex items-center gap-1.5 flex-wrap pt-2 border-t border-slate-200 dark:border-slate-700">'
+      +'<button data-xkind="bold" class="x-fmt-btn" type="button" aria-pressed="'+(t.bold===false?'false':'true')+'" title="Tebal" aria-label="Tebal">B</button>'
+      +'<button data-xkind="italic" class="x-fmt-btn italic" type="button" aria-pressed="'+(t.italic?'true':'false')+'" title="Miring" aria-label="Miring">I</button>'
+      +'<button data-xkind="underline" class="x-fmt-btn underline" type="button" aria-pressed="'+(t.underline?'true':'false')+'" title="Garis bawah" aria-label="Garis bawah">U</button>'
+      +'<span class="text-[10px] font-bold text-slate-500 dark:text-[#A39D86] ml-1">Jarak huruf</span>'
+      +'<input data-xkind="ls" type="range" min="-5" max="30" value="'+(t.ls||0)+'" class="w-14" title="Jarak antarhuruf" aria-label="Jarak antarhuruf" />'
+      +'<span class="text-[10px] font-bold text-slate-500 dark:text-[#A39D86]">Jarak baris</span>'
+      +'<input data-xkind="lh" type="range" min="80" max="200" value="'+Math.round((t.lh||1.15)*100)+'" class="w-14" title="Jarak antarbaris" aria-label="Jarak antarbaris" />'
+      +'<span data-xkind="lhval" class="text-[10px] font-extrabold text-[#8A5A12] dark:text-[#E9B44C] w-8 text-right">'+((t.lh||1.15)).toFixed(2)+'</span>'
+      +'</div>';
     const q=s=>row.querySelector('[data-xkind="'+s+'"]');
     q('text').value=t.text;
     q('color').addEventListener('focus',()=>{ selectedExtraId=t.id; activeSel={kind:'extra',id:t.id}; pushHistory(); });
@@ -307,6 +317,25 @@ function renderExtraList(){
     q('color').addEventListener('input',e=>{ t.color=e.target.value; renderExtras(); });
     q('text').addEventListener('input',e=>{ t.text=e.target.value; renderExtras(); });
     q('size').addEventListener('input',e=>{ t.size=+e.target.value; q('val').textContent=t.size; renderExtras(); });
+    /* format teks bebas: tebal, miring, garis bawah, jarak huruf, jarak baris */
+    ['bold','italic','underline'].forEach(k=>{
+      const b=q(k); if(!b) return;
+      b.onclick=()=>{
+        pushHistory();
+        if(k==='bold') t.bold=(t.bold===false);
+        else t[k]=!t[k];
+        b.setAttribute('aria-pressed',(k==='bold'?(t.bold!==false):!!t[k])?'true':'false');
+        renderExtras();
+      };
+    });
+    const lsEl=q('ls'), lhEl=q('lh');
+    if(lsEl){ lsEl.addEventListener('input',e=>{ t.ls=+e.target.value; renderExtras(); });
+      lsEl.addEventListener('pointerdown',()=>pushHistory()); }
+    if(lhEl){ lhEl.addEventListener('input',e=>{
+        t.lh=+e.target.value/100;
+        const v=row.querySelector('[data-xkind="lhval"]'); if(v) v.textContent=t.lh.toFixed(2);
+        renderExtras(); });
+      lhEl.addEventListener('pointerdown',()=>pushHistory()); }
     q('del').onclick=()=>{ pushHistory(); EXTRAS=EXTRAS.filter(x=>x.id!==t.id); renderExtras(); renderExtraList(); toast('🗑 Teks bebas dihapus.'); };
     list.appendChild(row);
   });
@@ -782,7 +811,7 @@ function onHandlePointerDown(e,mode,handle){
     let factor=dist/startDist;
     factor=Math.max(.2,Math.min(5,factor));
     if(t.type==='icon'){
-      S.iconSize=Math.max(0,Math.min(220,Math.round(startSize*factor)));
+      S.iconSize=Math.max(0,Math.min(110,Math.round(startSize*factor)));
       render();
     } else if(t.type==='qr'){
       QR.size=Math.max(40,Math.min(600,Math.round(startSize*factor)));
@@ -790,12 +819,12 @@ function onHandlePointerDown(e,mode,handle){
       $('qrLayer').dataset.sig='';
       renderQr();
     } else if(t.type==='extra'){
-      t.obj.size=Math.max(8,Math.min(200,Math.round(startSize*factor)));
+      t.obj.size=Math.max(16,Math.min(90,Math.round(startSize*factor)));
       const nx=anchor[0]+dx*factor, ny=anchor[1]+dy*factor;
       setSelCenter(t,{ x:(anchor[0]+nx)/2, y:(anchor[1]+ny)/2 });
       renderExtras();
     } else if(t.type==='sticker'){
-      t.obj.size=Math.max(12,Math.min(240,Math.round(startSize*factor)));
+      t.obj.size=Math.max(24,Math.min(140,Math.round(startSize*factor)));
       const nx=anchor[0]+dx*factor, ny=anchor[1]+dy*factor;
       setSelCenter(t,{ x:(anchor[0]+nx)/2, y:(anchor[1]+ny)/2 });
       renderPositions();
@@ -848,10 +877,10 @@ function bindSelHandles(){
       const box={ x:r.left-pr.left, y:r.top-pr.top, w:r.width, h:r.height };
       const cx=box.x+box.w/2, cy=box.y+box.h/2;
       const startSize=(t.type==='extra')?t.obj.size:(t.type==='sticker')?t.obj.size:(t.type==='icon')?S.iconSize:(t.type==='qr')?QR.size:(t.obj.w||.3);
-      if(t.type==='icon'){ S.iconSize=Math.max(0,Math.min(220,Math.round(startSize*f))); render(); }
+      if(t.type==='icon'){ S.iconSize=Math.max(0,Math.min(110,Math.round(startSize*f))); render(); }
       else if(t.type==='qr'){ QR.size=Math.max(40,Math.min(600,Math.round(startSize*f))); $('qrSize').value=QR.size; $('qrSizeVal').textContent=QR.size+'px'; $('qrLayer').dataset.sig=''; renderQr(); }
-      else if(t.type==='extra'){ t.obj.size=Math.max(8,Math.min(200,Math.round(startSize*f))); renderExtras(); }
-      else if(t.type==='sticker'){ t.obj.size=Math.max(12,Math.min(240,Math.round(startSize*f))); renderPositions(); }
+      else if(t.type==='extra'){ t.obj.size=Math.max(16,Math.min(90,Math.round(startSize*f))); renderExtras(); }
+      else if(t.type==='sticker'){ t.obj.size=Math.max(24,Math.min(140,Math.round(startSize*f))); renderPositions(); }
       else if(t.type==='shape'){ t.obj.w=Math.max(.02,Math.min(1.6,t.obj.w*f)); if(t.obj.kind==='rect') t.obj.h=Math.max(.02,Math.min(1.6,t.obj.h*f)); renderShapes(); }
       syncSelPanel(t); renderSelBox();
     }
@@ -1478,9 +1507,14 @@ function paintAbsGroups(ctx,W,H,u,front){
         if('letterSpacing' in ctx) ctx.letterSpacing=((t.ls||0)/100*eu)+'px';
         ctx.font=(t.bold===false?'400':(t.weight||800))+(t.italic?' italic':'')+' '+eu+'px '+t.family;
         ctx.textAlign='center'; ctx.textBaseline='middle'; ctx.fillStyle=t.color;
-        ctx.fillText(t.text,0,0);
-        if(t.underline){ ctx.strokeStyle=t.color; ctx.lineWidth=Math.max(2,eu*.06); ctx.beginPath();
-          const uw=ctx.measureText(t.text).width; ctx.moveTo(-uw/2,eu*.62); ctx.lineTo(uw/2,eu*.62); ctx.stroke(); }
+        const lines=wrapLines(ctx,t.text,W*.88);
+        const lh=eu*(t.lh||1.15), y0=-(lines.length-1)*lh/2;
+        lines.forEach((ln,i)=>{
+          ctx.fillText(ln,0,y0+i*lh);
+          if(t.underline){ ctx.save(); ctx.strokeStyle=t.color; ctx.lineWidth=Math.max(2,eu*.06);
+            const uw=ctx.measureText(ln).width; ctx.beginPath();
+            ctx.moveTo(-uw/2,y0+i*lh+eu*.36); ctx.lineTo(uw/2,y0+i*lh+eu*.36); ctx.stroke(); ctx.restore(); }
+        });
         if('letterSpacing' in ctx) ctx.letterSpacing='0px';
         ctx.restore();
       }); }

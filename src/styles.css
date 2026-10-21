@@ -420,6 +420,16 @@ html.dark .lp-use:focus-visible{ outline-color:var(--lp-ink); }
 }
 
 /* ---------------------------------------------------------------
+   Tombol format kecil di daftar teks bebas
+   --------------------------------------------------------------- */
+.x-fmt-btn{ width:1.75rem; height:1.75rem; display:inline-flex; align-items:center; justify-content:center;
+  border:1px solid var(--lp-line); border-radius:8px; background:transparent; color:var(--lp-ink2);
+  font-size:.75rem; font-weight:800; cursor:pointer; }
+.x-fmt-btn:hover{ border-color:var(--lp-ink); color:var(--lp-ink); }
+.x-fmt-btn[aria-pressed="true"]{ background:var(--lp-ink); color:var(--lp-bg); border-color:var(--lp-ink); }
+.x-fmt-btn:focus-visible{ outline:2px solid var(--lp-ink); outline-offset:2px; }
+
+/* ---------------------------------------------------------------
    Layar sentuh: target sentuh rail & panel minimal 44px
    --------------------------------------------------------------- */
 @media (pointer:coarse){
